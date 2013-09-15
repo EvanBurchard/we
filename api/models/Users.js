@@ -7,13 +7,27 @@
  */
 
 module.exports = {
-
   attributes: {
-  	
-  	/* e.g.
-  	nickname: 'string'
-  	*/
-    
-  }
+    // Or for more flexibility:
+    // phoneNumber: {
+    //    type: 'STRING',
+    //    defaultsTo: '555-555-5555'
+    // }
 
+    username: {
+        type: 'STRING'
+    },
+
+    email: {
+        type: 'STRING'
+    },
+
+    password: {
+        type: 'STRING'
+    },
+
+    name: {
+        type: 'STRING'
+    }
+  }
 };

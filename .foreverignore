@@ -1,0 +1,4 @@
+pids/**
+logs/**
+.tmp/**
+.git/**

@@ -35,13 +35,28 @@ module.exports.routes = {
   '/': {
     view: 'home/index'
   },
-/*
-  '/signup': {
-    controller:user:x
 
-    view: 'user/signup'
+  '/signup': {
+    controller: 'users',
+    action: 'signup'
+    //view: 'users/signup'
+  },
+
+  'get /login' : {
+    view: 'users/login'
+  },
+
+  'post /login' : {
+       controller: 'users',
+       action: 'login'
+  },
+
+  '/chat' : {
+       controller: 'messages',
+       action: 'chat'
   }
-*/
+
+/*
 
   // Let's say you're building an email client, like Gmail
   // You might want your home route to serve an interface using custom logic.

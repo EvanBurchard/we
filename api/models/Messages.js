@@ -9,11 +9,9 @@
 module.exports = {
 
   attributes: {
-  	
-  	/* e.g.
-  	nickname: 'string'
-  	*/
-    
+    userId: 'INT',
+    username: 'STRING',
+    message: 'STRING'
   }
 
 };
