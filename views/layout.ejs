@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="application">
   <head>
     <!--SCRIPTS-->
     <script src="/linker/js/jquery.min.js"></script>
     <script src="/linker/js/bootstrap.min.js"></script>
+    <script src="/linker/js/angular.min.js"></script>
+    <script src="/linker/js/angular-resource.min.js"></script>
+    <script src="/js/angularjs/application.js"></script>
+    <script src="/js/angularjs/controllers/login.js"></script>
+    <script src="/js/angularjs/controllers/main.js"></script>
     <!--SCRIPTS END-->
 
     <!--STYLES-->
     <link rel="stylesheet" href="/linker/styles/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/linker/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/linker/styles/site.css">
     <!--STYLES END-->
 
     <!--TEMPLATES-->
@@ -21,7 +27,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
 
   </head>
   <body>
@@ -29,8 +34,14 @@
     <div class="container">
       <%- include partials/navbar.ejs %>
 
-      <!-- Include the view file for the current controller/route -->
-      <%- body %>
+      <div class="main row marketing" data-ng-controller="MainCtrl">
+        <!-- Include the view file for the current controller/route -->
+        <h4 data-ng-show="message">{{message}}</h4>
+        <div ng-view>
+          <%- body %>
+        </div>
+
+      </div>
 
       <hr class="featurette-divider">
 
@@ -89,33 +100,16 @@
 
 
         <script>
-            $("#loginButton").click(function(){
-                var username = $("#loginName").val();
-                var password = $("#loginPassword").val();
-                if (username && password) {
-                    $.post(
-                        '/login',
-                        {username: username, password:password},
-                        function () {
-                            window.location = "/chat";
-                        }
-                    ).fail(function(res){
-                        alert("Error: " + res.getResponseHeader("error"));
-                    });
-                } else {
-                    alert("A username and password is required");
-                }
-            });
-
             $("#signupButton").click(function(){
-      var username = $("#signupName").val();
-      var password = $("#signupPassword").val();
-      var confirmPassword = $("#signupConfirmPassword").val();
-      if (username && password) {
+      var email = $("#email").val();
+      var password = $("#password").val();
+      var confirmPassword = $("#confirmPassword").val();
+
+      if (email && password) {
           if (password === confirmPassword) {
               $.post(
                   '/signup',
-                  {username: username, password:password},
+                  {email: email, password:password},
                   function () {
                       window.location = "/chat";
                   }
@@ -126,10 +120,13 @@
               alert("Passwords don't match");
           }
       } else {
-          alert("A username and password is required");
+          alert("A email and password is required");
       }
   });
         </script>
+
+        <%- include partials/forms/login_form.ejs %>
+
       </div>
     </body>
 </html>

@@ -19,7 +19,8 @@ module.exports = {
     },
 
     email: {
-        type: 'STRING'
+      type: 'email', // Email type will get validated by the ORM
+      required: true
     },
 
     password: {
@@ -28,6 +29,16 @@ module.exports = {
 
     name: {
         type: 'STRING'
+    },
+
+    birthDate: 'DATE',
+
+    // Override toJSON instance method
+    // to remove password value
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.password;
+      return obj;
     }
   }
 };

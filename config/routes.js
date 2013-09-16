@@ -36,13 +36,23 @@ module.exports.routes = {
     view: 'home/index'
   },
 
-  '/signup': {
+  'get /signup': {
     controller: 'users',
     action: 'signup'
     //view: 'users/signup'
   },
 
+  'post /signup': {
+    controller: 'users',
+    action: 'create'
+    //view: 'users/signup'
+  },
+
   'get /login' : {
+    view: 'users/login'
+  },
+
+  'get /logout' : {
     view: 'users/login'
   },
 
@@ -51,10 +61,22 @@ module.exports.routes = {
        action: 'login'
   },
 
+  'get /dashboard': {
+       controller: 'main',
+       action: 'dashboard'
+  },
+
   '/chat' : {
        controller: 'messages',
        action: 'chat'
+  },
+
+  'get /links' : {
+       controller: 'links',
+       action: 'index'
   }
+
+
 
 /*
 

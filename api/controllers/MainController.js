@@ -22,6 +22,11 @@ module.exports = {
   login: function (req, res) {
 
   },
+
+  dashboard: function (req, res) {
+    res.view();
+  },
+
   chat: function (req, res) {
 
   }

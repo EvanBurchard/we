@@ -1,0 +1,22 @@
+users aqui
+
+<div>
+  <h1><%= title %></h1>
+
+<% if (users.length > 0) { %>
+  <ul>
+    <% users.forEach(function (user) { %>
+      <div>
+        <%= user.id %>
+        <i class="icon-edit"></i> Edit
+        <i class="icon-remove icon-white"></i> Delete
+      </div>
+    <% }); %>
+  </ul>
+<% } else { %>
+<p class="alert alert-block alert-info">
+    <strong><%= __('No users were found.') %></strong>
+</p>
+<% } %>
+
+</div>

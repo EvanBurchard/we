@@ -58,6 +58,15 @@ module.exports = function (grunt) {
     // automatic listener for incoming messages from Socket.io.
     'linker/js/app.js',
 
+    'linker/js/angular.min.js',
+    'linker/js/angular-resource.min.js',
+
+    'js/angularjs/application.js',
+
+    'js/angularjs/services/*.js',
+    'js/angularjs/controllers/*.js',
+    'js/angularjs/directives/*.js',
+
     // *->    put other dependencies here   <-*
 
     // All of the rest of your app scripts imported here

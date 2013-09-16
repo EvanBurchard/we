@@ -1,0 +1,22 @@
+Show a list of links here
+
+<div>
+  <h1><%= title %></h1>
+
+<% if (links.length > 0) { %>
+  <ul>
+    <% links.forEach(function (link) { %>
+      <div>
+        <%= link.id %>
+        <i class="icon-edit"></i> Edit
+        <i class="icon-remove icon-white"></i> Delete
+      </div>
+    <% }); %>
+  </ul>
+<% } else { %>
+<p class="alert alert-block alert-info">
+    <strong><%= __('No links were found.') %></strong>
+</p>
+<% } %>
+
+</div>
