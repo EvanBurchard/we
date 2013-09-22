@@ -1,28 +1,37 @@
-oi<div class="col-lg-6">
+<div class="col-lg-6">
   <h2 class="form-signin-heading"><%= __('Create a account') %></h2>
+  <form data-ng-controller="CreateAccountCtrl" data-ng-submit="submit($event)" name="createAccountForm" class="create-account-form" method="post">
+    <span class="error alert alert-dismissable" data-ng-show="createAccountForm.input.$error.required">Required!</span><br>
 
-  <form class="form-signin" method="post">
+    <li ng-repeat="errors in error">
+        <div data-ng-show="error != ''" class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <span class="data">{{error}}</span>
+        </div>
+    </li>
+
+
 
     <div class="input-group input-group-lg">
       <label for="name"><%= __('Name') %></label>
-      <input id="name" type="text" class="form-control" placeholder="<%= __('Name') %>" autofocus="" name="name">
+      <input data-ng-model="user.name" id="name" type="text" class="form-control" placeholder="<%= __('Name') %>" autofocus="" name="name" required>
     </div>
 
     <div class="input-group input-group-lg">
       <label for="email"><%= __('Email') %></label>
-      <input id="email" type="text" class="form-control" placeholder="<%= __('Email address') %>" name="email">
+      <input data-ng-model="user.email" id="email" type="email" class="form-control" placeholder="<%= __('Email address') %>" name="email" required>
     </div>
 
     <div class="input-group input-group-lg">
       <label for="password"><%= __('Password') %></label>
-      <input id="password" type="password" class="form-control" placeholder="Password" name="password">
+      <input data-ng-model="user.password" id="password" type="password" class="form-control" placeholder="<%= __('Password') %>" name="password" required>
     </div>
 
     <div class="input-group input-group-lg">
       <label for="confirm-password"><%= __('Confirm password') %></label>
-      <input id="confirm-password" type="password" class="form-control" placeholder="Password" name="confirmPassword">
+      <input data-ng-model="user.confirmPassword" id="confirm-password" type="password" class="form-control" placeholder="<%= __('Confirm password') %>" name="confirmPassword" required>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <input class="btn btn-lg btn-primary btn-block" type="submit" value="<%= __('Sign in') %>">
   </form>
 </div>
 <div class="col-lg-6">

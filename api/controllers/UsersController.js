@@ -39,7 +39,7 @@ module.exports = {
       Users.findOneByEmail(email).done(function(err, usr) {
 
           if (err) {
-              res.send(500, { error: "DB Error" });
+              res.send(500, { error: res.i18n("DB Error") });
           } else {
               if (usr) {
                   var hasher = require("password-hash");
@@ -54,10 +54,10 @@ module.exports = {
                       })(req, res, next)
                       res.send(usr);
                   } else {
-                      res.send(400, { error: "Wrong Password" });
+                      res.send(400, { error: res.i18n("Wrong Password") });
                   }
               } else {
-                  res.send(404, { error: "User not Found" });
+                  res.send(404, { error: res.i18n("User not Found") });
               }
           }
       });
@@ -68,27 +68,22 @@ module.exports = {
     user.name = req.param("name");
     user.email = req.param("email");
     user.password = req.param("password");
+    user.password = req.param("confirmPassword");
 
     Users.findOneByEmail(user.email).done(function(err, usr){
-
+      console.log(res);
         if (err) {
-            res.send(500, { error: __("DB Error") });
+            res.send(500, { error: res.i18n("DB Error") });
         } else if ( usr ) {
-            res.send(400, {error: __("Email already Taken")});
+            res.send(400, {error: res.i18n("Email already Taken")});
         } else {
 
-            console.log(usr);
-            exit();
-
-            var hasher = require("password-hash");
-            password = hasher.generate(password);
-
-            Users.create({username: username, password: password}).done(function(error, user) {
+            Users.create(user).done(function(error, newUser) {
             if (error) {
-                res.send(500, {error: "DB Error"});
+                res.send(500, {error: res.i18n("DB Error") });
             } else {
-                req.session.user = user;
-                res.send(user);
+                req.session.user = newUser;
+                res.send(newUser);
             }
         });
       }

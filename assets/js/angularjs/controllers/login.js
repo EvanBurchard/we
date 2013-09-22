@@ -1,6 +1,5 @@
 "use strict";
 
-
 angular.module("application").controller("LoginCtrl", [
   "$rootScope", "$scope", "$location", "SessionService", function($rootScope, $scope, $location, SessionService) {
     var errorHandler, init, loginHandler, logoutHandler;
