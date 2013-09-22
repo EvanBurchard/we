@@ -17,10 +17,10 @@ angular.module('application', ['ngResource', 'application.filters', 'application
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     // $locationProvider.html5Mode(true).hashPrefix('!')
-
+/*
     $routeProvider.
       when('/', {
-        templateUrl: 'template/home.html'
+        templateUrl: '/template/home.html'
       }).
       when('/view1', {
         templateUrl: 'template/partials/partial1.html'
@@ -68,13 +68,13 @@ angular.module('application', ['ngResource', 'application.filters', 'application
         templateUrl: 'template/error404.html'
         // redirectTo: '/login'
       });
-
+*/
   }]).run(function($rootScope, $route){
     // Bind the `$routeChangeSuccess` event on the rootScope, so that we dont need to bind in individual controllers.
     $rootScope.$on('$routeChangeSuccess', function(currentRoute, previousRoute) {
       // This will set the custom property that we have defined while configuring the routes.
       if($route.current.action && $route.current.action.length > 0){
-        $rootScope.action = $route.current.action ;
+        //$rootScope.action = $route.current.action ;
       }
     });
 });

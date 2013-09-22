@@ -48,19 +48,6 @@ module.exports.routes = {
     //view: 'users/signup'
   },
 
-  'get /login' : {
-    view: 'users/login'
-  },
-
-  'get /logout' : {
-    view: 'users/login'
-  },
-
-  'post /login' : {
-       controller: 'users',
-       action: 'login'
-  },
-
   'get /dashboard': {
        controller: 'main',
        action: 'dashboard'
@@ -74,9 +61,12 @@ module.exports.routes = {
   'get /links' : {
        controller: 'links',
        action: 'index'
+  },
+
+  'get /templates/:id?.ejs' : {
+       controller: 'template',
+       action: 'ejs'
   }
-
-
 
 /*
 

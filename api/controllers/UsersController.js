@@ -64,29 +64,35 @@ module.exports = {
   },
 
   create: function (req, res) {
-     var username = req.param("username");
-          var password = req.param("password");
+    var user = {};
+    user.name = req.param("name");
+    user.email = req.param("email");
+    user.password = req.param("password");
 
-          Users.findOneByUsername(username).done(function(err, usr){
+    Users.findOneByEmail(user.email).done(function(err, usr){
 
-              if (err) {
-                  res.send(500, { error: "DB Error" });
-              } else if ( usr ) {
-                  res.send(400, {error: "Username already Taken"});
-              } else {
-                  var hasher = require("password-hash");
-                  password = hasher.generate(password);
+        if (err) {
+            res.send(500, { error: __("DB Error") });
+        } else if ( usr ) {
+            res.send(400, {error: __("Email already Taken")});
+        } else {
 
-                  Users.create({username: username, password: password}).done(function(error, user) {
-                  if (error) {
-                      res.send(500, {error: "DB Error"});
-                  } else {
-                      req.session.user = user;
-                      res.send(user);
-                  }
-              });
-          }
-      });
+            console.log(usr);
+            exit();
+
+            var hasher = require("password-hash");
+            password = hasher.generate(password);
+
+            Users.create({username: username, password: password}).done(function(error, user) {
+            if (error) {
+                res.send(500, {error: "DB Error"});
+            } else {
+                req.session.user = user;
+                res.send(user);
+            }
+        });
+      }
+    });
   },
 
   chat: function (req, res) {
