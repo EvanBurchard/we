@@ -3,9 +3,10 @@
 angular.module('application.services')
   .factory('SessionService',['$resource', function($resource){
 
-    var service = $resource('/session/:param',{},{
+    var service = $resource('/users/:param',{},{
       'login': {
-        method: 'POST'
+        method: 'POST',
+        url: 'users/login'
       },
       'logout': {
         method: 'DELETE'

@@ -46,15 +46,6 @@ module.exports = {
       return obj;
     },
 
-    // Lifecycle Callbacks
-    beforeCreate: function(user, next) {
-      bcrypt.hash(user.password, 10, function(err, hash) {
-        if(err) return next(err);
-        user.password = hash;
-        next();
-      });
-    },
-
     // Password functions
     setPassword: function (password, done) {
         var _this = this;
@@ -71,9 +62,8 @@ module.exports = {
         });
     },
 
-    verifyPassword: function (password, cryptedPassword) {
-
-        var isMatch = bcrypt.compareSync(password, cryptedPassword);
+    verifyPassword: function (password) {
+        var isMatch = bcrypt.compareSync(password, this.password);
         return isMatch;
     },
 
@@ -90,62 +80,71 @@ module.exports = {
 
     },
 
-    findOrCreate: function (data, done) {
+  },
 
-      /* GITHUB */
-      if (data.githubId) {
-          User.findOne({ 'githubId': data.githubId }, function (err, user) {
-              if (user) return done(err, user);
-              User.create({
-                  githubId: data.githubId,
-                  displayName: data.profile.displayName || data.profile.username
-              }, done);
-          });
-      } else
+  // Lifecycle Callbacks
+  beforeCreate: function(user, next) {
+    bcrypt.hash(user.password, 10, function(err, hash) {
+      if(err) return next(err);
+      user.password = hash;
+      next();
+    });
+  },
 
-      /* GOOGLE OPENID */
-      if (data.openId) {
+  findOrCreate: function (data, done) {
 
-          var email = data.profile.emails[0].value;
+    /* GITHUB */
+    if (data.githubId) {
+        User.findOne({ 'githubId': data.githubId }, function (err, user) {
+            if (user) return done(err, user);
+            User.create({
+                githubId: data.githubId,
+                displayName: data.profile.displayName || data.profile.username
+            }, done);
+        });
+    } else
 
-          User.findOne({ $or: [ {'googleId': data.openId}, {'email': email } ] }, function (err, user) {
-              if(!user.googleId){
-                  user.googleId = data.openId;
-              }
+    /* GOOGLE OPENID */
+    if (data.openId) {
 
-              if (user) return done(err, user);
-              User.create({
-                  displayName: data.profile.displayName,
-                  email: data.profile.emails[0].value,
-                  googleId: data.openId
-              }, done);
-          });
-      } else
+        var email = data.profile.emails[0].value;
 
-      /* LINKEDIN */
-      if (data.linkedinId) {
-          User.findOne({ 'linkedinId': data.linkedinId }, function (err, user) {
-              if (user) return done(err, user);
-              User.create({
-                  displayName: data.profile.displayName,
-                  linkedinId: data.linkedinId
-              }, done);
-          });
-      } else
+        User.findOne({ $or: [ {'googleId': data.openId}, {'email': email } ] }, function (err, user) {
+            if(!user.googleId){
+                user.googleId = data.openId;
+            }
 
-      /* LOCAL */
-      if (data.email) {
-          User.findOne({ 'email': data.email }, function (err, user) {
-              if (user) return done(err, user);
-              if (!user) return done(err);
-          });
-      } else
+            if (user) return done(err, user);
+            User.create({
+                displayName: data.profile.displayName,
+                email: data.profile.emails[0].value,
+                googleId: data.openId
+            }, done);
+        });
+    } else
 
-      /* SOMETHING NOT KNOWN YET */
-      {
-          console.log(data.profile);
-      }
+    /* LINKEDIN */
+    if (data.linkedinId) {
+        User.findOne({ 'linkedinId': data.linkedinId }, function (err, user) {
+            if (user) return done(err, user);
+            User.create({
+                displayName: data.profile.displayName,
+                linkedinId: data.linkedinId
+            }, done);
+        });
+    } else
+
+    /* LOCAL */
+    if (data.email) {
+        User.findOne({ 'email': data.email }, function (err, user) {
+            if (user) return done(err, user);
+            if (!user) return done(err);
+        });
+    } else
+
+    /* SOMETHING NOT KNOWN YET */
+    {
+        console.log(data.profile);
     }
-
   }
 };

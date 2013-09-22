@@ -23,7 +23,6 @@ module.exports = {
 
   ejs: function(req,res) {
     var tpl = req.param('id');
-    console.log(req);
     res.view(
       'template/' + tpl + '.ejs',
       {layout: ''}

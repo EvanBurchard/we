@@ -5,6 +5,8 @@
  * @description	:: Contains logic for handling requests.
  */
 
+var passport = require('passport');
+
 module.exports = {
 
   index: function (req, res) {
@@ -19,7 +21,6 @@ module.exports = {
 
       // Found multiple users!
       } else {
-        console.log("Users found:", users);
         return res.view({
           users: users
         });
@@ -29,6 +30,7 @@ module.exports = {
   },
 
   signup: function (req, res) {
+    console.log(res);
     res.view();
   },
 
@@ -42,8 +44,9 @@ module.exports = {
               res.send(500, { error: res.i18n("DB Error") });
           } else {
               if (usr) {
-                  var hasher = require("password-hash");
-                  if (hasher.verify(password, usr.password)) {
+                console.log(usr.verifyPassword(password));
+
+                  if (usr.verifyPassword(password)) {
                       passport.authenticate('local', function(err, usr, info) {
                         if (err) return next(err)
                         if (!usr) return res.redirect('/login')
@@ -71,14 +74,13 @@ module.exports = {
     user.password = req.param("confirmPassword");
 
     Users.findOneByEmail(user.email).done(function(err, usr){
-      console.log(res);
         if (err) {
             res.send(500, { error: res.i18n("DB Error") });
         } else if ( usr ) {
             res.send(400, {error: res.i18n("Email already Taken")});
         } else {
-
             Users.create(user).done(function(error, newUser) {
+            console.log(newUser);
             if (error) {
                 res.send(500, {error: res.i18n("DB Error") });
             } else {

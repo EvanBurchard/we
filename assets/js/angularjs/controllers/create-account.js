@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("application").controller("CreateAccountCtrl", [
-  "$scope", '$http', "$location", function($scope, $http, $location) {
+  "$scope", '$http', "$location","$window", function($scope, $http, $location, $window ) {
     var errorHandler, init, loginHandler, logoutHandler;
 
     $scope.user = {};
@@ -10,9 +10,6 @@ angular.module("application").controller("CreateAccountCtrl", [
     $scope.submit = function(event) {
       event.preventDefault();
       event.stopPropagation();
-
-      console.log($scope.user);
-      console.log($scope);
       $http({
           method: 'POST',
           url: '/signup',
@@ -25,7 +22,7 @@ angular.module("application").controller("CreateAccountCtrl", [
         }).success(function(data, status, headers, cfg) {
           if(status = 200){
             // good, redirect
-            $window.location.url('/dashboard')
+            $window.location.href = '/dashboard';
           } else {
             console.log(data);
             $scope.errors.push(data.error);

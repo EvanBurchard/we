@@ -8,8 +8,11 @@ users aqui
     <% users.forEach(function (user) { %>
       <div>
         <%= user.id %>
-        <i class="icon-edit"></i> Edit
-        <i class="icon-remove icon-white"></i> Delete
+        <%= user.name %>
+        <%= user.email %>
+         <%= user.password %>
+        <a href="/users/<%= user.id %>/edit/" class="btn btn-mini" data-ng-click="edit($event)"><i class="icon-edit"></i> Edit</a>
+        <a href="/users/destroy/<%= user.id %>" class="btn btn-mini btn-danger" data-ng-click="delete($index,$event)"><i class="icon-remove icon-white"></i> Delete</a>
       </div>
     <% }); %>
   </ul>

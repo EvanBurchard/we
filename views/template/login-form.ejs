@@ -1,27 +1,29 @@
-<div class="modal fade" id="loginFormModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form class="modal-dialog form-signin">
+<div data-ng-controller="LoginCtrl" class="modal fade" id="loginFormModal" tabindex="-1" role="dialog" aria-labelledby="loginFormModal" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
+      <form class="form-signin" name="loginForm" method="post" data-ng-submit="login($event)">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title"><%= __('Login form') %></h4>
         </div>
         <div class="modal-body">
-      <div class="input-group input-group-lg">
-        <label class="input-group-addon" for="email"><%= __('Email') %></label>
-        <input type="text" class="form-control" id="email" placeholder="Email address" autofocus="">
-      </div>
-      <div class="input-group input-group-lg">
-        <label class="input-group-addon" for="password"><%= __('Password') %></label>
-        <input type="password" class="form-control" id="password" placeholder="Password">
-      </div>
-      <label class="checkbox">
-        <input type="checkbox" value="remember-me"><%= __('Remember me') %>
-      </label>
+          <div class="input-group input-group-lg">
+            <label class="input-group-addon" for="email"><%= __('Email') %></label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email address" required data-ng-model="user.email">
+          </div>
+          <div class="input-group input-group-lg">
+            <label class="input-group-addon" for="password"><%= __('Password') %></label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" data-ng-model="user.password">
+          </div>
+          <label class="checkbox">
+            <input type="checkbox" value="remember-me" id="remember" name="remember" data-ng-model="user.remember"><%= __('Remember me') %>
+            </label>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal"><%= __('Cancel') %></button>
-          <button id="loginButton" class="btn btn-primary" ><%= __('Sign in') %></button>
+          <input id="loginButton" class="btn btn-primary" type="submit" value="<%= __('Sign in') %>">
         </div>
-      </div><!-- /.modal-content -->
   </form>
+      </div><!-- /.modal-content -->
+    </div>
 </div>
