@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("application").controller("LoginCtrl", [
-  "$rootScope", "$scope", "$location", "SessionService", function($rootScope, $scope, $location, SessionService) {
+  "$rootScope", "$scope", "$location", "SessionService","$window", function($rootScope, $scope, $location, SessionService, $window) {
     var errorHandler, init, loginHandler, logoutHandler;
     init = function() {
       $scope.templates = [ { name: 'login-form.html', url: 'templates/login-form.ejs'} ]
@@ -14,7 +14,8 @@ angular.module("application").controller("LoginCtrl", [
         $scope.message = "Authorized!";
         $rootScope.user = SessionService.getUser();
         $scope.user = SessionService.getUser();
-        return $location.path("/users");
+        //return $location.path("/users");
+        $window.location.reload();
       } else {
         return $scope.message = "Invalid username or password!";
       }
@@ -29,6 +30,7 @@ angular.module("application").controller("LoginCtrl", [
       $scope.user = user;
       $rootScope.user = user;
       return $location.path("/login");
+
     };
     errorHandler = function(err) {
       return $scope.message = "Error! " + err;
@@ -36,45 +38,12 @@ angular.module("application").controller("LoginCtrl", [
     $scope.login = function(event) {
       event.preventDefault();
       event.stopPropagation();
+
       return SessionService.login($scope.user, loginHandler, errorHandler);
     };
     $scope.logout = function() {
       return SessionService.logout($scope.user, logoutHandler, errorHandler);
     };
-
-    $scope.submitForm = function(event) {
-      event.preventDefault();
-      event.stopPropagation();
-
-      console.log($scope.user);
-      console.log($scope);
-
-      $http({
-          method: 'POST',
-          url: '/auth',
-          data: {
-            'email': $scope.user.email,
-            'password': $scope.user.password,
-            'remember': ''
-          }
-        }).success(function(data, status, headers, cfg) {
-          if(status = 200){
-            // good, redirect
-            $window.location.reload();
-          } else {
-            console.log(data);
-            $scope.errors.push(data.error);
-            // error
-          }
-          console.log(data);
-          console.log(status);
-
-        }).error(function(data, status, headers, cfg) {
-          console.log(data);
-          console.log(status);
-        });
-
-    }
 
     $scope.showMessage = function() {
       return $scope.message && $scope.message.length;

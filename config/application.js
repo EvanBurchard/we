@@ -4,37 +4,31 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-// some static users
-var users = [
-    { id: 3, username: 'alberto', password: '123', email: 'contato@albertosouza.net' },
-    { id: 1, username: 'bob', password: 'secret', email: 'bob@example.com' }
-  , { id: 2, username: 'joe', password: 'birthday', email: 'joe@example.com' }
-];
-
-
 // Use the LocalStrategy within Passport.
 // Strategies in passport require a `verify` function, which accept
 // credentials (in this case, a username and password), and invoke a callback
 // with a user object. In the real world, this would query a database;
 // however, in this example we are using a baked-in set of users.
-passport.use(new LocalStrategy(
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+  },
   function(email, password, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
-
       // Find the user by username. If there is no user with the given
       // username, or the password is not correct, set the user to `false` to
       // indicate failure and set a flash message. Otherwise, return the
       // authenticated `user`.
-      findByEmail(username, function(err, user) {
+      Users.findOneByEmail(email).done(function(err, user) {
         if (err) {
           return done(err);
         }
         if (!user) {
-          return done(null, false, { message: __('Unknown email ') + username });
+          return done(null, false, { message: 'Unknown email ' + username });
         }
-        if (user.password != password) {
-          return done(null, false, { message: __('Invalid password') });
+        if (!user.verifyPassword(password)) {
+          return done(null, false, { message: 'Invalid password' });
         }
         return done(null, user);
       })
@@ -48,12 +42,12 @@ passport.use(new LocalStrategy(
 // this will be as simple as storing the user ID when serializing, and finding
 // the user by ID when deserializing.
 passport.serializeUser(function(user, done) {
-  console.log('passport serialize user')
+  console.log('passport serialize user');
   done(null, user.email);
 });
 
 passport.deserializeUser(function(email, done) {
-  console.log('passport unserialize user')
+  console.log('passport unserialize user');
   done(null, { email : email});
 });
 

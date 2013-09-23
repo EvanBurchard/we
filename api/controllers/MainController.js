@@ -24,6 +24,7 @@ module.exports = {
   },
 
   dashboard: function (req, res) {
+    //console.log(req);
     res.view();
   },
 

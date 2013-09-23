@@ -44,16 +44,15 @@ module.exports = {
               res.send(500, { error: res.i18n("DB Error") });
           } else {
               if (usr) {
-                console.log(usr.verifyPassword(password));
-
                   if (usr.verifyPassword(password)) {
                       passport.authenticate('local', function(err, usr, info) {
+
                         if (err) return next(err)
                         if (!usr) return res.redirect('/login')
                         req.logIn(usr, function(err){
-                          if(err) return next(err)
-                          return res.redirect('/')
-                        })
+                          if(err) return next(err);
+                          //return res.redirect('/');
+                        });
                       })(req, res, next)
                       res.send(usr);
                   } else {
@@ -66,7 +65,7 @@ module.exports = {
       });
   },
 
-  create: function (req, res) {
+  create: function (req, res, next) {
     var user = {};
     user.name = req.param("name");
     user.email = req.param("email");
@@ -74,18 +73,23 @@ module.exports = {
     user.password = req.param("confirmPassword");
 
     Users.findOneByEmail(user.email).done(function(err, usr){
-        if (err) {
-            res.send(500, { error: res.i18n("DB Error") });
-        } else if ( usr ) {
-            res.send(400, {error: res.i18n("Email already Taken")});
-        } else {
-            Users.create(user).done(function(error, newUser) {
-            console.log(newUser);
+      if (err) {
+          res.send(500, { error: res.i18n("DB Error") });
+      } else if ( usr ) {
+          res.send(400, {error: res.i18n("Email already Taken")});
+      } else {
+          Users.create(user).done(function(error, newUser) {
             if (error) {
                 res.send(500, {error: res.i18n("DB Error") });
             } else {
-                req.session.user = newUser;
+              console.log(next);
+
+              req.logIn(newUser, function(err){
+                if(err) return next(err);
+
                 res.send(newUser);
+              });
+
             }
         });
       }

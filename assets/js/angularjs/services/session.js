@@ -6,7 +6,7 @@ angular.module('application.services')
     var service = $resource('/users/:param',{},{
       'login': {
         method: 'POST',
-        url: 'users/login'
+        url: '/users/login'
       },
       'logout': {
         method: 'DELETE'
@@ -20,6 +20,7 @@ angular.module('application.services')
     }
 
     function authorized(){
+      console.log(_user);
       return _user.authorized === true;
     }
 
@@ -30,9 +31,10 @@ angular.module('application.services')
     function login(newUser,resultHandler,errorHandler) {
       service.login(
         newUser,
-        function(res){
+        function(res, status){
           _user = (res.user || {});
-          _user.authorized = res.authorized;
+          //_user.authorized = res.authorized;
+          _user.authorized = true;
           if(angular.isFunction(resultHandler)) {
             resultHandler(res);
           }
