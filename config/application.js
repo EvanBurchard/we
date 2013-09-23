@@ -43,12 +43,17 @@ passport.use(new LocalStrategy({
 // the user by ID when deserializing.
 passport.serializeUser(function(user, done) {
   console.log('passport serialize user');
-  done(null, user.email);
+  return done(null, user.id);
 });
 
-passport.deserializeUser(function(email, done) {
-  console.log('passport unserialize user');
-  done(null, { email : email});
+passport.deserializeUser(function(id, done) {
+
+  Users.findOneById(id).done(function(err, user) {
+    // error - user is'not on database ...
+    if(!user) return done(null, false);
+    // load user
+    return done(null, user);
+  });
 });
 
 module.exports = {

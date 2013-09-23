@@ -39,7 +39,6 @@ module.exports = {
       var password = req.param("password");
 
       Users.findOneByEmail(email).done(function(err, usr) {
-
           if (err) {
               res.send(500, { error: res.i18n("DB Error") });
           } else {

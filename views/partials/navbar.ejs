@@ -12,24 +12,29 @@
   <div class="navbar-collapse collapse">
     <%- MenuService.getMenu('mainMenu', req) %>
 
+    <% if(req.isAuthenticated()){ %>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= req.user.name %> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><%= __('Change Avatar') %></a></li>
+            <li class="divider"></li>
+            <li><a href="#"><%= __('View account') %></a></li>
+            <li><a href="#"><%= __('Edit account') %></a></li>
+            <li class="divider"></li>
+            <li><a href="#"><%= __('Sing out') %></a></li>
+          </ul>
+        </li>
+      </ul>
+    <% } else { %>
     <div class="dropdown pull-right">
       <a href="/signup" class="btn btn-success"><%= __('Sign up') %></a>
         <!-- Button trigger modal -->
 
       <a data-toggle="modal" href="#loginFormModal" class="btn btn-primary"><%= __('Log in') %></a>
     </div>
+  <% } %>
 
-    <ul class="nav navbar-nav navbar-right">
-      <li>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Alberto <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#"><%= __('View account') %></a></li>
-          <li><a href="#"><%= __('Edit account') %></a></li>
-          <li class="divider"></li>
-          <li><a href="#"><%= __('Sing out') %></a></li>
-        </ul>
-      </li>
-    </ul>
     <ul class="nav navbar-nav">
 
     </ul>
