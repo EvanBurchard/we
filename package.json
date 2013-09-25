@@ -11,29 +11,31 @@
     "password-hash": "~1.2.1",
     "passport-local": "~0.1.6",
     "passport": "~0.1.17",
-    "bcrypt": "~0.7.7"
+    "bcrypt": "~0.7.7",
+    "sails-mongo": "~0.9.5"
   },
   "devDependencies": {
     "nodeunit": "*",
     "sinon": "*",
     "supertest": ">= 0",
     "mocha": ">= 0",
-    "should": ">= 0"
+    "should": ">= 0",
+    "sails-memory": "~0.9.1"
   },
   "scripts": {
     "start": "node app.js",
     "debug": "node debug app.js"
   },
   "main": "app.js",
-  "repository": "",
   "repository": {
     "type": "git",
     "url": "https://github.com/albertosouza/we.git"
   },
   "author": "Alberto Souza",
   "licenses": [
-  {
-    "type": "MIT"
-  }],
+    {
+      "type": "MIT"
+    }
+  ],
   "readmeFilename": "README.md"
 }
