@@ -1,5 +1,6 @@
 /**
  * Bootstrap
+ * Logged of user and public access tests
  */
 
 var Sails = require('sails');
@@ -8,6 +9,8 @@ var assert = require('assert');
     //Database = require('./database'),
     //localConf = require('../../config/local');
 var request = require('supertest');
+var sinon   = require('sinon');
+
 
 function UserStub () {
     return {
@@ -33,23 +36,9 @@ before(function(done) {
   // TODO: Create the database
   // Database.createDatabase.....
 
-  Sails.lift({
+  var config = gettestConfig();
 
-    log: {
-      level: 'error'
-    },
-
-    adapters: {
-      mongo: {
-        module: 'sails-mongo',
-        host: 'localhost',
-        database: 'test_database',
-        user: '',
-        pass: ''
-      }
-    }
-
-  }, function(err, sails) {
+  Sails.lift( config , function(err, sails) {
     app = sails;
     done(err, sails);
   });
@@ -78,8 +67,7 @@ describe('Users', function(done) {
 describe('Users', function(done) {
   it("should do error because of duplicated users on create a user", function(done) {
     Users.create(UserStub(), function(err, user) {
-      if(err) console.log(err);
-      assert.notEqual(user, undefined);
+      assert.equal(user, undefined);
       done();
     });
   });

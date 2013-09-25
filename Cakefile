@@ -4,11 +4,11 @@
 
 REPORTER = "list"
 
-task "test", "run tests", ->
+task "test", "run all tests", ->
   exec "NODE_ENV=test
     ./node_modules/.bin/mocha
     --reporter #{REPORTER}
-    --require test/init.test.js test/*/*.test.js
+    --require test/init.js test/*/*.test.js
     --colors
     --ui bdd
   ", (err, output) ->
