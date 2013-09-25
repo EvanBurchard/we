@@ -9,6 +9,16 @@ var assert = require('assert');
     //localConf = require('../../config/local');
 var request = require('supertest');
 
+function UserStub () {
+    return {
+      username: 'albertosouza',
+      name: "Alberto",
+      email: "contato@albertosouza.net",
+      password: "123"
+    };
+}
+
+
 /**
  * Before ALL the test bootstrap the server
  */
@@ -46,17 +56,29 @@ before(function(done) {
 
 });
 
-
+/* exemple
 describe('Basic', function(done) {
   it("should cause error", function(done) {
     assert.equal(1, 2, "error");
     done();
   });
 });
+*/
 
-describe('User', function(done) {
-  it("should be able to create", function(done) {
-    User.create({name: "hee", email: "a@b.c"}, function(err, user) {
+describe('Users', function(done) {
+  it("should be able to create a user", function(done) {
+    Users.create(UserStub(), function(err, user) {
+      if(err) console.log(err);
+      assert.notEqual(user, undefined);
+      done();
+    });
+  });
+});
+
+describe('Users', function(done) {
+  it("should do error because of duplicated users on create a user", function(done) {
+    Users.create(UserStub(), function(err, user) {
+      if(err) console.log(err);
       assert.notEqual(user, undefined);
       done();
     });

@@ -1,6 +1,8 @@
 /**
  * MessagesController
  *
+ * @TODO change the name to MesengerController.js
+ *
  * @module		:: Controller
  * @description	:: Contains logic for handling requests.
  */
