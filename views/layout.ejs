@@ -13,13 +13,16 @@
     <script src="/js/angularjs/controllers/create-account.js"></script>
     <script src="/js/angularjs/controllers/login.js"></script>
     <script src="/js/angularjs/controllers/main.js"></script>
+    <script src="/js/angularjs/controllers/messenger.js"></script>
     <script src="/js/angularjs/controllers/user.js"></script>
     <script src="/linker/js/angular-cookies.min.js"></script>
+    <script src="/linker/js/messenger.js"></script>
     <!--SCRIPTS END-->
 
     <!--STYLES-->
     <link rel="stylesheet" href="/linker/styles/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/linker/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/linker/styles/messenger.css">
     <link rel="stylesheet" href="/linker/styles/site.css">
     <!--STYLES END-->
 
@@ -31,8 +34,6 @@
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 
   </head>
   <body>
@@ -103,6 +104,8 @@
         http://sailsjs.org/#!documentation/asset-management
 
       -->
+
+      <%- include messages/partials/contact-list.ejs %>
 
       <div data-ng-controller="LoginCtrl">
         <div  data-ng-include="'/templates/login-form.ejs'"></div>

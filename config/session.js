@@ -33,23 +33,24 @@ module.exports.session = {
   // pass: <redis auth password>
   // prefix: 'sess:'
 
-
   // Uncomment the following lines to use your Mongo adapter as a session store
-  // adapter: 'mongo',
 
+  /*
+  adapter: 'mongo',
   host: 'localhost',
   port: 27017,
-  db: 'sails',
-  collection: 'sessions'
+  db: 'we_sails',
+  collection: 'sessions',
+  */
 
   // Optional Values:
   //
   // # Note: url will override other connection settings
-  // url: 'mongodb://user:pass@host:port/database/collection',
+  //url: 'mongodb://localhost/we_sails',
   //
   // username: '',
   // password: '',
-  // auto_reconnect: false,
+  //auto_reconnect: true
   // ssl: false,
   // stringify: true
 
