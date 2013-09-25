@@ -1,0 +1,53 @@
+<div class="messenger-area-wrapper">
+  <div class="messenger-column">
+    <div data-ng-controller="MessengerCtrl" class="messenger-area">
+      <div class="messenger">
+        <div class="header">
+          Bate papo
+          <button class="btn btn-mini pull-right"><span class="ui-icon ui-icon-gear"></span></button>
+        </div>
+        <ul data-ng-repeat="contact in contacts"  class="nav nav-list friendlist contact-list">
+          <li>
+            <a>
+              <img class="avatar-small" src="/images/avatars/batman.jpg"> {{contact.name}}
+            </a>
+          </li>
+        </ul>
+        <div class="search-area">
+          <input type="text" placeholder="Search">
+        </div>
+      </div>
+      <div class="messenger-off">
+        <span class="ui-icon ui-icon-person"></span>
+        <span class="text"> Bate papo - ( {{contacts.length}} )</span>
+        <button class="btn btn-mini pull-right">
+          <span class="ui-icon ui-icon-carat-1-n pull-right"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="messenger-column">
+    <div class="messenger-chat-area">
+      <div class="contact-chat">
+        <div class="header">
+          Santos
+        </div>
+        <div class="messages">
+          <div class="contact">
+            <img class="avatar-small" src="/images/avatars/batman.jpg">
+            <span class="message">Oi tudo bem?</span>
+          </div>
+          <div class="user">
+            <img class="avatar-small" src="/images/avatars/batman.jpg">
+            <span class="message">tudo</span>
+          </div>
+        </div>
+        <div>
+          <input type="text">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
