@@ -12,7 +12,7 @@ task "test", "run all tests", ->
     --colors
     --ui bdd
   ", (err, output) ->
-    throw err if err
+    console.error err if err
     console.log output
 
 
