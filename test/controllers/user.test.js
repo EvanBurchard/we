@@ -30,7 +30,6 @@ var app;
 
 before(function(done) {
 
-
   this.timeout(5000);
 
   // TODO: Create the database
