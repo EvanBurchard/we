@@ -12,6 +12,7 @@ SALT_WORK_FACTOR = 10;
 
 
 module.exports = {
+
   attributes: {
     // Or for more flexibility:
     // phoneNumber: {

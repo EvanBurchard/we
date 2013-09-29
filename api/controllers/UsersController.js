@@ -26,11 +26,9 @@ module.exports = {
         });
       }
     });
-
   },
 
   signup: function (req, res) {
-    console.log(res);
     res.view();
   },
 
@@ -46,14 +44,17 @@ module.exports = {
                   if (usr.verifyPassword(password)) {
                       passport.authenticate('local', function(err, usr, info) {
 
-                        if (err) return next(err)
-                        if (!usr) return res.redirect('/login')
+                        if (err) return next(err);
+                        if (!usr) return res.redirect('/login');
+
                         req.logIn(usr, function(err){
                           if(err) return next(err);
-                          //return res.redirect('/');
+
+                          res.send(usr);
                         });
+
                       })(req, res, next)
-                      res.send(usr);
+
                   } else {
                       res.send(400, { error: res.i18n("Wrong Password") });
                   }
@@ -62,6 +63,11 @@ module.exports = {
               }
           }
       });
+  },
+
+  logout: function (req, res) {
+    req.logout();
+    res.redirect('/');
   },
 
   create: function (req, res, next) {

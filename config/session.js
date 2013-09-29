@@ -16,8 +16,8 @@ module.exports.session = {
   // Replace at your own risk in production-- you will invalidate the cookies of your users,
   // forcing them to log in again.
   secret: 'ae0cbfa8a0ee4a8845532ddb8de497e5',
-
-
+ // adapter: 'memory'
+  //adapter: 'mongo'
   // In production, uncomment the following lines to set up a shared redis session store
   // that can be shared across multiple Sails.js servers
   // adapter: 'redis',
@@ -33,15 +33,18 @@ module.exports.session = {
   // pass: <redis auth password>
   // prefix: 'sess:'
 
+
   // Uncomment the following lines to use your Mongo adapter as a session store
 
-  /*
   adapter: 'mongo',
   host: 'localhost',
   port: 27017,
   db: 'we_sails',
   collection: 'sessions',
-  */
+  auto_reconnect: true,
+  cookie: {
+    originalMaxAge: 2592000000 // +-30 days
+  }
 
   // Optional Values:
   //
@@ -50,8 +53,8 @@ module.exports.session = {
   //
   // username: '',
   // password: '',
-  //auto_reconnect: true
+  // auto_reconnect: true,
   // ssl: false,
-  // stringify: true
+  // stringify: true,
 
 };
