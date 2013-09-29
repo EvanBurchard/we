@@ -16,7 +16,8 @@ global.gettestConfig= function(done) {
       memory: {
         module: 'sails-memory'
       }
-    }
+    },
+    port: 1330
   }
 
 }
