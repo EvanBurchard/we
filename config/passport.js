@@ -42,13 +42,11 @@ passport.use(new LocalStrategy({
 // this will be as simple as storing the user ID when serializing, and finding
 // the user by ID when deserializing.
 passport.serializeUser(function(user, done) {
-  console.log('passport serialize user');
-  return done(null, user.email);
+  return done(null, user.id);
 });
 
-passport.deserializeUser(function(email, done) {
-  console.log('deserialize');
-  Users.findOneByEmail(email).done(function(err, user) {
+passport.deserializeUser(function(id, done) {
+  Users.findOneById(id).done(function(err, user) {
     // error - user is'not on database ...
     if(!user) return done(null, false);
     // load user
