@@ -36,7 +36,7 @@ module.exports = {
       if (err){
         console.log(err);
         res.contentType('text/html');
-        res.send('');
+        res.send(404 ,'Not found');
       }
       else {
         res.contentType('text/html');
