@@ -1,0 +1,18 @@
+<div class="messenger-column">
+  <div class="messenger-chat-area">
+    <div class="contact-chat">
+      <div class="header">
+        {{contact.name}}
+      </div>
+      <div class="messages">
+        <div data-ng-repeat="message in contact.messages" class="contact">
+          <img class="avatar-small" src="/images/avatars/user-avatar.png">
+          <span class="message">{{message.content}}</span>
+        </div>
+      </div>
+      <div>
+        <input type="text">
+      </div>
+    </div>
+  </div>
+</div>

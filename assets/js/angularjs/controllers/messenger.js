@@ -5,8 +5,17 @@ angular.module("application").controller("MessengerCtrl", [
     var init;
 
     init = function() {
-      $scope.templates = [ { name: 'contact-list.html', url: 'templates/.ejs'} ];
-      $scope.template = $scope.templates[0];
+      $scope.templates = [
+        {
+          name: 'contact-list.html',
+          url: '/templates/contact-list.html'
+        },
+        {
+          name: 'messenger-box.html',
+          url: '/templates/messenger-box.html'
+        }
+      ];
+      $scope.template = $scope.templates[1];
       $scope.contacts = [
         {
           id: 1,
@@ -18,7 +27,7 @@ angular.module("application").controller("MessengerCtrl", [
         }
       ];
 
-      $scope.inComunication = [
+      $scope.contactsOpen = [
         {
           id: 1,
           name: 'Maria',
