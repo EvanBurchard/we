@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("application").controller("MessengerCtrl", [
-  "$rootScope", "$scope", "$location", "SessionService", function($rootScope, $scope, $location, SessionService) {
+  "$rootScope", "$socket","$scope", "$location", "SessionService", function($rootScope, $scope, $location, SessionService) {
     var init;
 
     init = function() {

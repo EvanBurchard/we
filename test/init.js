@@ -1,3 +1,4 @@
+require('should');
 
 global.gettestConfig= function(done) {
 

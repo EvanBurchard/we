@@ -66,6 +66,11 @@ module.exports.routes = {
   'get /templates/:id?.ejs' : {
        controller: 'template',
        action: 'ejs'
+  },
+
+  'get /templates/:id?.html' : {
+       controller: 'template',
+       action: 'find'
   }
 
 /*

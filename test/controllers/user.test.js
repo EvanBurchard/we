@@ -54,30 +54,64 @@ describe('Basic', function(done) {
 */
 
 describe('Users', function(done) {
-  it("should be able to create a user", function(done) {
-    Users.create(UserStub(), function(err, user) {
-      if(err) console.log(err);
-      assert.notEqual(user, undefined);
-      done();
+/*
+  describe('Model', function(done) {
+    describe('Create', function(done) {
+      it("Should be able to create a user", function(done) {
+        Users.create(UserStub(), function(err, user) {
+          if(err) console.log(err);
+          assert.notEqual(user, undefined);
+          done();
+        });
+      });
+
+      it("Should return error on create user with already registered email", function(done) {
+        Users.create(UserStub(), function(err, user) {
+          err.should.not.be.empty;
+          assert.equal(user, undefined);
+          done();
+        });
+      });
+
     });
-  });
-});
-
-describe('Users', function(done) {
-  it("should do error because of duplicated users on create a user", function(done) {
-    Users.create(UserStub(), function(err, user) {
-      assert.equal(user, undefined);
-      done();
+  }); // end database
+*/
+  // JSON REQUESTS //
+  describe('Requests', function(done) {
+    it('GET /users should return 200 and users array', function (done) {
+      request(app.express.app)
+      .get('/users?format=json')
+      .end(function (err, res) {
+        res.statusCode.should.equal(200);
+        // TODO implement response data check
+        //res.body.users.should.be.an.instanceOf(Array);
+        done();
+      });
     });
-  });
-});
 
-describe('Routes', function(done) {
-  it('GET / should return 200', function (done) {
-    request(app.express.app).get('/').expect(200, done);
-  });
-});
+    it('POST /users should return 200 and new user object', function (done) {
+      var user = UserStub();
+      var jsonResponse;
 
+      user.confirmPassword = user.password;
+
+      request(app.express.app)
+      .post('/signup?format=json')
+      .send( user )
+      .end(function (err, res) {
+        assert.equal(err, null);
+        console.log(res.text);
+        jsonResponse = JSON.parse(res.text);
+        console.log(jsonResponse);
+        console.log(res.statusCode);
+        res.statusCode.should.equal(200);
+        done();
+      });
+    });
+
+  }); // end requests
+
+});
 /**
  * After ALL the tests, lower sails
  */

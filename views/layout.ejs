@@ -47,7 +47,7 @@
         <div data-ng-view>
 
         </div>
-        <%- body %>
+    <%- body %>
       </div>
 
       <hr class="featurette-divider">
@@ -105,11 +105,12 @@
 
       -->
 
-      <%- include messages/partials/contact-list.ejs %>
 
       <div data-ng-controller="LoginCtrl">
         <div  data-ng-include="'/templates/login-form.ejs'"></div>
       </div>
     </div>
+          <%- include messages/partials/contact-list.ejs %>
+
   </body>
 </html>

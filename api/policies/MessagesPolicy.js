@@ -7,6 +7,7 @@ module.exports = function (req, res, next) {
         }
         next();
     } else {
-        res.send("You Must Be Logged In", 403);
+        next();
+        //res.send("You Must Be Logged In", 403);
     }
 };

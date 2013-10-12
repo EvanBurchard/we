@@ -10,6 +10,12 @@ var passport = require('passport');
 module.exports = {
 
   index: function (req, res) {
+
+    var format = 'html';
+    if(req.param('format')){
+      format = req.param('format');
+    }
+
     Users.find({})
     .limit(10)
     .sort('name ASC')
@@ -21,6 +27,11 @@ module.exports = {
 
       // Found multiple users!
       } else {
+        if(format == 'json')
+          return res.send({
+            users: users
+          });
+
         return res.view({
           users: users
         });
@@ -70,35 +81,46 @@ module.exports = {
     res.redirect('/');
   },
 
+  // Signup function
   create: function (req, res, next) {
     var user = {};
     user.name = req.param("name");
     user.email = req.param("email");
     user.password = req.param("password");
-    user.password = req.param("confirmPassword");
 
-    Users.findOneByEmail(user.email).done(function(err, usr){
-      if (err) {
-          res.send(500, { error: res.i18n("DB Error") });
-      } else if ( usr ) {
-          res.send(400, {error: res.i18n("Email already Taken")});
-      } else {
-          Users.create(user).done(function(error, newUser) {
-            if (error) {
+    var confirmPassword = req.param("confirmPassword");
+    var errors;
+
+    if( errors = validSignup(user, confirmPassword) ){
+      // error on data or confirm password
+      res.send({
+        errors: errors
+      });
+    } else {
+      Users.findOneByEmail(user.email).done(function(err, usr){
+        if (err) {
+            res.send(500, { error: res.i18n("DB Error") });
+        } else if ( usr ) {
+            res.send(400, {error: res.i18n("Email already Taken")});
+        } else {
+            Users.create(user).done(function(error, newUser) {
+              if (error) {
+                console.log(error);
                 res.send(500, {error: res.i18n("DB Error") });
-            } else {
-              console.log(next);
+              } else {
+                req.logIn(newUser, function(err){
+                  if(err) return next(err);
 
-              req.logIn(newUser, function(err){
-                if(err) return next(err);
+                  res.send({
+                    user: newUser
+                  });
+                });
 
-                res.send(newUser);
-              });
-
-            }
-        });
-      }
-    });
+              }
+          });
+        }
+      });
+    }
   },
 
   chat: function (req, res) {
@@ -106,3 +128,21 @@ module.exports = {
   }
 
 };
+
+var validSignup = function(user, confirmPassword){
+  var errors = [];
+
+  if(user.password){
+    errors.push("Field <strong>password</strong> is required");
+  }
+
+  if(!confirmPassword){
+    errors.push("Field <strong>Confirm new password</strong> is required");
+  }
+
+  if(confirmPassword != user.password){
+    errors.push("<strong>New password</strong> and <strong>Confirm new password</strong> are different");
+  }
+
+  return errors;
+}
