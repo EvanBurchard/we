@@ -3,6 +3,10 @@
 Application.Services.factory("$socket", [
   "$rootScope", "User", function($rootScope, User) {
     var $socket;
+    if( !$rootScope.connectedUsers ){
+      $rootScope.connectedUsers = [];
+    }
+
     $socket = io.connect("http://localhost:1333");
     $socket.on("connect", function(stream) {
       console.log("someone connected!");
@@ -44,6 +48,20 @@ Application.Services.factory("$socket", [
         return scope.users = users;
       });
 
+          // Listen for Comet messages from Sails
+      $socket.on('*', function messageReceived(message) {
+
+        ///////////////////////////////////////////////////////////
+        // Replace the following with your own custom logic
+        // to run when a new message arrives from the Sails.js
+        // server.
+        ///////////////////////////////////////////////////////////
+        console.log('New comet message received :: ', message);
+        //////////////////////////////////////////////////////
+
+      });
+
+
 /*
       $socket.post('/messages',{message: 'sou foda'}, function (response) {
         console.log(response);
@@ -51,9 +69,18 @@ Application.Services.factory("$socket", [
         // create a new user
       });
 */
-      $socket.get('/messages/init', function (response) {
+/*
+      var t=setTimeout(function(){
+        $socket.post('/messages',{message: 'sou foda'}, function (response) {
+          console.log(response);
+          console.log('post socket io');
+          // create a new user
+        });
+      },3000);
+*/
+      $socket.get('/messages/test', function (response) {
         console.log(response);
-        console.log('get socket io');
+        console.log('starting messenger socket io');
         // create a new user
       });
 

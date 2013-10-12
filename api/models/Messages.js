@@ -9,9 +9,15 @@
 module.exports = {
 
   attributes: {
-    userId: 'INT',
-    username: 'STRING',
-    message: 'STRING'
+    fromId: {
+      type: 'string',
+      required: true
+    },
+    toId: {
+      type: 'array',
+      required: true,
+    },
+    message: 'string'
   }
 
 };

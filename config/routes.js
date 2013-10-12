@@ -71,7 +71,28 @@ module.exports.routes = {
   'get /templates/:id?.html' : {
        controller: 'template',
        action: 'find'
+  },
+
+  // Standard RESTful routing
+
+  // If no id is given, an array of all users will be returned
+  'get /users/:uid/messenger/:id?': {
+      controller    : 'messenger',
+      action        : 'index'
+  },
+  'post /users/:uid/messenger': {
+      controller    : 'messenger',
+      action        : 'create'
+  },
+  'put /users/:uid/messenger/:id?': {
+      controller    : 'messenger',
+      action        : 'update'
+  },
+  'delete /users/:uid/messenger/:id?': {
+      controller    : 'messenger',
+      action        : 'destroy'
   }
+
 
 /*
 

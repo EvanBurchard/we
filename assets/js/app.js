@@ -6,8 +6,8 @@
  *
  * Feel free to change none, some, or ALL of this file to fit your needs!
  */
-
 /*
+
 (function (io) {
 
   // as soon as this file is loaded, connect automatically,
@@ -48,10 +48,16 @@
 
   });
 
+  socket.get('/messages/init', function (response) {
+    console.log(response);
+    console.log('starting messenger socket io');
+    // create a new user
+  });
 
   // Expose connected `socket` instance globally so that it's easy
   // to experiment with from the browser console while prototyping.
   window.socket = socket;
+
 
 
   // Simple log function to keep the example simple
@@ -68,4 +74,5 @@
   window.io
 
 );
+
 */
