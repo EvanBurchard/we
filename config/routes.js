@@ -53,11 +53,6 @@ module.exports.routes = {
        action: 'dashboard'
   },
 
-  '/chat' : {
-       controller: 'messages',
-       action: 'chat'
-  },
-
   'get /links' : {
        controller: 'links',
        action: 'index'

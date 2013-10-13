@@ -6,12 +6,12 @@
  *
  * Feel free to change none, some, or ALL of this file to fit your needs!
  */
-/*
 
+/*
 (function (io) {
 
   // as soon as this file is loaded, connect automatically,
-  var socket = io.connect();
+  //var socket = io.connect();
   if (typeof console !== 'undefined') {
     log('Connecting to Sails.js...');
   }
@@ -74,5 +74,4 @@
   window.io
 
 );
-
 */

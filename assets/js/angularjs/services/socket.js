@@ -7,7 +7,7 @@ Application.Services.factory("$socket", [
       $rootScope.connectedUsers = [];
     }
 
-    $socket = io.connect("http://localhost:1333");
+    $socket = io.connect();
     $socket.on("connect", function(stream) {
       console.log("someone connected!");
 
@@ -49,7 +49,7 @@ Application.Services.factory("$socket", [
       });
 
           // Listen for Comet messages from Sails
-      $socket.on('*', function messageReceived(message) {
+      $socket.on('message', function messageReceived(message) {
 
         ///////////////////////////////////////////////////////////
         // Replace the following with your own custom logic
@@ -78,12 +78,13 @@ Application.Services.factory("$socket", [
         });
       },3000);
 */
-      $socket.get('/messages/test', function (response) {
+/*
+      $socket.get('/messenger/test', function (response) {
         console.log(response);
         console.log('starting messenger socket io');
-        // create a new user
-      });
 
+      });
+*/
       /*
       $socket.post('/user',{name: 'foo'}, function (response) {
         // create a new user
@@ -110,10 +111,12 @@ Application.Services.factory("$socket", [
     $socket.on("disconnect", function(stream) {
       return console.log("someone disconnected");
     });
+
     $socket.removeListener("connect");
     $socket.removeListener("news");
     $socket.removeListener("onUserAdded");
     return $socket.removeListener("onUserDeleted");
+
   }
 ]);
 

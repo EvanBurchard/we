@@ -10,7 +10,19 @@
 
 module.exports.bootstrap = function (cb) {
 
-  // It's very important to trigger this callack method when you are finished 
+  sails.io.on('connection', function(socket) {
+    console.log('connected');
+    console.log(socket.store.id);
+    console.log(socket.handshake);
+
+    socket.on('disconnect', function () {
+        console.log('DISCONNESSO!!! ');
+        sails.io.sockets.emit('message', {
+            number: '10'
+        });
+    });
+  });
+  // It's very important to trigger this callack method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
   cb();
 };

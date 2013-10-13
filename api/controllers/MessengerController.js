@@ -41,5 +41,20 @@ module.exports = {
     });
   },
 
+  test: function (req,res){
+    if(req.isSocket){
+      Messages.subscribe( req.socket );
+
+    }
+  },
+
+  test2: function (req,res){
+    if(req.isSocket){
+      Messages.publishCreate({
+        id: 3,
+        name: 'Randy'
+      })
+    }
+  },
 
 };
