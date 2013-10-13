@@ -6,6 +6,8 @@ angular.module("application").controller("MessengerCtrl", [
     var init;
 
     init = function() {
+
+      console.log($rootScope);
       $scope.templates = [
         {
           name: 'contact-list.html',
@@ -30,16 +32,18 @@ angular.module("application").controller("MessengerCtrl", [
 
       $scope.contactsOpen = [
         {
-          id: 1,
-          name: 'Maria',
+          id: '5242db50a0c3551146000001',
+          name: 'Alberto',
+          newMessage: '',
           messages: [{
             id : 1,
             content : 'oi mundo'
           }]
         },
         {
-          id: 2,
+          id: '5242daec77789ecb45000001',
           name: 'Santos',
+          newMessage: '',
           messages: [
           {
             id : 10,
@@ -55,6 +59,24 @@ angular.module("application").controller("MessengerCtrl", [
 
       return $scope.user = {};
     };
+
+    $scope.send = function (newMessage, toId){
+      var user = SessionService.getUser();
+      console.log(newMessage);
+      $socket.post(
+        '/users/'+toId+'/messenger',
+        {
+          fromId: user.id,
+          message: newMessage,
+          toId: [
+            toId
+          ]
+
+        },
+        function (response) {
+          console.log(response);
+      });
+    }
 
     return init();
   }

@@ -11,15 +11,22 @@
 module.exports.bootstrap = function (cb) {
 
   sails.io.on('connection', function(socket) {
-    console.log('connected');
-    console.log(socket.store.id);
-    console.log(socket.handshake);
+
+    var userId = socket.handshake.session.passport.user;
+
+    // join user exclusive room to allow others users send
+    // mesages to this user
+    Users.subscribe(socket , [userId] );
+    socket.join('user_' + userId);
 
     socket.on('disconnect', function () {
-        console.log('DISCONNESSO!!! ');
+        console.log('Disconect!!! ');
+/*
         sails.io.sockets.emit('message', {
-            number: '10'
+            status: 'disconected',
+            handshake: socket.handshake
         });
+*/
     });
   });
   // It's very important to trigger this callack method when you are finished

@@ -123,8 +123,15 @@ module.exports = {
     }
   },
 
-  chat: function (req, res) {
+  // getter for current logged in user
+  current: function (req, res, next) {
+    if(req.isAuthenticated()){
+      res.send({user: req.user});
+    }else{
+      res.send({user: {}});
+    }
 
+    return next();
   }
 
 };

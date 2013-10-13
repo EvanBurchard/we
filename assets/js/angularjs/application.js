@@ -78,6 +78,7 @@ angular.module('application', ['ngResource', 'application.filters', 'application
       });
 
   }]).run(function($rootScope, $route){
+
     // Bind the `$routeChangeSuccess` event on the rootScope, so that we dont need to bind in individual controllers.
     $rootScope.$on('$routeChangeSuccess', function(currentRoute, previousRoute) {
       // This will set the custom property that we have defined while configuring the routes.

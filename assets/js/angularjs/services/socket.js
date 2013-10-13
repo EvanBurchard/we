@@ -78,13 +78,13 @@ Application.Services.factory("$socket", [
         });
       },3000);
 */
-/*
+
       $socket.get('/messenger/test', function (response) {
         console.log(response);
         console.log('starting messenger socket io');
 
       });
-*/
+
       /*
       $socket.post('/user',{name: 'foo'}, function (response) {
         // create a new user

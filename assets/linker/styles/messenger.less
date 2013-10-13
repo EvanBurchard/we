@@ -1,3 +1,4 @@
+@messengerHeadBgColor: #f4f4f4;
 
  .messenger-box(){
   border: 1px solid #ccc;
@@ -36,13 +37,30 @@ div.messenger-area .messenger {
   display: none;
 }
 
-.contact-chat .header,
-.messenger .header {
-  background-color: #f4f4f4;
+.contact-chat {
   width: 240px;
-  padding: 5px;
-  cursor: pointer;
+
+  .header {
+    background-color: @messengerHeadBgColor;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .messages {
+
+  }
+
+  .footer {
+    padding: 5px;
+  }
 }
+
+.messenger .header {
+    background-color: @messengerHeadBgColor;
+    width: 240px;
+    padding: 5px;
+    cursor: pointer;
+  }
 
 div.messenger-area .messenger .friendlist {
   cursor: pointer;

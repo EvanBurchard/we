@@ -10,8 +10,16 @@
           <span class="message">{{message.content}}</span>
         </div>
       </div>
-      <div>
-        <input type="text">
+      <div class="footer">
+        <form>
+          <div class="input-group">
+            <input data-ng-model="contact.newMessage" type="text" name="newMessage" value="">
+            <input data-ng-model="contact.id" type="hidden" name="toId" value="{{contact.id}}">
+            <span class="input-group-btn">
+              <button data-ng-click="send(contact.newMessage, contact.id)" class="btn btn-xs btn-default" type="button">Send</button>
+            </span>
+          </div><!-- /input-group -->
+        </form>
       </div>
     </div>
   </div>

@@ -9,14 +9,42 @@ angular.module('application.services')
         url: '/users/login'
       },
       'logout': {
-        method: 'DELETE'
+        method: 'DELETE',
+        url: '/users/logout'
+      },
+      'getCurrent': {
+        method: 'GET',
+        url: '/users/current'
       }
+
     });
 
     var _user = { authorized: false };
 
     function getUser() {
       return _user;
+    }
+
+    function getCurrentUser() {
+      service.getCurrent(
+        function(res, status){
+          if(res.user){
+            _user = res.user;
+            _user.authorized = true;
+          }
+          //if(angular.isFunction(resultHandler)) {
+           // resultHandler(res);
+          //}
+
+        },
+        function(err){
+          console.log('sessionService.getCurrent error: ', err);
+          //if(angular.isFunction(errorHandler)){
+          //  errorHandler(err);
+          //}
+        }
+      );
+
     }
 
     function authorized(){
@@ -65,11 +93,14 @@ angular.module('application.services')
       );
     }
 
+    getCurrentUser();
+
     return {
       login: login,
       logout: logout,
       authorized: authorized,
-      getUser: getUser
+      getUser: getUser,
+      getCurrentUser: getCurrentUser
     };
 
   }]);
