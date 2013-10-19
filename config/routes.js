@@ -86,6 +86,16 @@ module.exports.routes = {
   'delete /users/:uid/messenger/:id?': {
       controller    : 'messenger',
       action        : 'destroy'
+  },
+
+  'get /users/current': {
+      controller    : 'users',
+      action        : 'current'
+  },
+
+  'get /messenger/start': {
+      controller    : 'messenger',
+      action        : 'start'
   }
 
 
