@@ -17,7 +17,11 @@ module.exports = {
       type: 'array',
       required: true,
     },
-    message: 'string'
+    content: 'string',
+    read: {
+      type: 'boolean',
+      defaultsTo: false
+    }
   }
 
 };

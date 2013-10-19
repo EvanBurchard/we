@@ -14,13 +14,26 @@ module.exports.bootstrap = function (cb) {
 
     var userId = socket.handshake.session.passport.user;
 
+    if(typeof sails.onlineusers === 'undefined' )
+      sails.onlineusers = {};
+
+    // save user data in online users cache
+    if(typeof sails.onlineusers[userId] === 'undefined' ){
+      Users.findOneById(userId).done(function(err, user){
+        sails.onlineusers[userId] = user.toJSON();
+      });
+    }
+
+
     // join user exclusive room to allow others users send
     // mesages to this user
-    Users.subscribe(socket , [userId] );
+    // Users.subscribe(socket , [userId] );
     socket.join('user_' + userId);
 
     socket.on('disconnect', function () {
         console.log('Disconect!!! ');
+        // remove user from users online
+        delete sails.onlineusers[userId];
 /*
         sails.io.sockets.emit('message', {
             status: 'disconected',

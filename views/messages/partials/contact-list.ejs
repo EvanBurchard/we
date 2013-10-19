@@ -4,30 +4,32 @@
       <div class="messenger">
         <div class="header">
           Bate papo
-          <button class="btn btn-mini pull-right"><span class="ui-icon ui-icon-gear"></span></button>
+        <button type="button" class="remove btn btn-default btn-xs pull-right">
+          <span class="glyphicon glyphicon-wrench"></span>
+        </button>
         </div>
         <ul class="nav nav-list friendlist contact-list">
-          <li data-ng-repeat="contact in contacts"  >
-            <a>
+          <li class="contact" data-ng-repeat="contact in contacts | filter:searchFriend"  >
+            <a data-ng-click="startTalk(contact.id)" >
               <img class="avatar-small" src="/images/avatars/user-avatar.png"> {{contact.name}}
             </a>
           </li>
         </ul>
         <div class="search-area">
-          <input type="text" placeholder="Search">
+          <input type="search" data-ng-model="searchFriend" placeholder="Search ...">
         </div>
       </div>
       <div class="messenger-off">
         <span class="ui-icon ui-icon-person"></span>
-        <span class="text"> Bate papo - ( {{contacts.length}} )</span>
-        <button class="btn btn-mini pull-right">
-          <span class="ui-icon ui-icon-carat-1-n pull-right"></span>
+        <span class="text">Bate papo</span>
+        <button type="button" class="remove btn btn-default btn-xs pull-right">
+          <span class="glyphicon glyphicon-wrench"></span>
         </button>
       </div>
     </div>
   </div>
 
-  <div data-ng-repeat="contact in contactsOpen">
+  <div data-ng-repeat="contact in contacts">
     <div data-ng-include="template.url"></div>
   </div>
 </div>

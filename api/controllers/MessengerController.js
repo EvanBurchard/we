@@ -45,7 +45,7 @@ module.exports = {
   // add message
   create: function (req, res, next) {
     var message = {};
-    message.message = req.param("message");
+    message.content = req.param("content");
     message.fromId = req.param("fromId");
     message.toId = req.param("toId");
 
@@ -57,11 +57,9 @@ module.exports = {
 
         if(req.isSocket){
           sails.io.sockets.in('user_' + newMessage.toId[0]).emit(
-            'message',
+            'receive:message',
             {
-              message: newMessage,
-              id: newMessage.id,
-              createdAt: newMessage.createdAt
+              message: newMessage
             }
           );
         } else {
@@ -74,22 +72,28 @@ module.exports = {
     });
   },
 
-  test: function (req,res){
-    if(req.isSocket){
-      /*
-      Messages.subscribe( req.socket );
-      var data = 'oi mundo';
-      console.log(req.socket.uid);
-      console.log(sails.io.sockets);
-//    res.socket.emit("message",req.socket.uid,data+req.socket.uid);
-      req.socket(req.socket.id).emit("message",req.socket.uid,data+req.socket.uid);
-    */
+  start: function (req, res, next){
+    var friendList = {};
+    // publish as online
+    //console.log(sails.onlineusers);
+
+    // get online users list
+    if(sails.onlineusers){
+      Object.keys(sails.onlineusers).forEach(function(element, key) {
+        // element is the name of the key.
+        // key is just a numerical value for the array
+        console.log(element);
+        console.log(key);
+
+      });
     }
 
-  },
+    res.send(
+      {
+        friendList: sails.onlineusers
+      });
 
-  test2: function (req,res){
+  }
 
-  },
 
 };
