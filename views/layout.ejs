@@ -40,6 +40,7 @@
   <body>
 
     <div class="container">
+
       <%- include partials/navbar.ejs %>
 
       <div class="main row marketing" data-ng-controller="MainCtrl">
@@ -49,6 +50,12 @@
 
         </div>
     <%- body %>
+      </div>
+
+      <div id="loading-site" class="ng-cloak">
+
+        <div class="message"><%= __('Loading') %> ... </div>
+        <img class="loading-gif" src="/images/loading-site.gif" alt="Loading ...">
       </div>
 
       <hr class="featurette-divider">
