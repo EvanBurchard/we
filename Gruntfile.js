@@ -30,7 +30,12 @@ module.exports = function (grunt) {
 
   var cssFilesToInject = [
 
-    'linker/**/*.css'
+    'linker/**/*.css',
+
+
+    // jquery file upload
+    'styles/jquery.fileupload.css',
+    'styles/jquery.fileupload-ui.css',
   ];
 
 
@@ -67,7 +72,17 @@ module.exports = function (grunt) {
     'js/angularjs/controllers/*.js',
     'js/angularjs/directives/*.js',
 
-    // *->    put other dependencies here   <-*
+    // jquery.fileupload
+    'js/jquery/jquery.ui.widget.js',
+    'js/jquery/jquery.iframe-transport.js',
+    'js/jquery/jquery.fileupload.js',
+    'js/jquery/jquery.fileupload-process.js',
+    'js/jquery/jquery.fileupload-image.js',
+    'js/jquery/jquery.fileupload-audio.js',
+    'js/jquery/jquery.fileupload-video.js',
+    'js/jquery/jquery.fileupload-validate.js',
+    'js/jquery/jquery.fileupload-angular.js',
+
 
     // All of the rest of your app scripts imported here
     'linker/**/*.js'
