@@ -141,7 +141,10 @@ angular.module("application").controller("MessengerCtrl", [
       }
     }
 
-    $scope.send = function (newMessage, toId){
+    $scope.send = function (newMessage, toId, event){
+      event.preventDefault();
+      event.stopPropagation();
+
       var user = SessionService.getUser();
       var newMessageObj = {};
       console.log(newMessage);
@@ -152,6 +155,7 @@ angular.module("application").controller("MessengerCtrl", [
       newMessageObj.status = 'sending';
 
       $scope.contacts[toId].messages.push(newMessageObj);
+      $scope.contacts[toId].newMessage = '';
 
       console.log($scope.contacts[toId]);
       $socket.post(

@@ -17,7 +17,14 @@ module.exports = {
       type: 'array',
       required: true,
     },
-    content: 'string',
+    content: {
+      type: 'string',
+      required: true
+    },
+    status: {
+      type: 'string',
+      defaultsTo: 'salved'
+    },
     read: {
       type: 'boolean',
       defaultsTo: false
