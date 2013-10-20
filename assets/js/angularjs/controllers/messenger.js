@@ -22,52 +22,8 @@ angular.module("application").controller("MessengerCtrl", [
       ];
       $scope.template = $scope.templates[1];
 
-      $scope.contacts = [
-        {
-          id: '5242db50a0c3551146000001',
-          name: 'Alberto'
-        },
-        {
-          id: '5242daec77789ecb45000001',
-          name: 'Santos'
-        }
-      ];
-      /*
-      $scope.contactsOpen = [
-        {
-          id: '5242db50a0c3551146000001',
-          name: 'Alberto',
-          newMessage: '',
-          messages: [{
-            id : 1,
-            content : 'oi mundo'
-          }]
-        },
-        {
-          id: '5242daec77789ecb45000001',
-          name: 'Santos',
-          newMessage: '',
-          messages: [
-          {
-            id : 10,
-            fromId: '',
-            toId: [
-              ''
-            ],
-            message : 'Oi,'
-          },
-          {
-            id : 10,
-            fromId: '',
-            toId: [
-              ''
-            ],
-            message : 'Tudo bem?'
-          },
-          ],
-        }
-      ];
-      */
+      $scope.contacts = {};
+
       startMessenger($scope);
       return $scope.user = {};
     };
@@ -80,35 +36,21 @@ angular.module("application").controller("MessengerCtrl", [
       MessengerService.start(
         //success
         function(data) {
-          console.log(data);
           angular.forEach(data.friendList, function(contact, key){
 
             // set default values for every contact
             if(!contact.messages){
-              contact.messages = [
-                {
-                  id : '5262eb1ce68a805b52000001',
-                  fromId: '"5242db50a0c3551146000001"',
-                  toId: [
-                    '5242daec77789ecb45000001'
-                  ],
-                  content: 'Oi,'
-                },
-                {
-                  id : 10,
-                  fromId: '',
-                  toId: [
-                    ''
-                  ],
-                  content: 'Tudo bem?'
-                },
-              ];
+              contact.messages = [];
             }
-            if(!contact.messengerBox)
+            if(!contact.messengerBox){
               contact.messengerBox = {};
+            }
 
-            });
-          $scope.contacts = data.friendList
+            $scope.contacts[contact.id] = contact;
+
+          });
+
+
         },
         // error
         function(data) {
@@ -147,7 +89,6 @@ angular.module("application").controller("MessengerCtrl", [
 
       var user = SessionService.getUser();
       var newMessageObj = {};
-      console.log(newMessage);
 
       newMessageObj.content = newMessage;
       newMessageObj.toId = [ toId ];
@@ -157,7 +98,6 @@ angular.module("application").controller("MessengerCtrl", [
       $scope.contacts[toId].messages.push(newMessageObj);
       $scope.contacts[toId].newMessage = '';
 
-      console.log($scope.contacts[toId]);
       $socket.post(
         '/users/'+toId+'/messenger',
         newMessageObj ,
@@ -167,10 +107,52 @@ angular.module("application").controller("MessengerCtrl", [
     }
 
     // Socket IO
+
+    /**
+     * Receive a messenger message
+     * @param  Object data
+     */
     $socket.on("receive:message", function(data) {
-        console.log( $scope );
-        console.log( data.message );
+        var newMessageObj = {};
+
+        newMessageObj.content = newMessage;
+        newMessageObj.toId = [ toId ];
+        newMessageObj.fromId = user.id;
+        newMessageObj.status = 'sending';
+
         $scope.contacts[data.message.fromId].messages.push(data.message);
+        $scope.$apply();
+    });
+
+    /**
+     * Message receveid after a contact disconect
+     * @param  object data
+     */
+    $socket.on("contact:connect", function(data) {
+      var user = SessionService.getUser();
+      var contact = data.contact;
+
+      if(user.id != contact.id){
+        // set default values for every contact
+        if(!contact.messages){
+          contact.messages = [];
+        }
+        if(!contact.messengerBox){
+          contact.messengerBox = {};
+        }
+
+        $scope.contacts[contact.id] = contact;
+        //$scope.contacts[data.contact.id] = ;
+        $scope.$apply();
+      }
+    });
+
+    /**
+     * Message receveid after a contact disconect
+     * @param  object data
+     */
+    $socket.on("contact:disconnect", function(data) {
+        delete $scope.contacts[data.contact.id];
         $scope.$apply();
     });
 

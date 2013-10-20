@@ -22,24 +22,32 @@ module.exports.bootstrap = function (cb) {
       Users.findOneById(userId).done(function(err, user){
         sails.onlineusers[userId] = user.toJSON();
       });
-    }
 
+    }
 
     // join user exclusive room to allow others users send
     // mesages to this user
     // Users.subscribe(socket , [userId] );
     socket.join('user_' + userId);
 
+    // TODO change to userId friends room
+    socket.join('global');
+
     socket.on('disconnect', function () {
         console.log('Disconect!!! ');
+        // TODO change to send to friends
+        sails.io.sockets.in('global').emit('contact:disconnect', {
+            status: 'disconected',
+            contact: {
+              id: userId
+            }
+        });
+
+        console.log('sned Disconect!!! ');
+
         // remove user from users online
         delete sails.onlineusers[userId];
-/*
-        sails.io.sockets.emit('message', {
-            status: 'disconected',
-            handshake: socket.handshake
-        });
-*/
+
     });
   });
   // It's very important to trigger this callack method when you are finished

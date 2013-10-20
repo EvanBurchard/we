@@ -74,24 +74,19 @@ module.exports = {
 
   start: function (req, res, next){
     var friendList = {};
-    // publish as online
-    //console.log(sails.onlineusers);
-
-    // get online users list
-    if(sails.onlineusers){
-      Object.keys(sails.onlineusers).forEach(function(element, key) {
-        // element is the name of the key.
-        // key is just a numerical value for the array
-        console.log(element);
-        console.log(key);
-
-      });
-    }
+    friendList = sails.onlineusers
 
     res.send(
       {
-        friendList: sails.onlineusers
-      });
+        friendList: friendList
+      }
+    );
+
+   // TODO change to send to friends
+    sails.io.sockets.in('global').emit('contact:connect', {
+      status: 'connected',
+      contact: req.user.toJSON()
+    });
 
   }
 
