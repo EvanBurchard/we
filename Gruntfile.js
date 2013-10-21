@@ -48,6 +48,7 @@ module.exports = function (grunt) {
    */
 
   var jsFilesToInject = [
+    'require.js',
     'linker/js/jquery.min.js',
     'linker/js/bootstrap.min.js',
     // Below, as a demonstration, you'll see the built-in dependencies
@@ -74,6 +75,9 @@ module.exports = function (grunt) {
 
     // jquery.fileupload
     'js/jquery/jquery.ui.widget.js',
+    'js/load-image.min.js',
+    'http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js',
+    'http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js',
     'js/jquery/jquery.iframe-transport.js',
     'js/jquery/jquery.fileupload.js',
     'js/jquery/jquery.fileupload-process.js',

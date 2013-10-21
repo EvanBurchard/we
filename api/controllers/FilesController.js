@@ -12,6 +12,12 @@ module.exports = {
     res.send('hello world!');
   }
   */
+  index : function (req, res, next){
+    res.send(
+      {"files":[]}
+    );
+  },
+
   /* Upload one file to server
   */
   upload: function (req, res, next) {

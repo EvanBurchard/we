@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="application">
+<html data-ng-app="application">
   <head>
     <!--SCRIPTS-->
     <script src="/linker/js/jquery.min.js"></script>
@@ -12,11 +12,13 @@
     <script src="/js/angularjs/services/socket.js"></script>
     <script src="/js/angularjs/services/users.js"></script>
     <script src="/js/angularjs/controllers/create-account.js"></script>
+    <script src="/js/angularjs/controllers/fileController.js"></script>
+    <script src="/js/angularjs/controllers/fileManagerController.js"></script>
     <script src="/js/angularjs/controllers/login.js"></script>
-    <script src="/js/angularjs/controllers/main.js"></script>
     <script src="/js/angularjs/controllers/messenger.js"></script>
     <script src="/js/angularjs/controllers/user.js"></script>
     <script src="/js/jquery/jquery.ui.widget.js"></script>
+    <script src="/js/load-image.min.js"></script>
     <script src="/js/jquery/jquery.iframe-transport.js"></script>
     <script src="/js/jquery/jquery.fileupload.js"></script>
     <script src="/js/jquery/jquery.fileupload-process.js"></script>
@@ -57,11 +59,11 @@
   </head>
   <body>
 
-    <div class="container">
+    <div class="container ng-cloak" >
 
       <%- include partials/navbar.ejs %>
 
-      <div class="main row marketing" data-ng-controller="MainCtrl">
+      <div class="main row marketing">
         <!-- Include the view file for the current controller/route -->
         <h4 data-ng-show="message">{{message}}</h4>
         <div data-ng-view>
@@ -70,7 +72,7 @@
     <%- body %>
       </div>
 
-      <div id="loading-site" class="ng-cloak">
+      <div id="loading-site" >
 
         <div class="message"><%= __('Loading') %> ... </div>
         <img class="loading-gif" src="/images/loading-site.gif" alt="Loading ...">
@@ -99,13 +101,6 @@
 
       <!-- Your scripts here? -->
 
-      <!-- jquery upload files -->
-      <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-      <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
-      <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-      <script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-      <!-- blueimp Gallery script -->
-      <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
       <!--
 
         Looking for client-side CoffeeScript or TypeScript?
@@ -135,6 +130,13 @@
 
       -->
 
+      <div data-ng-controller="FileManagerController" class="modal" id="fileManagerModal" tabindex="-1" role="dialog" aria-labelledby="loginFormModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div  data-ng-include="'/templates/file-manager.html'"></div>
+          </div><!-- /.modal-content -->
+        </div>
+      </div>
 
       <div data-ng-controller="LoginCtrl">
         <div  data-ng-include="'/templates/login-form.ejs'"></div>

@@ -13,7 +13,10 @@ Application.Controllers = angular.module('application.controllers', []);
 Application.Filters = angular.module('application.filters', []);
 Application.Directives = angular.module('application.directives', []);
 
-angular.module('application', ['ngResource', 'application.filters', 'application.services', 'application.directives', 'application.constants', 'application.controllers']).
+angular.module('application', [
+  'ngResource', 'application.filters', 'application.services', 'application.directives',
+  'application.constants', 'application.controllers', 'blueimp.fileupload'
+  ]).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     $locationProvider.html5Mode(true).hashPrefix('#');

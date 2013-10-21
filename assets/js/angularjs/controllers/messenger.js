@@ -9,7 +9,6 @@ angular.module("application").controller("MessengerCtrl", [
     init = function() {
       $scope.contacts = {};
       $scope.contactsOpen = [];
-      console.log($rootScope);
       $scope.templates = [
         {
           name: 'contact-list.html',
@@ -24,8 +23,11 @@ angular.module("application").controller("MessengerCtrl", [
 
       $scope.contacts = {};
 
-      startMessenger($scope);
-      return $scope.user = {};
+      $scope.user = SessionService.getUser();
+
+      if($scope.user.authorized){
+        startMessenger($scope);
+      }
     };
 
     /**

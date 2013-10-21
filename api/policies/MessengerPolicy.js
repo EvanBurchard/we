@@ -1,18 +1,15 @@
 module.exports = function (req, res, next) {
-    //console.log(req);
-return next();
-    //console.log('is authenticated: ',req.isAuthenticated());
-    //if (req.isAuthenticated()) {
-        var action = req.param('action');
 
-        console.log('action: ', action);
-        if( req.user.id === req.param('uid')){
+    if(req.isSocket){
+        console.log('On police Is socket: ',req.isSocket);
+        console.log(req.handshake);
+        return next();
+    }
 
-          return next();
-        }
+    if (req.isAuthenticated()) {
+        return next();
+    }
 
-   // }
-//
     return res.send("You Must Be Logged In", 403);
 
 };
