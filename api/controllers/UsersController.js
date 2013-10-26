@@ -132,8 +132,73 @@ module.exports = {
     }
 
     return next();
-  }
+  },
 
+  changeAvatar: function (req, res, next) {
+    // TODO validate req.files.files
+    var  avatarFile = req.files.files[0];
+
+    Images.upload(avatarFile, function(err){
+      if(err){
+        res.send(
+          {
+            "files":[],
+            "error": err
+          }
+        );
+      } else {
+        saveImage();
+      }
+
+    });
+
+    function saveImage(){
+
+      var uploadedFile = {};
+
+      uploadedFile.name = avatarFile.newName;
+      uploadedFile.originalFilename = avatarFile.originalFilename;
+      uploadedFile.size = avatarFile.size;
+      uploadedFile.extension = avatarFile.extension;
+
+      // TODO check if are better get mime direct from file
+      //uploadedFile.mime = req.files.files.headers['content-type'];
+      uploadedFile.user_id = req.user.id;
+
+      Images.create(uploadedFile).done(function(error, salvedFile) {
+        if (error) {
+          // TODO delete file if ocurs errror here
+          console.log(error);
+          res.send(500, {error: res.i18n("DB Error") });
+        } else {
+          //console.log('salved File:',salvedFile);
+          salvedFile.thumbnailUrl = 'http://localhost:1333/images/avatars/user-avatar.png';
+          salvedFile.url = 'http://localhost:1333/images/avatars/user-avatar.png';
+          salvedFile.deleteUrl = '/files/' + salvedFile.id;
+          salvedFile.deleteType = 'DELETE';
+          console.log(salvedFile);
+          saveAvatar(salvedFile);
+
+        }
+      });
+    }
+
+    function saveAvatar(salvedFile){
+      // Lookup a user
+      console.log('on user',req.user);
+      req.user.avatarId = salvedFile.id;
+      req.user.save( function(err) {
+        if(err){
+          return res.send(500, {err: res.i18n("Error on user avatar save") });
+        }
+
+        res.send({
+          "user": req.user,
+          "avatar": salvedFile
+        });
+      });
+    }
+  }
 };
 
 var validSignup = function(user, confirmPassword){

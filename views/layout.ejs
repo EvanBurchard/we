@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html data-ng-app="application">
   <head>
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/linker/styles/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/linker/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/linker/styles/messenger.css">
+    <link rel="stylesheet" href="/linker/styles/site.css">
+    <link rel="stylesheet" href="/styles/jquery.fileupload.css">
+    <link rel="stylesheet" href="/styles/jquery.fileupload-ui.css">
+    <!--STYLES END-->
+
+    <!-- jquery file upload -->
+    <!-- blueimp Gallery styles -->
+    <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <!-- CSS adjustments for browsers with JavaScript disabled -->
+    <noscript><link rel="stylesheet" href="/styles/jquery.fileupload-noscript.css"></noscript>
+    <noscript><link rel="stylesheet" href="/styles/jquery.fileupload-ui-noscript.css"></noscript>
+
+
+
     <!--SCRIPTS-->
     <script src="/linker/js/jquery.min.js"></script>
     <script src="/linker/js/bootstrap.min.js"></script>
@@ -11,6 +30,7 @@
     <script src="/js/angularjs/services/session.js"></script>
     <script src="/js/angularjs/services/socket.js"></script>
     <script src="/js/angularjs/services/users.js"></script>
+    <script src="/js/angularjs/controllers/avatarController.js"></script>
     <script src="/js/angularjs/controllers/create-account.js"></script>
     <script src="/js/angularjs/controllers/fileController.js"></script>
     <script src="/js/angularjs/controllers/fileManagerController.js"></script>
@@ -31,15 +51,6 @@
     <script src="/linker/js/messenger.js"></script>
     <!--SCRIPTS END-->
 
-    <!--STYLES-->
-    <link rel="stylesheet" href="/linker/styles/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/linker/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="/linker/styles/messenger.css">
-    <link rel="stylesheet" href="/linker/styles/site.css">
-    <link rel="stylesheet" href="/styles/jquery.fileupload.css">
-    <link rel="stylesheet" href="/styles/jquery.fileupload-ui.css">
-    <!--STYLES END-->
-
     <!--TEMPLATES-->
     
     <!--TEMPLATES END-->
@@ -48,14 +59,6 @@
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-    <!-- jquery file upload -->
-    <!-- blueimp Gallery styles -->
-    <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-    <!-- CSS adjustments for browsers with JavaScript disabled -->
-    <noscript><link rel="stylesheet" href="/styles/jquery.fileupload-noscript.css"></noscript>
-    <noscript><link rel="stylesheet" href="/styles/jquery.fileupload-ui-noscript.css"></noscript>
-
   </head>
   <body>
 
@@ -75,7 +78,7 @@
       <div id="loading-site" >
 
         <div class="message"><%= __('Loading') %> ... </div>
-        <img class="loading-gif" src="/images/loading-site.gif" alt="Loading ...">
+        <img class="loading-gif" src="/imgs/loading-site.gif" alt="Loading ...">
       </div>
 
       <hr class="featurette-divider">
@@ -130,12 +133,16 @@
 
       -->
 
-      <div data-ng-controller="FileManagerController" class="modal" id="fileManagerModal" tabindex="-1" role="dialog" aria-labelledby="loginFormModal" aria-hidden="true">
+      <div data-ng-controller="FileManagerController" class="modal" id="fileManagerModal" tabindex="-1" role="dialog" aria-labelledby="fileManagerModal" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div  data-ng-include="'/templates/file-manager.html'"></div>
           </div><!-- /.modal-content -->
         </div>
+      </div>
+
+      <div data-ng-controller="AvatarController">
+        <div  data-ng-include="'/templates/change-avatar-form.html'"></div>
       </div>
 
       <div data-ng-controller="LoginCtrl">

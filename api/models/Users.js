@@ -40,6 +40,10 @@ module.exports = {
 
     birthDate: 'DATE',
 
+    avatarId: {
+        type: 'STRING'
+    },
+
     // Override toJSON instance method
     // to remove password value
     toJSON: function() {

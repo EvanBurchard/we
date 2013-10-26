@@ -3,7 +3,7 @@ exports.getMenu = function(menuMame,req) {
   var menu = {};
   var currentUrl = '';
   //console.log(this);
-
+  // TODO add suport to metatags
   var mainMenu = {
     name: 'mainMenu',
     id: 'main-menu',
@@ -28,10 +28,13 @@ exports.getMenu = function(menuMame,req) {
     linkClass = '';
     if (req.url == link.url ) linkClass = 'active';
 
-    menuRendered += '<li class="'+ linkClass +'">';
+    menuRendered += '<li class="menu-item '+ linkClass +'">';
+
     menuRendered += '<a href="'+ link.url +'">'+ link.title + '</a>';
     menuRendered += '</li>';
   });
+  menuRendered += '<li><a data-toggle="modal" href="#fileManagerModal" >'+req.res.i18n('File Manager') + '</a></li>';
+
   menuRendered += '</ul>';
 
   return menuRendered;

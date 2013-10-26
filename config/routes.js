@@ -93,12 +93,25 @@ module.exports.routes = {
       action        : 'current'
   },
 
+  'post /user/avatar': {
+      controller    : 'users',
+      action        : 'changeAvatar'
+  },
+
   'get /messenger/start': {
       controller    : 'messenger',
       action        : 'start'
+  },
+
+  'get /files': {
+      controller    : 'files',
+      action        : 'index'
+  },
+
+  'post /files': {
+      controller    : 'files',
+      action        : 'create'
   }
-
-
 /*
 
   // Let's say you're building an email client, like Gmail

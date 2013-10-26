@@ -1,8 +1,8 @@
 /**
- * Files
+ * Images
  *
  * @module      :: Model
- * @description :: Files model
+ * @description :: A short summary of how this model works and what it represents.
  *
  */
 var mv = require('mv');
@@ -40,6 +40,14 @@ module.exports = {
 
     user_id: {
       type: 'string'
+    },
+
+    width: {
+      type: 'string'
+    },
+
+    height: {
+            type: 'string'
     }
 
   },
@@ -49,8 +57,7 @@ module.exports = {
 
     file.extension = file.name.split('.').pop();
 
-    file.newName = uuid.v1();
-    file.newName = file.newName + '.' + file.extension;
+    file.newName =  uuid.v1() + '.' + file.extension;
 
     //console.log('config:',sails.config.express.bodyParser);
     // UPLOAD
@@ -65,7 +72,7 @@ module.exports = {
         console.log('arquivo movido para:',newFilePath);
       }
 
-      callback();
+      callback(err);
     });
 
   },

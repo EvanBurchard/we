@@ -12,7 +12,14 @@
     "passport-local": "~0.1.6",
     "passport": "~0.1.17",
     "bcrypt": "~0.7.7",
-    "sails-mongo": "~0.9.5"
+    "sails-mongo": "~0.9.5",
+    "formidable": "~1.0.14",
+    "fs-extra": "~0.8.0",
+    "mv": "~1.0.0",
+    "node-uuid": "~1.4.1",
+    "file-parser": "0.0.3",
+    "multiparty": "~2.2.0",
+    "sails-local-fs": "~0.9.11"
   },
   "devDependencies": {
     "nodeunit": "*",

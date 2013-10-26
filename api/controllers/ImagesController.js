@@ -1,17 +1,12 @@
 /**
- * FilesController
+ * ImagesController
  *
- * @module    :: Controller
- * @description :: Contains logic for handling files upload .
+ * @module		:: Controller
+ * @description	:: Contains logic for handling requests.
  */
 
 module.exports = {
 
-  /* e.g.
-  sayHello: function (req, res) {
-    res.send('hello world!');
-  }
-  */
   index : function (req, res, next){
     res.send(
       {"files":[]}
@@ -51,8 +46,8 @@ module.exports = {
                // res.send(500, {error: res.i18n("DB Error") });
               } else {
                 //console.log('salved File:',salvedFile);
-                salvedFile.thumbnailUrl = 'http://localhost:1333/images/avatars/user-avatar.png';
-                salvedFile.url = 'http://localhost:1333/images/avatars/user-avatar.png';
+                salvedFile.thumbnailUrl = 'http://localhost:1333/imgs/avatars/user-avatar.png';
+                salvedFile.url = 'http://localhost:1333/imgs/avatars/user-avatar.png';
                 salvedFile.deleteUrl = '/files/' + salvedFile.id;
                 salvedFile.deleteType = 'DELETE';
 
@@ -79,14 +74,4 @@ module.exports = {
 */
   },
 
-
-  /* Upload one file to server
-  */
-  upload: function (req, res, next) {
-    console.log('no file upload',req);
-
-    next();
-  },
-
 };
-
