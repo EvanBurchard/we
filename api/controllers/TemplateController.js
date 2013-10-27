@@ -10,7 +10,7 @@ module.exports = {
     var listOfAssetSourcePaths = sails.config.assets.sequence;
     var htmlString = "";
     async.each(listOfAssetSourcePaths, function (path,cb) {
-      require('fs').readFile(path,function (err, contents) {
+      fs.readFile(path,function (err, contents) {
         if (err) return cb(err);
         htmlString += contents;
       });

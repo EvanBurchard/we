@@ -5,12 +5,46 @@
  * @description	:: Contains logic for handling requests.
  */
 
+var fs = require('fs');
+
 module.exports = {
 
   index : function (req, res, next){
+    console.log('images index controler');
     res.send(
       {"files":[]}
     );
+  },
+
+  find : function (req, res, next){
+
+    var fileId = req.param('id');
+
+    if(fileId){
+      Images.findOneById(fileId).done(function(err, image) {
+        if (err) {
+            console.log('Error on get image from BD: ',err );
+            res.send(404);
+        } else {
+
+          // TODO change to image upload path
+          var path = 'uploads/' + image.name;
+
+          fs.readFile(path,function (err, contents) {
+
+            if (err){
+              console.log(err);
+              return res.send(404);
+            }else{
+              res.contentType('image/png');
+              res.send(contents);
+            }
+          });
+        }
+      });
+    }else{
+      return next();
+    }
   },
 
   /**
@@ -66,12 +100,7 @@ module.exports = {
         "files": newFiles
       });
     }
-    //mv(tmpFile.path, imageFolder + this.systemName, cb);
-    /*
-    res.send(
-      {"files":[]}
-    );
-*/
-  },
+
+  }
 
 };

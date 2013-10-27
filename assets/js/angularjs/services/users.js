@@ -1,6 +1,7 @@
-'use strict'
+"use strict";
 
-Application.Services.service("userService", ["ngResource"]).factory("User", function ($resource) {
+angular.module('application.services')
+.service("userService", ["ngResource"]).factory("User", function ($resource) {
   // We need to add an update method
   return $resource(
      "/user/:id", {id: "@id" }, {

@@ -7,6 +7,7 @@ angular.module("application").controller("MessengerCtrl", [
     var startMessenger;
 
     init = function() {
+      console.log($scope);
       $scope.contacts = {};
       $scope.contactsOpen = [];
       $scope.templates = [
@@ -25,9 +26,9 @@ angular.module("application").controller("MessengerCtrl", [
 
       $scope.user = SessionService.getUser();
 
-      if($scope.user.authorized){
+      //if($scope.user.authorized){
         startMessenger($scope);
-      }
+      //}
     };
 
     /**
@@ -92,6 +93,8 @@ angular.module("application").controller("MessengerCtrl", [
       var user = SessionService.getUser();
       var newMessageObj = {};
 
+      console.log(user);
+
       newMessageObj.content = newMessage;
       newMessageObj.toId = [ toId ];
       newMessageObj.fromId = user.id;
@@ -107,6 +110,13 @@ angular.module("application").controller("MessengerCtrl", [
           console.log(response);
       });
     }
+/*
+    var scope = SessionService;
+    if(!scope.user) scope.user = {};
+*/
+    $rootScope.$watch('user', function(newValue, oldValue) {
+      $scope.user = newValue;
+    });
 
     // Socket IO
 
@@ -116,10 +126,12 @@ angular.module("application").controller("MessengerCtrl", [
      */
     $socket.on("receive:message", function(data) {
         var newMessageObj = {};
+        var user = SessionService.getUser();
 
-        newMessageObj.content = newMessage;
-        newMessageObj.toId = [ toId ];
-        newMessageObj.fromId = user.id;
+        console.log(data);
+        newMessageObj.content = data.message.content;
+        newMessageObj.toId = user.id ;
+        newMessageObj.fromId = data.message.fromId;
         newMessageObj.status = 'sending';
 
         $scope.contacts[data.message.fromId].messages.push(data.message);

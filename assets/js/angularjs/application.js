@@ -80,7 +80,20 @@ angular.module('application', [
         // redirectTo: '/login'
       });
 
-  }]).run(function($rootScope, $route){
+  }]).run(function($rootScope, $route, $http){
+
+    $rootScope.user = {};
+    $rootScope.user.loading = true;
+
+    $http({method: 'GET', url: '/users/current'}).
+      success(function(data, status, headers, config) {
+        $rootScope.user = data.user;
+        $rootScope.user.loading = false;
+      }).
+      error(function(data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+      });
 
     // Bind the `$routeChangeSuccess` event on the rootScope, so that we dont need to bind in individual controllers.
     $rootScope.$on('$routeChangeSuccess', function(currentRoute, previousRoute) {
@@ -89,5 +102,7 @@ angular.module('application', [
         //$rootScope.action = $route.current.action;
       }
     });
+
+
 });
 

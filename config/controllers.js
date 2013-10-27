@@ -4,8 +4,8 @@
  * By default, Sails controllers automatically bind routes for each of their functions.
  * Additionally, each controller will automatically bind routes for a CRUD API
  * controlling the model which matches its name, if one exists.
- * 
- * NOTE:	These settings are for the global configuration of controllers.	
+ *
+ * NOTE:	These settings are for the global configuration of controllers.
  *			You may also override these settings on a per-controller basis
  *			by modifying the 'blueprints' object in your controllers
  *
@@ -37,7 +37,7 @@ module.exports.controllers = {
     // '/:controller/create'
     // '/:controller/update/:id'
     // '/:controller/destroy/:id'
-    shortcuts: true,
+    shortcuts: false,
 
 
     // Automatic REST blueprints enabled?

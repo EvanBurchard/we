@@ -11,7 +11,8 @@
         <ul class="nav nav-list friendlist contact-list">
           <li class="contact" data-ng-repeat="contact in contacts | filter:searchFriend"  >
             <a data-ng-click="startTalk(contact.id)" >
-              <img class="avatar-small" src="/imgs/avatars/user-avatar.png"> {{contact.name}}
+              <span avatar="contact.avatarId"></span>
+              {{contact.name}}
             </a>
           </li>
         </ul>

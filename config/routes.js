@@ -89,13 +89,18 @@ module.exports.routes = {
   },
 
   'get /users/current': {
-      controller    : 'users',
-      action        : 'current'
+    controller    : 'users',
+    action        : 'current'
   },
 
   'post /user/avatar': {
-      controller    : 'users',
-      action        : 'changeAvatar'
+    controller    : 'users',
+    action        : 'changeAvatar'
+  },
+
+  'get /images/': {
+    controller    : 'images',
+    action        : 'find'
   },
 
   'get /messenger/start': {

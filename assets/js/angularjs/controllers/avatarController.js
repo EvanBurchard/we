@@ -13,6 +13,8 @@ angular.module("application").controller("AvatarController", [
       // Your code here
       //console.log('event', event);
       console.log('data', data.result.avatar);
+      $rootScope.user.avatarId = data.result.avatar.id;
+      $rootScope.user.avatar = data.result.avatar;
       //console.log('filescope', files.scope());
       console.log('All uploads have finished',$scope);
     });

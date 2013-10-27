@@ -126,13 +126,28 @@ module.exports = {
   // getter for current logged in user
   current: function (req, res, next) {
     if(req.isAuthenticated()){
-      res.send({user: req.user});
+
+      // TODO change to join after waterline join suport is ready to use
+      // if has a avatar get it after send
+      if(req.user.avatarId  && !req.user.avatar){
+        Images.findOneById(req.user.avatarId).done(function(err, image) {
+          req.user.avatar = image;
+          respond();
+        });
+      }else{
+        respond();
+      }
+
+
     }else{
       res.send({user: {}});
     }
 
-    return next();
+    function respond(){
+      res.send({user: req.user});
+    }
   },
+
 
   changeAvatar: function (req, res, next) {
     // TODO validate req.files.files

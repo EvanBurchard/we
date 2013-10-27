@@ -1,6 +1,7 @@
 'use strict';
 
-Application.Services.factory("$socket", [
+angular.module('application.services')
+.factory("$socket", [
   "$rootScope", "User", function($rootScope, User) {
     var $socket;
     if( !$rootScope.connectedUsers ){

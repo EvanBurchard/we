@@ -1,6 +1,7 @@
 'use strict'
 
-Application.Services.service("messengerService",
+angular.module('application.services')
+.service("messengerService",
   ["$resource"]).factory("MessengerService", function ($resource) {
   // We need to add an update method
   return $resource("/messenger/:id", { }, {

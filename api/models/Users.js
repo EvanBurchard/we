@@ -74,7 +74,6 @@ module.exports = {
     },
 
     changePassword: function(user, oldPassword, newPassword, next){
-
         user.updateAttribute( 'password', newPassword , function (err) {
             console.log('travo');
             if (!err) {
@@ -83,13 +82,13 @@ module.exports = {
                 next(err);
             }
         });
-
     },
-
   },
 
   // Lifecycle Callbacks
   beforeCreate: function(user, next) {
+
+    // Create new user password affter create
     bcrypt.hash(user.password, 10, function(err, hash) {
       if(err) return next(err);
       user.password = hash;

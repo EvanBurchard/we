@@ -20,6 +20,7 @@ module.exports.bootstrap = function (cb) {
       // save user data in online users cache
       if(typeof sails.onlineusers[userId] === 'undefined' ){
         Users.findOneById(userId).done(function(err, user){
+              console.log(sails.onlineusers);
           sails.onlineusers[userId] = user.toJSON();
         });
 
@@ -46,7 +47,6 @@ module.exports.bootstrap = function (cb) {
           });
 
           console.log('sned Disconect!!! ');
-
           // remove user from users online
           delete sails.onlineusers[userId];
         }

@@ -19,23 +19,26 @@ angular.module('application.services')
 
     });
 
-    var _user = { authorized: false };
+    var user = {};
 
     function getUser() {
-      return _user;
+      if(!user){
+
+      }
+
+      return user;
     }
 
-    function getCurrentUser() {
+    function getCurrentUser(callback) {
       service.getCurrent(
         function(res, status){
           if(res.user){
-            _user = res.user;
-            _user.authorized = true;
-          }
-          //if(angular.isFunction(resultHandler)) {
-           // resultHandler(res);
-          //}
+            user = res.user;
+            user.authorized = true;
 
+            if(callback)
+              callback(user);
+          }
         },
         function(err){
           console.log('sessionService.getCurrent error: ', err);
@@ -48,21 +51,21 @@ angular.module('application.services')
     }
 
     function authorized(){
-      console.log(_user);
-      return _user.authorized === true;
+      console.log(user);
+      return user.authorized === true;
     }
 
     function unauthorized(){
-      return _user.authorized === false;
+      return user.authorized === false;
     }
 
     function login(newUser,resultHandler,errorHandler) {
       service.login(
         newUser,
         function(res, status){
-          _user = (res.user || {});
+          user = (res.user || {});
           //_user.authorized = res.authorized;
-          _user.authorized = true;
+          user.authorized = true;
           if(angular.isFunction(resultHandler)) {
             resultHandler(res);
           }
@@ -79,8 +82,8 @@ angular.module('application.services')
       service.logout(
         user,
         function(res){
-          _user = (res.user || {});
-          _user.authorized = res.authorized;
+          user = (res.user || {});
+          user.authorized = res.authorized;
           if(angular.isFunction(resultHandler)) {
             resultHandler(res);
           }
@@ -96,6 +99,7 @@ angular.module('application.services')
     getCurrentUser();
 
     return {
+      user:user,
       login: login,
       logout: logout,
       authorized: authorized,
