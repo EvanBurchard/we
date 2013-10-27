@@ -4,7 +4,6 @@ Application.Directives.directive('avatar', ['$compile',
     return{
       restrict:"EAC",
       link:function (scope, elm, attrs) {
-        console.log(scope);
         scope.$watch(attrs.avatar, function (imageId) {
           if ((imageId !== null) && (imageId !== undefined) && (imageId !== '')) {
            var tag = '<img class="img-rounded avatar-small" data-ng-src="/images/' + imageId +'">';

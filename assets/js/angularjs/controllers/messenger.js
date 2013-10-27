@@ -10,7 +10,9 @@ angular.module("application").controller("MessengerCtrl", [
       console.log($scope);
       $scope.contacts = {};
       $scope.contactsOpen = [];
-      $scope.templates = [
+      $scope.templates = {};
+/*
+      [
         {
           name: 'contact-list.html',
           url: '/templates/contact-list.html'
@@ -20,7 +22,21 @@ angular.module("application").controller("MessengerCtrl", [
           url: '/templates/messenger-box.html'
         }
       ];
-      $scope.template = $scope.templates[1];
+*/
+      $scope.templates.messengerBox = {
+        name: 'messenger-box.html',
+        url: '/templates/messenger-box.html'
+      };
+/*
+      $scope.templates.messageFrom = '';
+      $scope.templates.messageTo = {
+        name: 'messenger-box.html',
+        url: '/templates/messenger-box.html'
+      };
+*/
+      //$scope.templates.;
+
+      //$scope.template = $scope.templates[1];
 
       $scope.contacts = {};
 
@@ -79,6 +95,7 @@ angular.module("application").controller("MessengerCtrl", [
     }
 
     $scope.messengerBoxToggle = function(contactId) {
+      console.log('togle: ',$scope);
       if($scope.contacts[contactId].messengerBox.opened){
         $scope.contacts[contactId].messengerBox.opened = false;
       }else{
