@@ -38,9 +38,9 @@ angular.module('application', [
         templateUrl: '/templates/login',
         controller: 'LoginCtrl'
       }).
-      when('/logout',{
-        templateUrl: '/templates/login.html',
-        controller: 'LoginCtrl'
+      when('/users/logout',{
+        controller: 'LoginCtrl',
+        action: 'logoutHandler'
       }).
       when('/account',{
         templateUrl: '/templates/account.html',
@@ -48,12 +48,13 @@ angular.module('application', [
       }).
       when('/signup',{
         templateUrl: '/templates/signup.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+
       }).
       when('/users', {
         templateUrl: '/templates/users/index.html',
         controller: 'UsersController.index',
-        action: 'index' // optional action for CRUD methods
+
       }).
       when('/users/new', {
         templateUrl: '/templates/users/new.html',
@@ -80,7 +81,7 @@ angular.module('application', [
         // redirectTo: '/login'
       });
 
-  }]).run(function($rootScope, $route, $http){
+  }]).run(function($rootScope, $route, $http, $window){
 
     $rootScope.user = {};
     $rootScope.user.loading = true;
@@ -98,8 +99,14 @@ angular.module('application', [
     // Bind the `$routeChangeSuccess` event on the rootScope, so that we dont need to bind in individual controllers.
     $rootScope.$on('$routeChangeSuccess', function(currentRoute, previousRoute) {
       // This will set the custom property that we have defined while configuring the routes.
+
+
+      if($route.current.action == "logoutHandler"){
+        return $window.location.href = "/users/logout";
+      }
+
       if($route.current.action && $route.current.action.length > 0){
-        //$rootScope.action = $route.current.action;
+        $rootScope.action = $route.current.action;
       }
     });
 

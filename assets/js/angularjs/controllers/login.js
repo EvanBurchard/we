@@ -27,9 +27,13 @@ angular.module("application").controller("LoginCtrl", [
         name: '',
         email: ''
       };
+
+      // clear loggedin user vars
       $scope.user = user;
       $rootScope.user = user;
-      return $location.path("/login");
+      console.log('no logoutHandler', res);
+      // redirect to serverside logout
+      return $location.path("/users/logout");
 
     };
     errorHandler = function(err) {
