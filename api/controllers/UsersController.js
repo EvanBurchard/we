@@ -97,6 +97,7 @@ module.exports = {
         errors: errors
       });
     } else {
+
       Users.findOneByEmail(user.email).done(function(err, usr){
         if (err) {
             res.send(500, { error: res.i18n("DB Error") });
@@ -218,6 +219,10 @@ module.exports = {
 
 var validSignup = function(user, confirmPassword){
   var errors = [];
+
+  if(!user.email){
+    errors.push("Field <strong>email</strong> is required");
+  }
 
   if(user.password){
     errors.push("Field <strong>password</strong> is required");

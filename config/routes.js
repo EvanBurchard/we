@@ -109,7 +109,6 @@ module.exports.routes = {
     action        : 'logout'
   },
 
-
   // get logged in user avatar
   'post /user/avatar': {
     controller    : 'users',
