@@ -91,7 +91,9 @@ module.exports = {
     var confirmPassword = req.param("confirmPassword");
     var errors;
 
-    if( errors = validSignup(user, confirmPassword) ){
+    errors = validSignup(user, confirmPassword);
+
+    if( errors.length >0 ){
       // error on data or confirm password
       res.send({
         errors: errors
