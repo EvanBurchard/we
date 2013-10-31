@@ -93,6 +93,24 @@ module.exports.routes = {
     action        : 'current'
   },
 
+  // User Auth
+  'post /users/login': {
+    controller    : 'users',
+    action        : 'login'
+  },
+
+  'get /users/logout': {
+    controller    : 'users',
+    action        : 'logout'
+  },
+
+  'post /users/logout': {
+    controller    : 'users',
+    action        : 'logout'
+  },
+
+
+  // get logged in user avatar
   'post /user/avatar': {
     controller    : 'users',
     action        : 'changeAvatar'

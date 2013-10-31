@@ -192,7 +192,8 @@ module.exports = function (grunt) {
     },
 
     clean: {
-      dev: ['.tmp/public/**'],
+      dev: ['.tmp/public/**',
+        '!.tmp/public/bower_components/**'],
       build: ['www']
     },
 

@@ -51,6 +51,7 @@
     <script src="/js/jquery/jquery.fileupload-validate.js"></script>
     <script src="/js/jquery/jquery.fileupload-angular.js"></script>
     <script src="/linker/js/angular-cookies.min.js"></script>
+    <script src="/linker/js/angular-translate.min.js"></script>
     <script src="/linker/js/messenger.js"></script>
     <!--SCRIPTS END-->
 
@@ -73,9 +74,9 @@
         <!-- Include the view file for the current controller/route -->
         <h4 data-ng-show="message">{{message}}</h4>
         <div data-ng-view>
-
+          <%- body %>
         </div>
-    <%- body %>
+
       </div>
 
       <div id="loading-site" >

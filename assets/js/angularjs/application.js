@@ -15,7 +15,8 @@ Application.Directives = angular.module('application.directives', []);
 
 angular.module('application', [
   'ngResource', 'application.filters', 'application.services', 'application.directives',
-  'application.constants', 'application.controllers', 'blueimp.fileupload'
+  'application.constants', 'application.controllers', 'blueimp.fileupload',
+  'pascalprecht.translate'
   ]).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
