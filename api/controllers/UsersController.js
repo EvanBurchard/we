@@ -224,7 +224,7 @@ var validSignup = function(user, confirmPassword){
     errors.push("Field <strong>email</strong> is required");
   }
 
-  if(user.password){
+  if(!user.password){
     errors.push("Field <strong>password</strong> is required");
   }
 
