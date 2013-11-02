@@ -18,7 +18,10 @@ angular.module('application', [
   'application.constants', 'application.controllers', 'blueimp.fileupload',
   'pascalprecht.translate'
   ]).
-  config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+  config(['$routeProvider', '$locationProvider','$httpProvider',
+    function($routeProvider, $locationProvider, $httpProvider) {
+
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
 
     $locationProvider.html5Mode(true).hashPrefix('#');
 
