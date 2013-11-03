@@ -29,8 +29,9 @@ angular.module('application', [
       when('/', {
         templateUrl: '/templates/home.ejs'
       }).
-      when('/view1', {
-        templateUrl: '/templates/partials/partial1.html'
+      when('/user/forgot_password', {
+        templateUrl: '/templates/forgotPasswordForm.html'
+        //controller: 'LoginCtrl'
       }).
       when('/view2', {
         templateUrl: '/templates/partials/partial2.html'

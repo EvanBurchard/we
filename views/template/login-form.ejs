@@ -7,17 +7,23 @@
           <h4 class="modal-title"><%= __('Login form') %></h4>
         </div>
         <div class="modal-body">
-          <div class="input-group input-group-lg">
-            <label class="input-group-addon" for="email"><%= __('Email') %></label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Email address" required data-ng-model="user.email">
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+              <label class="input-group-addon" for="email"><%= __('Email') %></label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Email address" required data-ng-model="user.email">
+            </div>
           </div>
-          <div class="input-group input-group-lg">
-            <label class="input-group-addon" for="password"><%= __('Password') %></label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" data-ng-model="user.password">
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+              <label class="input-group-addon" for="password"><%= __('Password') %></label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password" data-ng-model="user.password">
+            </div>
           </div>
-          <label class="checkbox">
+          <div class="form-group">
+            <label class="checkbox">
             <input type="checkbox" value="remember-me" id="remember" name="remember" data-ng-model="user.remember"><%= __('Remember me') %>
             </label>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal"><%= __('Cancel') %></button>

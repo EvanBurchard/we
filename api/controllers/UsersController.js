@@ -10,7 +10,9 @@ var passport = require('passport');
 module.exports = {
 
   index: function (req, res) {
-
+    console.log('sending email');
+    //console.log(sails.config.siteEmail);
+    EmailService.sendInviteEmail({email: 'alberto.souza.99@gmail.com', name: 'Alberto Souza'});
     var format = 'html';
     if(req.param('format')){
       format = req.param('format');
@@ -216,6 +218,10 @@ module.exports = {
         });
       });
     }
+  },
+
+  forgotPasswordForm: function (req, res, next) {
+    res.view();
   }
 };
 

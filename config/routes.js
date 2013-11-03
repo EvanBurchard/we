@@ -109,6 +109,12 @@ module.exports.routes = {
     action        : 'logout'
   },
 
+  // form to get one time login email
+  'get /user/forgot_password': {
+    controller    : 'users',
+    action        : 'forgotPasswordForm'
+  },
+
   // get logged in user avatar
   'post /user/avatar': {
     controller    : 'users',
