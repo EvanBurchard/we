@@ -19,7 +19,8 @@
     "node-uuid": "~1.4.1",
     "file-parser": "0.0.3",
     "multiparty": "~2.2.0",
-    "sails-local-fs": "~0.9.11"
+    "sails-local-fs": "~0.9.11",
+    "nodemailer": "~0.5.5"
   },
   "devDependencies": {
     "nodeunit": "*",
