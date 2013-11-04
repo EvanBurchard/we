@@ -18,7 +18,8 @@ module.exports.policies = {
   // (`true` allows public access)
   '*': true,
   'messenger': 'MessengerPolicy',
-  'main': 'MainPolicy'
+  'main': 'MainPolicy',
+  'activity': 'ActivityPolicy'
 
   /*
 	// Here's an example of adding some policies to a controller
