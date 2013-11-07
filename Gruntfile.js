@@ -73,14 +73,15 @@ module.exports = function (grunt) {
     'js/angularjs/application.js',
 
     'js/angularjs/services/*.js',
+    'js/angularjs/resolvers/*.js',
     'js/angularjs/controllers/*.js',
     'js/angularjs/directives/*.js',
 
     // jquery.fileupload
     'js/jquery/jquery.ui.widget.js',
     'js/load-image.min.js',
-    'http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js',
-    'http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js',
+    'js/jquery/canvas-to-blob.min.js',
+    'js/jquery/jquery.blueimp-gallery.min.js',
     'js/jquery/jquery.iframe-transport.js',
     'js/jquery/jquery.fileupload.js',
     'js/jquery/jquery.fileupload-process.js',

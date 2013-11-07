@@ -33,8 +33,16 @@ angular.module('application', [
         templateUrl: '/templates/forgotPasswordForm.html'
         //controller: 'LoginCtrl'
       }).
-      when('/view2', {
-        templateUrl: '/templates/partials/partial2.html'
+      when('/activity', {
+        templateUrl: '/templates/activity.html',
+        controller: 'ActivityController'
+        /*
+        resolve:{
+            resolveData:function(activityResolver){
+                return activityResolver();
+            }
+        }
+        */
       }).
       when('/remotepartial', {
         templateUrl: '/templates/find/test.html'

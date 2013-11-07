@@ -15,7 +15,7 @@ module.exports = {
       defaultsTo: true
     },
 
-    text: {
+    content: {
       type: 'url'
     },
 

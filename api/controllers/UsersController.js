@@ -110,7 +110,7 @@ module.exports = {
         } else {
             Users.create(user).done(function(error, newUser) {
               if (error) {
-                console.log(error);
+                console.error(error);
                 res.send(500, {error: res.i18n("DB Error") });
               } else {
                 req.logIn(newUser, function(err){

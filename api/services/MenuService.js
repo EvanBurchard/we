@@ -11,6 +11,10 @@ exports.getMenu = function(menuMame,req) {
     {
       title: 'Dashboard',
       url: '/dashboard'
+    },
+    {
+      title: 'Activity',
+      url: '/activity'
     }
   ]};
 
