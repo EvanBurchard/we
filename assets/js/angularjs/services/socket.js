@@ -9,45 +9,9 @@ angular.module('application.services')
     }
 
     $socket = io.connect();
+    console.log('$socket',$socket);
     $socket.on("connect", function(stream) {
       console.log("someone connected!");
-
-      $socket.on('connectedUsers', function(data) {
-        console.log("connected users: ", data);
-        return $rootScope.$apply(function() {
-          return $rootScope.connectedUsers = data;
-        });
-      });
-
-      $socket.on('userConnected', function(data) {
-        console.log("user connected: ", data);
-        return $rootScope.$apply(function() {
-          return $rootScope.connectedUsers.push(data);
-        });
-      });
-
-      $socket.on('news', function(data) {
-        console.log(data);
-        return $socket.emit('my other event', {
-          my: 'data'
-        });
-      });
-
-      $socket.on("onUserAdded", function(user) {
-        var scope;
-        scope = UsersController.getScope();
-        user = User.get(user);
-        console.log("onUserAdded called", user);
-        return scope.users.push(user);
-      });
-
-      $socket.on("onUserUpdated", function(user) {
-        var scope, users;
-        scope = UsersController.getScope();
-        console.log("onUserUpdated called", user);
-        users = User.query();
-        return scope.users = users;
-      });
 
           // Listen for Comet messages from Sails
       $socket.on('message', function messageReceived(message) {
