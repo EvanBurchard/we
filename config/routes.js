@@ -68,6 +68,11 @@ module.exports.routes = {
        action: 'find'
   },
 
+  'get /templates/:action/:id?.html' : {
+       controller: 'template',
+       action: 'find'
+  },
+
   // Standard RESTful routing
 
   // If no id is given, an array of all users will be returned
@@ -126,10 +131,21 @@ module.exports.routes = {
     action        : 'find'
   },
 
+  //  -- MESSENGER
+
   'get /messenger/start': {
       controller    : 'messenger',
       action        : 'start'
   },
+
+  // -- ACTIVITIES
+  'post /activity': {
+    controller    : 'activity',
+    action        : 'create'
+  },
+
+
+  // -- FILES
 
   'get /files': {
       controller    : 'files',

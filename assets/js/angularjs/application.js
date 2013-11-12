@@ -16,12 +16,14 @@ Application.Directives = angular.module('application.directives', []);
 angular.module('application', [
   'ngResource', 'application.filters', 'application.services', 'application.directives',
   'application.constants', 'application.controllers', 'blueimp.fileupload',
-  'pascalprecht.translate'
+  'pascalprecht.translate', 'wu.masonry'
   ]).
   config(['$routeProvider', '$locationProvider','$httpProvider',
     function($routeProvider, $locationProvider, $httpProvider) {
 
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+    $httpProvider.defaults.headers.common['Accept'] = 'application/json';
+
 
     $locationProvider.html5Mode(true).hashPrefix('#');
 
@@ -34,15 +36,13 @@ angular.module('application', [
         //controller: 'LoginCtrl'
       }).
       when('/activity', {
-        templateUrl: '/templates/activity.html',
-        controller: 'ActivityController'
-        /*
-        resolve:{
-            resolveData:function(activityResolver){
+        templateUrl: '/templates/activity/index.html',
+        controller: 'ActivityController',
+        resolve: {
+            activitiesData: function(activityResolver){
                 return activityResolver();
             }
         }
-        */
       }).
       when('/remotepartial', {
         templateUrl: '/templates/find/test.html'

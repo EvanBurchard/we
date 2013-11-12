@@ -1,6 +1,6 @@
 // A simple directive to display a gravatar image given an email
-Application.Directives.directive('gravatar', ['md5', function(md5) {
-
+angular.module('application.directives')
+  .directive('gravatar', ['md5', function(md5) {
   return {
     restrict: 'E',
     template: '<img ng-src="http://www.gravatar.com/avatar/{{hash}}{{getParams}}"/>',

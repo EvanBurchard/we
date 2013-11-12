@@ -70,6 +70,8 @@ module.exports = function (grunt) {
     'linker/js/angular.min.js',
     'linker/js/angular-resource.min.js',
 
+    'js/angularjs/libs/*.js',
+
     'js/angularjs/application.js',
 
     'js/angularjs/services/*.js',

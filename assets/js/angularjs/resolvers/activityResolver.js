@@ -1,16 +1,28 @@
 'use strict';
 
 angular.module('application.services')
-  .factory('activityResolver',['$http','$q', function($http,$q){
-  return function () {
-    var deferred = $q.defer();
+  .factory('activityResolver',['$http','$q', 'ActivityResource',
+  function($http,$q, ActivityResource){
+    return function () {
+      var deferred = $q.defer();
+/*
+      $http.get( '/activity' )
+      .success(function(data){
+          return deferred.resolve(data);
+      }).error(function(data, status) {
+          return deferred.reject(data);
+      });
+      ActivityResource.query(
 
-    $http({ url: '/activity.json', method: "GET" }).then(function (data) {
-        return $http({ url: '/activity.json', method: "GET" })
-    }).then(function (data) {
-        deferred.resolve(data);
-    });
-    return deferred.promise;
+      )
+*/
+      var activities;
+      activities = ActivityResource.query(function() {
+        return deferred.resolve(activities);
+      }, function(error) {
+        return deferred.reject(error);
+      });
 
-  }
+      return deferred.promise;
+    }
 }]);

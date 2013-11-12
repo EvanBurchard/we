@@ -9,7 +9,7 @@ angular.module('application.services')
     }
 
     $socket = io.connect();
-    console.log('$socket',$socket);
+
     $socket.on("connect", function(stream) {
       console.log("someone connected!");
 
