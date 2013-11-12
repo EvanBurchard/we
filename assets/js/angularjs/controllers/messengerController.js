@@ -103,6 +103,12 @@ angular.module("application").controller("MessengerCtrl", [
       }
     }
 
+    $scope.messengerAlertNewMessageReceived = function (contactId){
+      console.log($scope);
+      $scope.startTalk(contactId);
+      $scope.$apply();
+    }
+
     $scope.send = function (newMessage, toId, event){
       event.preventDefault();
       event.stopPropagation();
@@ -152,7 +158,8 @@ angular.module("application").controller("MessengerCtrl", [
         newMessageObj.status = 'sending';
 
         $scope.contacts[data.message.fromId].messages.push(data.message);
-        $scope.$apply();
+
+        $scope.messengerAlertNewMessageReceived(newMessageObj.fromId);
     });
 
     /**
