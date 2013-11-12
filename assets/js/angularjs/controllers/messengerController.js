@@ -151,13 +151,17 @@ angular.module("application").controller("MessengerCtrl", [
         var newMessageObj = {};
         var user = SessionService.getUser();
 
-        console.log(data);
         newMessageObj.content = data.message.content;
         newMessageObj.toId = user.id ;
         newMessageObj.fromId = data.message.fromId;
         newMessageObj.status = 'sending';
 
         $scope.contacts[data.message.fromId].messages.push(data.message);
+/*
+        var objDiv = document.getElementById("messengerBox-" + newMessageObj.fromId);
+        objDiv.prop({ scrollTop: $("#chatbox").prop("scrollHeight") });
+*/
+        console.log($scope);
 
         $scope.messengerAlertNewMessageReceived(newMessageObj.fromId);
     });

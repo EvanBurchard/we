@@ -5,9 +5,9 @@ angular.module('application.directives')
     return{
       restrict:"EAC",
       link:function (scope, elm, attrs) {
-        scope.$watch(attrs.avatar, function (imageId) {
-          if ((imageId !== null) && (imageId !== undefined) && (imageId !== '')) {
-           var tag = '<img class="img-rounded avatar-small" data-ng-src="/images/' + imageId +'">';
+        scope.$watch(attrs.avatar, function (uid) {
+          if ((uid !== null) && (uid !== undefined) && (uid !== '')) {
+           var tag = '<img class="img-rounded avatar-small" data-ng-src="/user/avatar/' + uid +'">';
           } else {
             var tag = '<img class="img-rounded avatar-small" data-ng-src="/imgs/avatars/user-avatar.png">';
           }

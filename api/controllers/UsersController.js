@@ -6,6 +6,7 @@
  */
 
 var passport = require('passport');
+var fs = require('fs');
 
 module.exports = {
 
@@ -153,6 +154,45 @@ module.exports = {
     }
   },
 
+  getAvatar: function (req, res, next) {
+    var id = req.param('id');
+
+    if(id){
+      Users.findOneById(id).done(function(err, user){
+        if(err){
+          sails.error(err);
+          return res.send(500,{'error':err});
+        }else if(user && user.avatarId){
+          Images.findOneById(user.avatarId).done(function(err, image) {
+            if (err) {
+                console.log('Error on get image from BD: ',err );
+                res.send(404);
+            } else {
+
+              // TODO change to image upload path
+              var path = 'uploads/' + image.name;
+
+              fs.readFile(path,function (err, contents) {
+
+                if (err){
+                  console.log(err);
+                  return res.send(404);
+                }else{
+                  res.contentType('image/png');
+                  res.send(contents);
+                }
+
+              });
+            }
+          });
+        }else{
+          return next();
+        }
+      });
+    } else {
+      return next();
+    }
+  },
 
   changeAvatar: function (req, res, next) {
     // TODO validate req.files.files

@@ -121,6 +121,11 @@ module.exports.routes = {
   },
 
   // get logged in user avatar
+  'get /user/avatar/:id': {
+    controller    : 'users',
+    action        : 'getAvatar'
+  },
+
   'post /user/avatar': {
     controller    : 'users',
     action        : 'changeAvatar'
