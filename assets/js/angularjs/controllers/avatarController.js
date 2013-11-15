@@ -6,8 +6,19 @@ angular.module("application").controller("AvatarController", [
     // Options you want to pass to jQuery File Upload e.g.:
     $scope.options = {
         maxFileSize: 5000000,
-        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        headers: {
+          "X-CSRF-Token": $('meta[name=csrf-token]').attr('content')
+        }
     };
+    $scope.$on('fileuploadsend', function(event, data){
+        console.log('event',event);
+        console.log('data',data);
+        data['data']['_csrf'] = $('meta[name=csrf-token]').attr('content');
+        //var token = $('meta[name="csrf-token"]').attr('content');
+        console.log('xhr', data.xhr);
+        //if (token) data.xhr.setRequestHeader('X-CSRF-Token', token);
+    });
 
     $scope.$on('fileuploaddone', function(event, data){
       // Your code here

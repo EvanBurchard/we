@@ -9,7 +9,10 @@ angular.module("application").controller("DemoFileUploadController", [
    '$http', '$filter',
   function($rootScope, $scope,$socket, $location, SessionService, $http, $filter) {
     $scope.options = {
-        url: url
+        url: url,
+        headers: {
+          "X-CSRF-Token": $('meta[name=csrf-token]').attr('content')
+        }
     };
     if (!isOnGitHub) {
       $scope.loadingFiles = true;
