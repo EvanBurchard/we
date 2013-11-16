@@ -14,16 +14,23 @@ Application.Filters = angular.module('application.filters', []);
 Application.Directives = angular.module('application.directives', []);
 
 angular.module('application', [
-  'ngResource', 'application.filters', 'application.services', 'application.directives',
-  'application.constants', 'application.controllers', 'blueimp.fileupload',
-  'pascalprecht.translate', 'wu.masonry'
-  ]).
-  config(['$routeProvider', '$locationProvider','$httpProvider',
-    function($routeProvider, $locationProvider, $httpProvider) {
+  'ngResource',
+  'application.filters',
+  'application.services',
+  'application.directives',
+  'application.constants',
+  'application.controllers',
+  'ui.router',
+  'ui.bootstrap',
+  'blueimp.fileupload',
+  'pascalprecht.translate',
+  'wu.masonry'
+]).
+config(['$routeProvider', '$locationProvider','$httpProvider',
+  function($routeProvider, $locationProvider, $httpProvider) {
 
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
     $httpProvider.defaults.headers.common['Accept'] = 'application/json';
-
 
     $locationProvider.html5Mode(true).hashPrefix('#');
 
@@ -35,7 +42,7 @@ angular.module('application', [
         templateUrl: '/templates/forgotPasswordForm.html'
         //controller: 'LoginCtrl'
       }).
-      when('/activity', {
+      when('/activity/', {
         templateUrl: '/templates/activity/index.html',
         controller: 'ActivityController',
         resolve: {
@@ -43,6 +50,11 @@ angular.module('application', [
                 return activityResolver();
             }
         }
+      }).
+      when('/activity/:id', {
+        templateUrl: '/templates/activity/index.html',
+        controller: 'ActivityController.show',
+        action: 'show'
       }).
       when('/remotepartial', {
         templateUrl: '/templates/find/test.html'
@@ -75,7 +87,7 @@ angular.module('application', [
         action: 'new' // optional action for CRUD methods
       }).
       when('/users/show/:id', {
-        templateUrl: '/templates/users/show.html',
+        templateUrl: '/templates/users/index.html',
         controller: 'UsersController.show',
         action: 'show' // optional action for CRUD methods
       }).

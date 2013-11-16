@@ -3,6 +3,7 @@
   <head>
 
     <!--STYLES-->
+    <link rel="stylesheet" href="/linker/styles/activity.css">
     <link rel="stylesheet" href="/linker/styles/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/linker/styles/bootstrap.min.css">
     <link rel="stylesheet" href="/linker/styles/dynamic-grid-container.css">
@@ -28,6 +29,8 @@
     <script src="/linker/js/angular.min.js"></script>
     <script src="/linker/js/angular-resource.min.js"></script>
     <script src="/js/angularjs/libs/angular-masonry.min.js"></script>
+    <script src="/js/angularjs/libs/angular-ui-router.js"></script>
+    <script src="/js/angularjs/libs/ui-bootstrap.js"></script>
     <script src="/js/angularjs/application.js"></script>
     <script src="/js/angularjs/services/activityResource.js"></script>
     <script src="/js/angularjs/services/messengerService.js"></script>
@@ -44,6 +47,7 @@
     <script src="/js/angularjs/controllers/login.js"></script>
     <script src="/js/angularjs/controllers/messengerController.js"></script>
     <script src="/js/angularjs/controllers/navbarContoller.js"></script>
+    <script src="/js/angularjs/controllers/userCurrentController.js"></script>
     <script src="/js/angularjs/directives/avatarDirective.js"></script>
     <script src="/js/angularjs/directives/gravatarDirective.js"></script>
     <script src="/js/jquery/jquery.ui.widget.js"></script>
@@ -154,10 +158,6 @@
             <div  data-ng-include="'/templates/file-manager.html'"></div>
           </div><!-- /.modal-content -->
         </div>
-      </div>
-
-      <div data-ng-controller="AvatarController">
-        <div  data-ng-include="'/templates/change-avatar-form.html'"></div>
       </div>
 
       <div data-ng-controller="LoginCtrl">

@@ -1,8 +1,39 @@
 "use strict";
 
+angular.module("application").controller("AvatarModalController", [
+  "$rootScope","$scope", "$modal",
+  function($rootScope, $scope, $modal) {
+
+    $scope.openModal = function () {
+      var modalInstance = $modal.open({
+        templateUrl: '/templates/change-avatar-form.html',
+        controller: 'AvatarController',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        console.info('Modal dismissed at: ' + new Date());
+      });
+    };
+  }
+
+]);
+
 angular.module("application").controller("AvatarController", [
-  "$rootScope","$scope", '$window', "$location", "SessionService",
-  function($rootScope, $scope, $window, $location, SessionService) {
+  "$rootScope","$scope", '$window', "$location", "SessionService", "$modal", "$modalInstance",
+  function($rootScope, $scope, $window, $location, SessionService, $modal, $modalInstance) {
+
+
+    $scope.modalClose = function (){
+      $modalInstance.close();
+    }
+
     // Options you want to pass to jQuery File Upload e.g.:
     $scope.options = {
         maxFileSize: 5000000,

@@ -25,7 +25,9 @@
             <span class="user-name" data-ng-bind="user.name"><%= req.user.name %></span><b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><a data-toggle="modal" href="#ChangeAvatarModal"><%= __('Change Avatar') %></a></li>
+            <li data-ng-controller="AvatarModalController">
+              <a data-ng-click="openModal()" href="#ChangeAvatarModal"><%= __('Change Avatar') %></a>
+            </li>
             <li class="divider"></li>
             <li><a href="/account/"><%= __('View account') %></a></li>
             <li><a href="/account/edit/"><%= __('Edit account') %></a></li>

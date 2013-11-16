@@ -2,15 +2,39 @@
 
 angular.module("application")
 .controller("ActivityController", [
-  "$rootScope","$scope", "SessionService", 'ActivityResource', 'activitiesData',
-  function($rootScope, $scope, SessionService, ActivityResource, activitiesData) {
+  "$rootScope","$scope", "SessionService", 'ActivityResource', 'activitiesData',  '$route', '$routeParams',
+  function($rootScope, $scope, SessionService, ActivityResource, activitiesData,  $route, $routeParams) {
     var init;
+    var show;
+    var ActivityController;
+
+    ActivityController = function(){
+
+      ActivityController.prototype.show = function($scope) {
+        console.log("" + $rootScope.action + " action called");
+        if ($routeParams.id) {
+          return $scope.user = ActivityResource.get({
+            id: $routeParams.id
+          }, function(success) {
+            return console.log(success);
+          }, function(error) {
+            return console.log(error);
+          });
+        }
+      };
+
+    }
 
     init = function (){
       console.log(activitiesData);
       $scope.sharebox = {};
       $scope.sharebox.open = false;
       $scope.activities = activitiesData;
+    }
+
+    show = function ($scope, $routeParams){
+      console.log('no show');
+      console.log('$routeParams', $routeParams);
     }
 
     $scope.up = function() {
@@ -83,6 +107,8 @@ angular.module("application")
     }
 
     init();
+
+    return window.ActivityController = new ActivityController();
   }
 
 ]);
