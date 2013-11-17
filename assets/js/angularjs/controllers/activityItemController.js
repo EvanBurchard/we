@@ -1,33 +1,27 @@
 "use strict";
 
 angular.module("application")
-.controller("ActivityController", [
-  "$rootScope","$scope", "SessionService", 'ActivityResource', 'activitiesData',  '$route', '$routeParams',
-  function($rootScope, $scope, SessionService, ActivityResource, activitiesData,  $route, $routeParams) {
-    var init;
+.controller("ActivityItemController", [
+  "$rootScope","$scope", 'ActivityResource', 'activity', '$modalInstance',
+  function($rootScope, $scope, ActivityResource, activity, $modalInstance) {
     var show;
+
 
     if(!$rootScope.activities)
       $rootScope.activities = {};
 
-
-    init = function (){
-      console.log(activitiesData);
-      $scope.sharebox = {};
-      $scope.sharebox.open = false;
-      $scope.activities = activitiesData;
-      $rootScope.activities = activitiesData;
+    if($rootScope.activities[activity.id]){
+      $scope.activity = $rootScope.activities[activity.id];
+    } else {
+      $rootScope.activities[activity.id] = activity;
+      $scope.activity = activity;
     }
 
-
-    $scope.dismiss = function() {
-      console.log('no dismiss',$scope);
-      $scope.$dismiss();
-    };
-    show = function ($scope, $routeParams){
-      console.log('no show');
-      console.log('$routeParams', $routeParams);
-    }
+    $scope.$watch('$rootScope.activities[$scope.activity]', function() {
+      $scope.activity = $rootScope.activities[$scope.activity.id];
+      // do something here
+      console.info('$rootScope.activities[activity.id]',$rootScope.activities[$scope.activity.id]);
+    }, true);
 
     $scope.up = function() {
       return console.log('up');
@@ -87,19 +81,7 @@ angular.module("application")
         // TODO
         console.error('error: ',err);
       });
-
     };
-
-    $scope.closeSharebox = function(){
-      $scope.sharebox.open = false;
-    }
-
-    $scope.openSharebox = function(){
-      $scope.sharebox.open = true;
-    }
-
-    init();
-
   }
 
 ]);

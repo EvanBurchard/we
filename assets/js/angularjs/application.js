@@ -26,85 +26,94 @@ angular.module('application', [
   'pascalprecht.translate',
   'wu.masonry'
 ]).
-config(['$routeProvider', '$locationProvider','$httpProvider',
-  function($routeProvider, $locationProvider, $httpProvider) {
+config([ '$locationProvider','$httpProvider','$stateProvider', '$urlRouterProvider',
+  function( $locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
 
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
     $httpProvider.defaults.headers.common['Accept'] = 'application/json';
 
     $locationProvider.html5Mode(true).hashPrefix('#');
 
-    $routeProvider.
-      when('/', {
-        templateUrl: '/templates/home.ejs'
-      }).
-      when('/user/forgot_password', {
-        templateUrl: '/templates/forgotPasswordForm.html'
-        //controller: 'LoginCtrl'
-      }).
-      when('/activity/', {
-        templateUrl: '/templates/activity/index.html',
-        controller: 'ActivityController',
-        resolve: {
-            activitiesData: function(activityResolver){
-                return activityResolver();
-            }
+    // 404 handler
+    $urlRouterProvider.otherwise("/404");
+
+    $stateProvider
+    .state('index', {
+      url: "/",
+      templateUrl: "/templates/home.ejs"
+    })
+    .state('forgot_password', {
+      url: "/user/forgot_password",
+      templateUrl: '/templates/forgotPasswordForm.html'
+      //controller: 'LoginCtrl'
+    })
+    .state('logout', {
+      url: "/users/logout",
+      controller: function($scope,$window){
+        return $window.location.href = "/users/logout";
+      }
+    })
+    .state('signup', {
+      url: "/signup",
+      templateUrl: '/templates/signup.html',
+      controller: 'LoginCtrl',
+
+    })
+    .state('ActivityController', {
+      url: "/activity",
+      templateUrl: "/templates/activity/index.html",
+      controller: 'ActivityController',
+      resolve: {
+        activitiesData: function(activityResolver){
+          return activityResolver();
         }
-      }).
-      when('/activity/:id', {
-        templateUrl: '/templates/activity/index.html',
-        controller: 'ActivityController.show',
-        action: 'show'
-      }).
-      when('/remotepartial', {
-        templateUrl: '/templates/find/test.html'
-      }).
-      when('/login',{
-        templateUrl: '/templates/login',
-        controller: 'LoginCtrl'
-      }).
-      when('/users/logout',{
-        controller: 'LoginCtrl',
-        action: 'logoutHandler'
-      }).
-      when('/account',{
-        templateUrl: '/templates/account.html',
-        controller: 'LoginCtrl'
-      }).
-      when('/signup',{
-        templateUrl: '/templates/signup.html',
-        controller: 'LoginCtrl',
-
-      }).
-      when('/users', {
-        templateUrl: '/templates/users/index.html',
-        controller: 'UsersController.index',
-
-      }).
-      when('/users/new', {
-        templateUrl: '/templates/users/new.html',
-        controller: 'UsersController.new',
-        action: 'new' // optional action for CRUD methods
-      }).
-      when('/users/show/:id', {
-        templateUrl: '/templates/users/index.html',
-        controller: 'UsersController.show',
-        action: 'show' // optional action for CRUD methods
-      }).
-      when('/users/edit/:id', {
-        templateUrl: '/templates/users/edit.html',
-        controller: 'UsersController.edit',
-        action: 'edit' // optional action for CRUD methods
-      }).
-      when('/users/delete/:id', {
-        templateUrl: '/templates/users/index.html',
-        controller: 'UsersController.delete',
-        action: 'delete' // optional action for CRUD methods
-      }).
-      otherwise({
-        templateUrl: '/templates/error404.html'
-        // redirectTo: '/login'
-      });
+      }
+    })
+    .state('ActivityController.activity', {
+      url: "/:id",
+      onEnter: function($stateParams, $state, $modal, $resource, activityShowResolver) {
+        $modal.open({
+          templateUrl: "/templates/activity/activity.html",
+          controller: 'ActivityItemController',
+          resolve: {
+            activity: function(activityShowResolver){
+              return activityShowResolver($stateParams);
+            }
+          }
+        }).result.then(function(result) {
+          console.info('no activity then',result);
+          return $state.transitionTo("ActivityController");
+        }, function () {
+          console.info('Modal dismissed at: ' + new Date());
+          return $state.transitionTo("ActivityController");
+        });
+      }
+    })
+    .state('ActivityController.activity.edit', {
+      url: "/edit",
+      onEnter: function($stateParams, $state, $modal, $resource, activityShowResolver) {
+        $modal.open({
+          templateUrl: "/templates/activity/activity.html",
+          controller: 'ActivityItemController',
+          resolve: {
+            activity: function(activityShowResolver){
+              return activityShowResolver($stateParams);
+            }
+          }
+        }).result.then(function(result) {
+          console.info('no activity edit then',result);
+          return $state.transitionTo("ActivityController");
+        }, function () {
+          console.info('Modal edited dismissed at: ' + new Date());
+          return $state.transitionTo("ActivityController");
+        });
+      }
+    })
+    .state('404', {
+      url: "/404",
+      templateUrl: '/templates/error404.html'
+      // redirectTo: '/login'
+    });
 
   }]).run(function($rootScope, $route, $http, $window){
 

@@ -26,3 +26,30 @@ angular.module('application.services')
       return deferred.promise;
     }
 }]);
+
+angular.module('application.services')
+  .factory('activityShowResolver',[
+    '$rootScope',
+    '$http',
+    '$q',
+    'ActivityResource',
+  function($rootScope, $http,$q, ActivityResource){
+    return function ($stateParams) {
+      var deferred = $q.defer();
+
+      // get from cache
+      if($rootScope.activities && $rootScope.activities[$stateParams.id]){
+        return $rootScope.activities[$stateParams.id];
+      }else{
+        ActivityResource.get({
+          id: $stateParams.id
+        }, function(activitie, getResponseHeaders){
+          return deferred.resolve(activitie);
+        }, function(error) {
+          return deferred.reject(error);
+        });
+      }
+
+      return deferred.promise;
+    }
+}]);

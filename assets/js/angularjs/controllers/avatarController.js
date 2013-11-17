@@ -29,7 +29,6 @@ angular.module("application").controller("AvatarController", [
   "$rootScope","$scope", '$window', "$location", "SessionService", "$modal", "$modalInstance",
   function($rootScope, $scope, $window, $location, SessionService, $modal, $modalInstance) {
 
-
     $scope.modalClose = function (){
       $modalInstance.close();
     }

@@ -39,6 +39,7 @@
     <script src="/js/angularjs/services/users.js"></script>
     <script src="/js/angularjs/resolvers/activityResolver.js"></script>
     <script src="/js/angularjs/controllers/activityController.js"></script>
+    <script src="/js/angularjs/controllers/activityItemController.js"></script>
     <script src="/js/angularjs/controllers/avatarController.js"></script>
     <script src="/js/angularjs/controllers/create-account.js"></script>
     <script src="/js/angularjs/controllers/fileController.js"></script>
@@ -88,7 +89,7 @@
       <div class="main row marketing">
         <!-- Include the view file for the current controller/route -->
         <h4 data-ng-show="message">{{message}}</h4>
-        <div data-ng-view>
+        <div data-ui-view>
           <%- body %>
         </div>
 
