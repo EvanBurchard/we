@@ -62,7 +62,7 @@ module.exports.routes = {
        controller: 'template',
        action: 'ejs'
   },
-
+  /*
   'get /templates/:id?.html' : {
        controller: 'template',
        action: 'find'
@@ -72,7 +72,7 @@ module.exports.routes = {
        controller: 'template',
        action: 'find'
   },
-
+  */
   // Standard RESTful routing
 
   // If no id is given, an array of all users will be returned
