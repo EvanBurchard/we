@@ -4,9 +4,15 @@ var isOnGitHub = window.location.hostname === 'blueimp.github.io',
     url = 'files/';
 
 
-angular.module("application").controller("DemoFileUploadController", [
-  "$rootScope","$scope","$socket", "$location", "SessionService",
-   '$http', '$filter',
+angular.module("application")
+.controller("DemoFileUploadController", [
+  "$rootScope",
+  "$scope",
+  "$socket",
+  "$location",
+  "SessionService",
+  "$http",
+  "$filter",
   function($rootScope, $scope,$socket, $location, SessionService, $http, $filter) {
     $scope.options = {
         url: url,

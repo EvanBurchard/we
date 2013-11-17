@@ -65,6 +65,7 @@ config([ '$locationProvider','$httpProvider','$stateProvider', '$urlRouterProvid
       controller: 'ActivityController',
       resolve: {
         activitiesData: function(activityResolver){
+          console.log('resolvendo');
           return activityResolver();
         }
       }
@@ -115,7 +116,12 @@ config([ '$locationProvider','$httpProvider','$stateProvider', '$urlRouterProvid
       // redirectTo: '/login'
     });
 
-  }]).run(function($rootScope, $route, $http, $window){
+  }]).run([
+    '$rootScope',
+    '$route',
+    '$http',
+    '$window',
+    function($rootScope, $route, $http, $window){
 
     $rootScope.user = {};
     $rootScope.user.loading = true;
@@ -145,5 +151,5 @@ config([ '$locationProvider','$httpProvider','$stateProvider', '$urlRouterProvid
     });
 
 
-});
+}]);
 

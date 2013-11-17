@@ -1,7 +1,12 @@
 "use strict";
 
-angular.module("application").controller("CreateAccountCtrl", [
-  "$scope", '$http', "$location","$window", function($scope, $http, $location, $window ) {
+angular.module("application")
+.controller("CreateAccountCtrl", [
+  "$scope",
+  "$http",
+  "$location",
+  "$window",
+  function($scope, $http, $location, $window ) {
     var errorHandler, init, loginHandler, logoutHandler;
 
     $scope.user = {};

@@ -1,8 +1,10 @@
 "use strict";
 
 angular.module('application.services')
-.service("userService", ["ngResource"])
-.factory("User", function ($resource) {
+.service("userService", ["$resource"])
+.factory("User", [
+  "$resource",
+  function ($resource) {
   // We need to add an update method
   return $resource(
      "/user/:id", {id: "@id" }, {
@@ -22,4 +24,4 @@ angular.module('application.services')
   //     }
   // );
 
-});
+}]);

@@ -1,7 +1,10 @@
 "use strict";
 
-angular.module("application").controller("homeController", [
-  "$rootScope","$scope", "SessionService",
+angular.module("application")
+.controller("homeController", [
+  "$rootScope",
+  "$scope",
+  "SessionService",
   function($rootScope, $scope, SessionService) {
     var init;
 

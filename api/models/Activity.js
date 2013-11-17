@@ -25,6 +25,10 @@ module.exports = {
 
     sharedWith: {
       type: 'array'
+    },
+
+    text: {
+      type: 'string'
     }
   }
 

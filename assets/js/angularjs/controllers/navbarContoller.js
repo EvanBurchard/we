@@ -1,7 +1,10 @@
 "use strict";
 
-angular.module("application").controller("navbarContoller", [
-  "$rootScope","$scope", "SessionService",
+angular.module("application")
+.controller("navbarContoller", [
+  "$rootScope",
+  "$scope",
+  "SessionService",
   function($rootScope, $scope, SessionService) {
     var init;
     $scope.user = {};

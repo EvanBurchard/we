@@ -2,7 +2,9 @@
 
 angular.module("application")
 .controller("UserCurrentController", [
-  "$rootScope","$scope", "SessionService",
+  "$rootScope",
+  "$scope",
+  "SessionService",
   function($rootScope, $scope, SessionService) {
 
 

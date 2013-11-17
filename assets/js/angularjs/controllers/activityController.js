@@ -10,7 +10,6 @@ angular.module("application")
     if(!$rootScope.activities)
       $rootScope.activities = {};
 
-
     init = function (){
       console.log(activitiesData);
       $scope.sharebox = {};

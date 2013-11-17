@@ -47,7 +47,7 @@ module.exports = {
     },
 
     height: {
-            type: 'string'
+      type: 'string'
     }
 
   },

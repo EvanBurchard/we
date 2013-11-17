@@ -54,8 +54,16 @@
 
         </div>
         <div class="comment-add">
-            <img class="avatar-small pull-left" src="/imgs/avatars/user-avatar.png">
-            <div class="comment-add-buttom" role="button">Comentar...</div>
+          <img class="avatar-small pull-left" src="/imgs/avatars/user-avatar.png">
+          <form action="/comment" method="POST" class="comment ng-valid">
+
+            <div class="form-group">
+                <label for="Post_content">Add a comment</label>
+                <textarea name="comment" class="form-control comment ng-pristine ng-valid" data-ng-click="openSharebox()" data-ng-model="activity.content"></textarea>
+            </div>
+            <button type="button" class="btn btn-primary">Submit</button>
+            <input name="creator_id" type="hidden" value="{{user.id}}">
+          </form>
         </div>
     </div>
 </div>

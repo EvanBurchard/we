@@ -2,7 +2,9 @@
 
 angular.module('application.services')
 .service("messengerService",["$resource"])
-.factory("MessengerService", function ($resource) {
+.factory("MessengerService", [
+  "$resource",
+  function ($resource) {
   // We need to add an update method
   return $resource("/messenger/:id", { }, {
       'start': {
@@ -24,4 +26,4 @@ angular.module('application.services')
   //     }
   // );
 
-});
+}]);

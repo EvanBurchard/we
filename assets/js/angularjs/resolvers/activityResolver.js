@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('application.services')
-  .factory('activityResolver',['$http','$q', 'ActivityResource',
+  .factory('activityResolver',[
+  '$http',
+  '$q',
+  'ActivityResource',
   function($http,$q, ActivityResource){
     return function () {
       var deferred = $q.defer();

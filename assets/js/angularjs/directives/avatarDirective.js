@@ -1,6 +1,7 @@
 // A simple directive to display a gravatar image given an email
 angular.module('application.directives')
-  .directive('avatar', ['$compile',
+  .directive('avatar', [
+  '$compile',
   function($compile) {
     return{
       restrict:"EAC",
