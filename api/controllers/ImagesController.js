@@ -27,19 +27,23 @@ module.exports = {
             res.send(404);
         } else {
 
-          // TODO change to image upload path
-          var path = 'uploads/' + image.name;
+          if( image ){
+            // TODO change to image upload path
+            var path = 'uploads/' + image.name;
 
-          fs.readFile(path,function (err, contents) {
+            fs.readFile(path,function (err, contents) {
 
-            if (err){
-              console.log(err);
-              return res.send(404);
-            }else{
-              res.contentType('image/png');
-              res.send(contents);
-            }
-          });
+              if (err){
+                console.log(err);
+                return res.send(404);
+              }else{
+                res.contentType('image/png');
+                res.send(contents);
+              }
+            });
+          } else {
+            return res.send(404);
+          }
         }
       });
     }else{
