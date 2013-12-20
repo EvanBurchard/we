@@ -36,6 +36,10 @@ module.exports = function (grunt) {
     // jquery file upload
     'styles/jquery.fileupload.css',
     'styles/jquery.fileupload-ui.css',
+
+    // bootstrap styles
+    'styles/bootstrap.min.css',
+    'styles/bootstrap-theme.min.css'
   ];
 
 
@@ -48,54 +52,56 @@ module.exports = function (grunt) {
    */
 
   var jsFilesToInject = [
-    'require.js',
-    'linker/js/jquery.min.js',
-    'linker/js/bootstrap.min.js',
+    //'js/require.js',
+    'js/jquery.js',
+
+    //'js/bootstrap.min.js',
     // Below, as a demonstration, you'll see the built-in dependencies
     // linked in the proper order order
 
     // Bring in the socket.io client
-    'linker/js/socket.io.js',
+    //'linker/js/socket.io.js',
 
     // then beef it up with some convenience logic for talking to Sails.js
-    'linker/js/sails.io.js',
+    //'linker/js/sails.io.js',
 
     // Cascading grid layout library for dynamic grids
-    'js/masonry.min.js',
+    //'js/masonry.min.js',
 
     // A simpler boilerplate library for getting you up and running w/ an
     // automatic listener for incoming messages from Socket.io.
-    'linker/js/app.js',
-
+    //'linker/js/app.js',
+/*
     'linker/js/angular.min.js',
     'linker/js/angular-resource.min.js',
+*/
+    //'js/angularjs/libs/*.js',
 
-    'js/angularjs/libs/*.js',
-
-    'js/angularjs/application.js',
-
+    //'js/angularjs/application.js',
+/*
     'js/angularjs/services/*.js',
     'js/angularjs/resolvers/*.js',
     'js/angularjs/controllers/*.js',
     'js/angularjs/directives/*.js',
-
+*/
     // jquery.fileupload
+
     'js/jquery/jquery.ui.widget.js',
     'js/load-image.min.js',
-    'js/jquery/canvas-to-blob.min.js',
-    'js/jquery/jquery.blueimp-gallery.min.js',
-    'js/jquery/jquery.iframe-transport.js',
-    'js/jquery/jquery.fileupload.js',
-    'js/jquery/jquery.fileupload-process.js',
-    'js/jquery/jquery.fileupload-image.js',
-    'js/jquery/jquery.fileupload-audio.js',
-    'js/jquery/jquery.fileupload-video.js',
-    'js/jquery/jquery.fileupload-validate.js',
-    'js/jquery/jquery.fileupload-angular.js',
+    'js/canvas-to-blob.min.js',
+    'js/jquery.blueimp-gallery.min.js',
+    'js/jquery.iframe-transport.js',
+    'js/jquery.fileupload.js',
+    'js/jquery.fileupload-process.js',
+    'js/jquery.fileupload-image.js',
+    'js/jquery.fileupload-audio.js',
+    'js/jquery.fileupload-video.js',
+    'js/jquery.fileupload-validate.js',
+    //'js/jquery/jquery.fileupload-angular.js',
 
 
     // All of the rest of your app scripts imported here
-    'linker/**/*.js'
+    //'linker/**/*.js'
   ];
 
 

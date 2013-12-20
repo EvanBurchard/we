@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('application.services')
-  .factory('SessionService',['$resource', function($resource){
+  .factory('SessionService',[
+    '$resource',
+    function($resource){
 
     var service = $resource('/users/:param',{},{
       'login': {

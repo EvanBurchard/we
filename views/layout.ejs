@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html data-ng-app="application">
+<html>
   <head>
 
     <!--STYLES-->
     <link rel="stylesheet" href="/linker/styles/activity.css">
-    <link rel="stylesheet" href="/linker/styles/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/linker/styles/bootstrap.min.css">
     <link rel="stylesheet" href="/linker/styles/dynamic-grid-container.css">
     <link rel="stylesheet" href="/linker/styles/messenger.css">
     <link rel="stylesheet" href="/linker/styles/site.css">
     <link rel="stylesheet" href="/styles/jquery.fileupload.css">
     <link rel="stylesheet" href="/styles/jquery.fileupload-ui.css">
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/bootstrap-theme.min.css">
     <!--STYLES END-->
 
     <!-- jquery file upload -->
+
     <!-- blueimp Gallery styles -->
     <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
     <!-- CSS adjustments for browsers with JavaScript disabled -->
@@ -21,54 +22,19 @@
     <noscript><link rel="stylesheet" href="/styles/jquery.fileupload-ui-noscript.css"></noscript>
 
 
-
     <!--SCRIPTS-->
-    <script src="/linker/js/jquery.min.js"></script>
-    <script src="/linker/js/bootstrap.min.js"></script>
-    <script src="/js/masonry.min.js"></script>
-    <script src="/linker/js/angular.min.js"></script>
-    <script src="/linker/js/angular-resource.min.js"></script>
-    <script src="/js/angularjs/libs/angular-masonry.min.js"></script>
-    <script src="/js/angularjs/libs/angular-ui-router.js"></script>
-    <script src="/js/angularjs/libs/ui-bootstrap.js"></script>
-    <script src="/js/angularjs/application.js"></script>
-    <script src="/js/angularjs/services/activityResource.js"></script>
-    <script src="/js/angularjs/services/commentResource.js"></script>
-    <script src="/js/angularjs/services/messengerService.js"></script>
-    <script src="/js/angularjs/services/session.js"></script>
-    <script src="/js/angularjs/services/socket.js"></script>
-    <script src="/js/angularjs/services/users.js"></script>
-    <script src="/js/angularjs/resolvers/activityResolver.js"></script>
-    <script src="/js/angularjs/controllers/activityController.js"></script>
-    <script src="/js/angularjs/controllers/activityItemController.js"></script>
-    <script src="/js/angularjs/controllers/avatarController.js"></script>
-    <script src="/js/angularjs/controllers/create-account.js"></script>
-    <script src="/js/angularjs/controllers/fileController.js"></script>
-    <script src="/js/angularjs/controllers/fileManagerController.js"></script>
-    <script src="/js/angularjs/controllers/homeController.js"></script>
-    <script src="/js/angularjs/controllers/login.js"></script>
-    <script src="/js/angularjs/controllers/messengerController.js"></script>
-    <script src="/js/angularjs/controllers/navbarContoller.js"></script>
-    <script src="/js/angularjs/controllers/userCurrentController.js"></script>
-    <script src="/js/angularjs/directives/avatarDirective.js"></script>
-    <script src="/js/angularjs/directives/gravatarDirective.js"></script>
-    <script src="/js/jquery/jquery.ui.widget.js"></script>
-    <script src="/js/load-image.min.js"></script>
-    <script src="/js/jquery/canvas-to-blob.min.js"></script>
-    <script src="/js/jquery/jquery.blueimp-gallery.min.js"></script>
-    <script src="/js/jquery/jquery.iframe-transport.js"></script>
-    <script src="/js/jquery/jquery.fileupload.js"></script>
-    <script src="/js/jquery/jquery.fileupload-process.js"></script>
-    <script src="/js/jquery/jquery.fileupload-image.js"></script>
-    <script src="/js/jquery/jquery.fileupload-audio.js"></script>
-    <script src="/js/jquery/jquery.fileupload-video.js"></script>
-    <script src="/js/jquery/jquery.fileupload-validate.js"></script>
-    <script src="/js/jquery/jquery.fileupload-angular.js"></script>
-    <script src="/linker/js/angular-cookies.min.js"></script>
-    <script src="/linker/js/angular-translate.min.js"></script>
-    <script src="/linker/js/imagesloaded.min.js"></script>
-    <script src="/linker/js/messenger.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/jquery.blueimp-gallery.min.js"></script>
+    <script src="/js/jquery.iframe-transport.js"></script>
+    <script src="/js/jquery.fileupload.js"></script>
+    <script src="/js/jquery.fileupload-process.js"></script>
+    <script src="/js/jquery.fileupload-image.js"></script>
+    <script src="/js/jquery.fileupload-audio.js"></script>
+    <script src="/js/jquery.fileupload-video.js"></script>
+    <script src="/js/jquery.fileupload-validate.js"></script>
     <!--SCRIPTS END-->
+
+    <script data-main="/js/main" src="/js/require.js"></script>
 
     <!--TEMPLATES-->
     
@@ -116,12 +82,6 @@
 
         Here's an example of importing a few dependencies, in order:
       -->
-      <!-- Bring in the socket.io client -->
-      <script type="text/javascript" src="/js/socket.io.js"></script>
-      <!-- then beef it up with some convenience logic for talking to Sails.js -->
-      <script type="text/javascript" src="/js/sails.io.js"></script>
-      <!-- listen on socket.io for incoming messages -->
-      <script type="text/javascript" src="/js/app.js"></script>
 
       <!-- Your scripts here? -->
 
@@ -154,13 +114,7 @@
 
       -->
 
-      <div data-ng-controller="FileManagerController" class="modal" id="fileManagerModal" tabindex="-1" role="dialog" aria-labelledby="fileManagerModal" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div  data-ng-include="'/templates/file-manager.html'"></div>
-          </div><!-- /.modal-content -->
-        </div>
-      </div>
+
 
       <div data-ng-controller="LoginCtrl">
         <div  data-ng-include="'/templates/login-form.ejs'"></div>
