@@ -10,6 +10,7 @@
     'jquery',
     'app',
     'angular',
+    'angular-route',
     'modules',
     'ngResource',
     'ngCookies',
@@ -27,6 +28,7 @@
     jQuery,
     app,
     angular,
+    angularRoute,
     modules,
     ngResource,
     ngCookies,
@@ -37,6 +39,7 @@
 
     var app = angular.module('application', [
       'ngResource',
+      'ngRoute',
       'application.filters',
       'application.services',
       'application.directives',

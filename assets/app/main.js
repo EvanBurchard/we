@@ -1,12 +1,13 @@
 require.config({
   paths: {
-      'jquery' : '/js/libs/jquery.min',
+      'jquery' : '../bower_components/jquery/jquery.min',
       //'jquery-bridget' : '../bower_components/jquery-bridget/jquery.bridget',
       'bootstrap' : '/js/libs/bootstrap.min',
       'imagesloaded': '/js/libs/imagesloaded.min',
 
+
       'eventie': '../bower_components/eventie',
-      'doc-ready': '../bower_components/doc-ready',
+      //'doc-ready': '../bower_components/doc-ready',
       'eventEmitter': '../bower_components/eventEmitter',
       'get-style-property': '../bower_components/get-style-property',
       'get-size': '../bower_components/get-size',
@@ -21,7 +22,8 @@ require.config({
       'sails.io' : '/js/sails.io',
       'app' : '/js/app',
       // angular.js
-      'angular' : '/js/libs/angular.min',
+      'angular' : '../bower_components/angular/angular.min',
+      'angular-route' : '../bower_components/angular-route/angular-route.min',
       'ngResource': '/js/libs/angularjs/angular-resource.min',
       'ngCookies': '/js/libs/angularjs/angular-cookies.min',
 

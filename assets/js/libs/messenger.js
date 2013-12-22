@@ -1,4 +1,5 @@
 (function() {
+  /*
   jQuery(function() {
     jQuery(".messenger-off").click(function() {
       jQuery(".messenger-off").hide();
@@ -9,5 +10,5 @@
       return jQuery(".messenger-off").show();
     });
   });
-
+*/
 }).call(this);

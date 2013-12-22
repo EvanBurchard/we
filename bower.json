@@ -7,19 +7,21 @@
     "components",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "assets/bower_components"
   ],
   "dependencies": {
-    "doc-ready": "~1.0.2",
-    "eventEmitter": "~4.2.6",
-    "get-size": "~1.1.6",
-    "eventie": "~1.0.3",
-    "get-style-property": "~1.0.3",
-    "jquery-bridget": "~1.0.1",
-    "masonry": "~3.1.4",
-    "matches-selector": "~1.0.1",
-    "outlayer": "~1.1.9"
+    "angular-cookies": "~1.2.6",
+    "angular-resource": "~1.2.6",
+    "angular-route": "~1.2.6",
+    "angular": "~1.2.6",
+    "blueimp-file-upload": "~9.5.2",
+    "jquery": "~2.0.3",
+    "masonry": "~3.1.4"
   },
   "license": "MIT",
-  "devDependencies": {}
+  "authors": [
+    "Alberto Souza <alberto.souza.99@gmail.com>"
+  ],
+  "private": true
 }
