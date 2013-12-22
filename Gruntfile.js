@@ -53,7 +53,7 @@ module.exports = function (grunt) {
 
   var jsFilesToInject = [
     //'js/require.js',
-    'js/jquery.js',
+    //'js/jquery.js',
 
     //'js/bootstrap.min.js',
     // Below, as a demonstration, you'll see the built-in dependencies
@@ -83,9 +83,9 @@ module.exports = function (grunt) {
     'js/angularjs/resolvers/*.js',
     'js/angularjs/controllers/*.js',
     'js/angularjs/directives/*.js',
-*/
+    */
     // jquery.fileupload
-
+    /*
     'js/jquery/jquery.ui.widget.js',
     'js/load-image.min.js',
     'js/canvas-to-blob.min.js',
@@ -98,7 +98,7 @@ module.exports = function (grunt) {
     'js/jquery.fileupload-video.js',
     'js/jquery.fileupload-validate.js',
     //'js/jquery/jquery.fileupload-angular.js',
-
+    */
 
     // All of the rest of your app scripts imported here
     //'linker/**/*.js'

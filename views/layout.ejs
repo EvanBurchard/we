@@ -23,18 +23,10 @@
 
 
     <!--SCRIPTS-->
-    <script src="/js/jquery.js"></script>
-    <script src="/js/jquery.blueimp-gallery.min.js"></script>
-    <script src="/js/jquery.iframe-transport.js"></script>
-    <script src="/js/jquery.fileupload.js"></script>
-    <script src="/js/jquery.fileupload-process.js"></script>
-    <script src="/js/jquery.fileupload-image.js"></script>
-    <script src="/js/jquery.fileupload-audio.js"></script>
-    <script src="/js/jquery.fileupload-video.js"></script>
-    <script src="/js/jquery.fileupload-validate.js"></script>
+    
     <!--SCRIPTS END-->
 
-    <script data-main="/js/main" src="/js/require.js"></script>
+    <script data-main="/app/main" src="/js/libs/require.js"></script>
 
     <!--TEMPLATES-->
     
@@ -120,7 +112,8 @@
         <div  data-ng-include="'/templates/login-form.ejs'"></div>
       </div>
     </div>
-          <%- include messages/partials/contact-list.ejs %>
+
+    <div data-we-messenger></div>
 
   </body>
 </html>
