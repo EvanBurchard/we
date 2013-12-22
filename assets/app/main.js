@@ -24,12 +24,12 @@ require.config({
       // angular.js
       'angular' : '../bower_components/angular/angular.min',
       'angular-route' : '../bower_components/angular-route/angular-route.min',
-      'ngResource': '/js/libs/angularjs/angular-resource.min',
-      'ngCookies': '/js/libs/angularjs/angular-cookies.min',
+      'ngResource': '../bower_components/angular-resource/angular-resource.min',
+      'ngCookies': '../bower_components/angular-cookies/angular-cookies.min',
 
       'uiBootstrap': '/js/libs/ui-bootstrap',
-      'uiRouter': '/js/libs/angularjs/angular-ui-router',
-      'wuMasonry': '/js/libs/angularjs/angular-masonry',
+      'uiRouter': '../bower_components/angular-ui-router/release/angular-ui-router.min',
+      'wuMasonry': '../bower_components/angular-masonry/angular-masonry',
 
       'modules' : 'modules',
       '$socket' : 'site/services/socket'
