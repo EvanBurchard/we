@@ -32,9 +32,7 @@
 
           return deferred.promise;
         }
-    }]);
-
-    angular.module('application.services')
+    }])
       .factory('activityShowResolver',[
         '$rootScope',
         '$http',

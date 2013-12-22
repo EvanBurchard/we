@@ -1,6 +1,7 @@
 require.config({
   paths: {
       'jquery' : '/js/libs/jquery.min',
+      //'jquery-bridget' : '../bower_components/jquery-bridget/jquery.bridget',
       'bootstrap' : '/js/libs/bootstrap.min',
       'imagesloaded': '/js/libs/imagesloaded.min',
 
@@ -12,7 +13,7 @@ require.config({
       'matches-selector': '../bower_components/matches-selector',
       'outlayer': '../bower_components/outlayer',
 
-      'masonry': '/js/libs/masonry.pkgd.min',
+      //'masonry': '/js/libs/masonry.pkgd.min',
 
       'domReady': '/js/libs/requirejs/domReady',
 
@@ -50,11 +51,11 @@ require.config({
       'uiBootstrap': {
         deps: ['bootstrap', 'angular']
       },
-
+      /*
       'wuMasonry': {
-        deps: ['angular', 'masonry']
+        deps: ['jquery', 'angular', 'masonry','imagesloaded']
       },
-
+      */
       'jquery': {
         exports : 'jQuery'
       },
@@ -62,11 +63,11 @@ require.config({
       'imagesloaded': {
         deps : ['jquery']
       },
-
+      /*
       'masonry': {
-        deps: ['jquery', 'imagesloaded'],
-        exports : 'jquery'
+        deps: ['jquery', 'imagesloaded']
       },
+      */
 
       'bootstrap': {
         deps: ['jquery']

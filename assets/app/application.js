@@ -15,7 +15,7 @@
     'ngCookies',
     'uiRouter',
     'uiBootstrap',
-    'wuMasonry',
+    //'wuMasonry',
     './messenger/index',
     './user/index',
     './site/index',
@@ -31,8 +31,8 @@
     ngResource,
     ngCookies,
     uiRouter,
-    uiBootstrap,
-    wuMasonry
+    uiBootstrap
+    //,wuMasonry
   ) {
 
     var app = angular.module('application', [
@@ -43,8 +43,8 @@
       'application.constants',
       'application.controllers',
       'ui.router',
-      'ui.bootstrap',
-      'wu.masonry'
+      'ui.bootstrap'
+      //,'wu.masonry'
     ]).
     config([ '$locationProvider','$httpProvider','$stateProvider', '$urlRouterProvider',
       function( $locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
