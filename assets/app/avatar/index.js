@@ -3,6 +3,8 @@
 
   var moduleFiles = [
     'modules',
+    './directives/avatar',
+    './directives/gravatar',
     './controllers/avatarModal',
     './controllers/avatar'
   ];

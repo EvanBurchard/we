@@ -3,10 +3,8 @@
 
   var moduleFiles = [
     'modules',
-    './services/session',
-    './services/user',
-    './controllers/login',
-    './controllers/create-account'
+    './controllers/file',
+    './controllers/fileManager'
   ];
 
   define( moduleFiles, function() {} );

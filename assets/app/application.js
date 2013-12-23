@@ -22,7 +22,8 @@
     './user/index',
     './site/index',
     './avatar/index',
-    './activity/index'
+    './activity/index',
+    './file/index'
   ];
 
   define( dependencies, function(
