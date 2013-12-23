@@ -176,7 +176,7 @@ module.exports = function (grunt) {
   grunt.loadTasks(depsPath + '/grunt-contrib-less/tasks');
   grunt.loadTasks(depsPath + '/grunt-contrib-coffee/tasks');
 
-  grunt.loadNpmTasks('grunt-bower-requirejs');
+  grunt.loadTasks('node_modules/grunt-bower-requirejs/tasks');
 
 
   // Project configuration.
@@ -471,6 +471,7 @@ module.exports = function (grunt) {
   grunt.registerTask('default', [
     'compileAssets',
     'linkAssets',
+    'bower',
     'watch'
   ]);
 
@@ -500,8 +501,7 @@ module.exports = function (grunt) {
     'compileAssets',
     'linkAssets',
     'clean:build',
-    'copy:build',
-    'bower'
+    'copy:build'
   ]);
 
   // When sails is lifted in production
