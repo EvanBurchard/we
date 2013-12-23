@@ -23,13 +23,13 @@
 
 
     <!--SCRIPTS-->
-    
+
     <!--SCRIPTS END-->
 
     <script data-main="/app/main" src="/js/libs/require.js"></script>
 
     <!--TEMPLATES-->
-    
+
     <!--TEMPLATES END-->
 
     <title><%- title %></title>
@@ -48,10 +48,33 @@
       <div class="main row marketing">
         <!-- Include the view file for the current controller/route -->
         <h4 data-ng-show="message">{{message}}</h4>
-        <div data-ui-view>
-          <%- body %>
-        </div>
+        <div class="row row-offcanvas row-offcanvas-right">
+          <div class="col-xs-12 col-sm-9">
+            <div data-ui-view>
+              <%- body %>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <div data-ui-view="sidebar">
+              <div class="well sidebar-nav">
+                <ul class="nav">
+                  <li>Sidebar</li>
+                  <li class="active"><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li>Sidebar</li>
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li>Sidebar</li>
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                </ul>
+              </div><!--/.well -->
 
+            </div>
+          </div>
+      </div>
       </div>
 
       <div id="loading-site" >

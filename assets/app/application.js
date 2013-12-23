@@ -67,11 +67,27 @@
         $stateProvider
         .state('index', {
           url: "/",
-          templateUrl: "/templates/home.ejs"
+          views: {
+            "": {
+              templateUrl: "/app/site/views/home.html"
+            },
+            "sidebar": {
+              templateUrl: "/app/site/views/sidebar.html"
+            }
+          }
+        })
+        .state('index.sidebar', {
+          name: 'sidebar',
+          parent: 'index',
+          views: {
+            "sidebar": {
+              templateUrl: "index@sidebar.html"
+            }
+          }
         })
         .state('forgot_password', {
           url: "/user/forgot_password",
-          templateUrl: '/templates/forgotPasswordForm.html'
+          templateUrl: '/app/user/views/forgotPasswordForm.html'
           //controller: 'LoginCtrl'
         })
         .state('logout', {
@@ -82,13 +98,13 @@
         })
         .state('signup', {
           url: "/signup",
-          templateUrl: '/templates/signup.html',
+          templateUrl: '/app/site/views/signup.html',
           controller: 'LoginCtrl',
 
         })
         .state('ActivityController', {
           url: "/activity",
-          templateUrl: "/templates/activity/index.html",
+          templateUrl: "/app/activity/views/index.html",
           controller: 'ActivityController',
           resolve: {
             activitiesData: function(activityResolver){
@@ -101,7 +117,7 @@
           url: "/:id",
           onEnter: function($stateParams, $state, $modal, $resource, activityShowResolver) {
             $modal.open({
-              templateUrl: "/templates/activity/activity.html",
+              templateUrl: "/app/activity/views/activity.html",
               controller: 'ActivityItemController',
               resolve: {
                 activity: function(activityShowResolver){
@@ -121,7 +137,7 @@
           url: "/edit",
           onEnter: function($stateParams, $state, $modal, $resource, activityShowResolver) {
             $modal.open({
-              templateUrl: "/templates/activity/activity.html",
+              templateUrl: "/app/activity/views/activity.html",
               controller: 'ActivityItemController',
               resolve: {
                 activity: function(activityShowResolver){
@@ -139,7 +155,7 @@
         })
         .state('404', {
           url: "/404",
-          templateUrl: '/templates/error404.html'
+          templateUrl: '/app/site/views/error404.html'
           // redirectTo: '/login'
         });
 
