@@ -176,9 +176,21 @@ module.exports = function (grunt) {
   grunt.loadTasks(depsPath + '/grunt-contrib-less/tasks');
   grunt.loadTasks(depsPath + '/grunt-contrib-coffee/tasks');
 
+  grunt.loadNpmTasks('grunt-bower-requirejs');
+
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    bower: {
+      target: {
+        rjsConfig: 'assets/app/main.js',
+        options: {
+          exclude: ['blueimp-canvas-to-blob']
+        }
+      }
+    },
 
     copy: {
       dev: {
@@ -488,7 +500,8 @@ module.exports = function (grunt) {
     'compileAssets',
     'linkAssets',
     'clean:build',
-    'copy:build'
+    'copy:build',
+    'bower'
   ]);
 
   // When sails is lifted in production

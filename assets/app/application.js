@@ -17,6 +17,7 @@
     'uiRouter',
     'uiBootstrap',
     //'wuMasonry',
+    'jquery.fileupload-angular',
     './messenger/index',
     './user/index',
     './site/index',
@@ -35,6 +36,7 @@
     uiRouter,
     uiBootstrap
     //,wuMasonry
+    ,jqueryFileuploadAngular
   ) {
 
     var app = angular.module('application', [
@@ -48,6 +50,7 @@
       'ui.router',
       'ui.bootstrap'
       //,'wu.masonry'
+      ,'blueimp.fileupload'
     ]).
     config([ '$locationProvider','$httpProvider','$stateProvider', '$urlRouterProvider',
       function( $locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
