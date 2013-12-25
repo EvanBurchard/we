@@ -14,7 +14,7 @@
 
     return angular.module('application.services')
     .factory("$socket", [
-      "$rootScope", "userResource", function($rootScope, User) {
+      "$rootScope", "UserResource", function($rootScope, User) {
         var $socket;
         if( !$rootScope.connectedUsers ){
           $rootScope.connectedUsers = [];
