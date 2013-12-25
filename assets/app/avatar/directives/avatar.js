@@ -14,11 +14,25 @@
         return{
           restrict:"EAC",
           link:function (scope, elm, attrs) {
+            console.log('attrs',attrs);
+
+            var size_class;
+
+            switch(attrs['avatarSize']) {
+              case 'medium':
+                size_class = ' width="150px" height="150px" class="img-rounded avatar-medium" ';
+                break;
+              default:
+                size_class = ' width="50px" height="50px" class="img-rounded avatar-small" ';
+            }
+
             scope.$watch(attrs.avatar, function (uid) {
+              var tag;
+
               if ((uid !== null) && (uid !== undefined) && (uid !== '')) {
-               var tag = '<img class="img-rounded avatar-small" data-ng-src="/user/avatar/' + uid +'">';
+                tag = '<img '+size_class+' data-ng-src="/user/avatar/' + uid +'">';
               } else {
-                var tag = '<img class="img-rounded avatar-small" data-ng-src="/imgs/avatars/user-avatar.png">';
+                tag = '<img '+size_class+' data-ng-src="/imgs/avatars/user-avatar.png">';
               }
               elm.html( $compile(tag)(scope) );
             });
