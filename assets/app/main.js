@@ -77,6 +77,16 @@ require.config({
         'angular'
       ]
     },
+    'ng-table': {
+      deps: [
+        'angular'
+      ]
+    },
+    'angular-route': {
+      deps: [
+        'angular'
+      ]
+    },
     imagesloaded: {
       deps: [
         'jquery'
