@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h1 class="user-name">{{user.name}}</h1>
+</div>
+<div class="modal-body">
+  <div class="activity-full">
+    <span data-avatar-link="/users/{{user.id}}" data-avatar-size="medium" avatar="user.id"></span>
+    
+    <div class="content">
+      <div class="user-bio-text">{{user.bio}}</div>
+    </div>
+
+  </div>
+</div>
+<div class="modal-footer">
+    <div class="footer ng-scope">
+        <div class="actions">
+            <span class="social pull-left">
+              <button type="button" class="btn btn-xs btn-default" data-ng-click="share($event)">
+                    <span class="glyphicon glyphicon-plus"></span> Add in contacts
+              </button>
+              <button type="button" class="btn btn-xs btn-default" data-ng-click="share($event)">
+                    <span class="glyphicon glyphicon-plus"></span> Follow
+              </button>              
+            </span>
+
+            <button type="button" class="btn btn-xs btn-default" data-ng-click="edit($event)">
+              <span class="glyphicon glyphicon-edit"></span> Edit
+            </button>
+            <button class="btn btn-xs btn-danger" data-ng-click="delete($index,$event)">
+              <span class="glyphicon glyphicon-remove"></span> Delete
+            </button>
+        </div>
+    </div>
+</div>

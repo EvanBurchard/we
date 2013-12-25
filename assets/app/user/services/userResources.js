@@ -19,7 +19,7 @@
 
     return angular.module("application.user")
     .service("userService", ["$resource"])
-    .factory("userResource", [
+    .factory("UserResource", [
       "$resource",
       function ($resource) {
       // We need to add an update method
@@ -34,13 +34,13 @@
       );
     }])
     .factory('userResolver',[
-      '$http', '$q', 'userResource',
-      function($http,$q, userResource){
+      '$http', '$q', 'UserResource',
+      function($http,$q, UserResource){
         return function () {
           var deferred = $q.defer();
 
           var users;
-          users = userResource.query(function() {
+          users = UserResource.query(function() {
             return deferred.resolve(users);
           }, function(error) {
             console.log('error on get users', error);
@@ -54,19 +54,19 @@
         '$rootScope',
         '$http',
         '$q',
-        'ActivityResource',
-      function($rootScope, $http,$q, ActivityResource){
+        'UserResource',
+      function($rootScope, $http,$q, UserResource){
         return function ($stateParams) {
           var deferred = $q.defer();
 
           // get from cache
-          if($rootScope.activities && $rootScope.activities[$stateParams.id]){
-            return $rootScope.activities[$stateParams.id];
+          if($rootScope.users && $rootScope.users[$stateParams.id]){
+            return $rootScope.users[$stateParams.id];
           }else{
-            ActivityResource.get({
+            UserResource.get({
               id: $stateParams.id
-            }, function(activitie, getResponseHeaders){
-              return deferred.resolve(activitie);
+            }, function(user, getResponseHeaders){
+              return deferred.resolve(user);
             }, function(error) {
               return deferred.reject(error);
             });

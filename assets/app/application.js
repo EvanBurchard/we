@@ -99,7 +99,7 @@
         })
         .state('signup', {
           url: "/signup",
-          templateUrl: '/app/site/views/signup.html',
+          templateUrl: '/app/user/views/signup.html',
           controller: 'LoginCtrl',
         })
 
@@ -121,21 +121,21 @@
         })
         .state('users.user', {
           url: "/:id",
-          onEnter: function($stateParams, $state, $modal, $resource, activityShowResolver) {
+          onEnter: function($stateParams, $state, $modal, $resource, userShowResolver) {
             $modal.open({
-              templateUrl: "/app/activity/views/activity.html",
-              controller: 'ActivityItemController',
+              templateUrl: "/app/user/views/user.html",
+              controller: 'UserItemController',
               resolve: {
-                activity: function(activityShowResolver){
-                  return activityShowResolver($stateParams);
+                user: function(userShowResolver){
+                  return userShowResolver($stateParams);
                 }
               }
             }).result.then(function(result) {
-              console.info('no activity then',result);
-              return $state.transitionTo("ActivityController");
+              console.info('no user then',result);
+              return $state.transitionTo("users");
             }, function () {
               console.info('Modal dismissed at: ' + new Date());
-              return $state.transitionTo("ActivityController");
+              return $state.transitionTo("users");
             });
           }
         })

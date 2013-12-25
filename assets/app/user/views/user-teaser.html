@@ -1,19 +1,23 @@
-<div class="user-teaser teaser">
-  <div class="header">
+<div class="header">
 
-  </div>
-  <div class="content">
+</div>
+<div class="content">
 
-    <h2><a href="/users/{{user.id}}">
-      {{user.name}}
-    </a>
-    </h2>
-    <span data-avatar-link="/users/{{user.id}}" data-avatar-size="medium" avatar="user.id"></span>
+  <h3><a href="/users/{{user.id}}">
+    {{user.name}}
+  </a>
+  </h3>
+  <span data-avatar-link="/users/{{user.id}}" data-avatar-size="medium" avatar="user.id"></span>
 
-  </div>
+</div>
 
-  <div class="footer ng-scope">
-      <div class="actions">
-      </div>
-  </div>      
+<div class="footer ng-scope">
+    <div class="actions">
+      <button type="button" class="btn btn-xs btn-default" data-ng-click="share($event)">
+            <span class="glyphicon glyphicon-plus"></span> Add in contacts
+      </button>
+      <button type="button" class="btn btn-xs btn-default" data-ng-click="share($event)">
+            <span class="glyphicon glyphicon-plus"></span> Follow
+      </button>        
+    </div>
 </div>
