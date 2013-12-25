@@ -160,7 +160,30 @@ module.exports.routes = {
   'post /files': {
       controller    : 'files',
       action        : 'create'
+  },
+
+  // -- ADMIN
+  'get /admin/roles': {
+      controller    : 'roles',
+      action        : 'index'
+  },
+
+  'post /admin/roles': {
+      controller    : 'roles',
+      action        : 'create'
+  },
+  
+  'put /admin/roles/:id': {
+      controller    : 'roles',
+      action        : 'update'
+  },
+
+
+  'delete /admin/roles/:id': {
+      controller    : 'roles',
+      action        : 'delete'
   }
+
 /*
 
   // Let's say you're building an email client, like Gmail
