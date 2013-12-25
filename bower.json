@@ -17,7 +17,8 @@
     "angular": "~1.2.6",
     "blueimp-file-upload": "~9.5.2",
     "jquery": "~2.0.3",
-    "angular-ui-router": "~0.2.7"
+    "angular-ui-router": "~0.2.7",
+    "bootstrap": "~3.0.3"
   },
   "license": "MIT",
   "authors": [

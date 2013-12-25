@@ -38,8 +38,15 @@ module.exports = function (grunt) {
     'styles/jquery.fileupload-ui.css',
 
     // bootstrap styles
-    'styles/bootstrap.min.css',
-    'styles/bootstrap-theme.min.css'
+    //'styles/bootstrap.min.css',
+    //'styles/bootstrap-theme.min.css'
+  ];
+
+  var lessFilesToInject = [
+    //"bower_components/bootstrap/less/bootstrap.less",
+    'styles/less/styles.less',
+    '*.less',
+    'styles/less/*.less'
   ];
 
 
@@ -239,9 +246,9 @@ module.exports = function (grunt) {
         files: [
           {
           expand: true,
-          cwd: 'assets/styles/',
-          src: ['*.less'],
-          dest: '.tmp/public/styles/',
+          cwd: 'assets/',
+          src: lessFilesToInject,
+          dest: '.tmp/public/linker/styles/',
           ext: '.css'
         }, {
           expand: true,

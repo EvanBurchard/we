@@ -1,7 +1,7 @@
 require.config({
   paths: {
     jquery: '../bower_components/jquery/jquery',
-    bootstrap: '/js/libs/bootstrap.min',
+    bootstrap: '../bower_components/bootstrap/dist/js/bootstrap',
     imagesloaded: '/js/libs/imagesloaded.min',
     eventie: '../bower_components/eventie/eventie',
     eventEmitter: '../bower_components/eventEmitter/EventEmitter',
