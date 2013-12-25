@@ -45,8 +45,7 @@ module.exports = function (grunt) {
   var lessFilesToInject = [
     //"bower_components/bootstrap/less/bootstrap.less",
     'styles/less/styles.less',
-    '*.less',
-    'styles/less/*.less'
+    '*.less'
   ];
 
 
