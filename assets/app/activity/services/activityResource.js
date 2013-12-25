@@ -1,15 +1,21 @@
-'use strict';
+ (function() {
 
-angular.module('application.services')
-  .factory('ActivityResource',[
-    '$resource',
-    function($resource){
+  define(['angular', "modules"], function (angular) {
+    'use strict';
 
-    var ActivityResource;
-    ActivityResource = $resource('/activity/:id', {
-      id: '@id'
-    }, {});
-    return ActivityResource;
-  }
+    return angular.module('application.activity')
+      .factory('ActivityResource',[
+        '$resource',
+        function($resource){
 
-]);
+        var ActivityResource;
+        ActivityResource = $resource('/activity/:id', {
+          id: '@id'
+        }, {});
+        return ActivityResource;
+      }
+
+    ]);
+
+  });
+}());

@@ -4,8 +4,9 @@
   var moduleFiles = [
     'modules',
     './services/session',
-    './services/user',
+    './services/userResources',
     './controllers/login',
+    './controllers/userController',
     './controllers/create-account'
   ];
 

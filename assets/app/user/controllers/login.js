@@ -2,13 +2,14 @@
 
   define([
     'angular',
-    'user/services/session'
+    'user/services/session',
+    'modules'
   ], function (
     angular,
     SessionService
   ) {
 
-    return angular.module("application.controllers")
+    return angular.module("application.user")
     .controller("LoginCtrl", [
       "$rootScope",
       "$scope",

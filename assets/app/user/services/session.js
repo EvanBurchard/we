@@ -12,7 +12,7 @@
 
     "use strict";
 
-    return angular.module("application.services")
+    return angular.module("application.user")
       .factory('SessionService',[
         '$resource',
         function($resource){

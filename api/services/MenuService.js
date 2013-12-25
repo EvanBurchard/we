@@ -15,6 +15,10 @@ exports.getMenu = function(menuMame,req) {
     {
       title: 'Activity',
       url: '/activity'
+    },
+    {
+      title: 'Users',
+      url: '/users'
     }
   ]};
 

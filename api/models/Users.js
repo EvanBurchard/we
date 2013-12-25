@@ -44,6 +44,16 @@ module.exports = {
         type: 'STRING'
     },
 
+    isAdmin: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+
+    isModerator: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+
     // Override toJSON instance method
     // to remove password value
     toJSON: function() {

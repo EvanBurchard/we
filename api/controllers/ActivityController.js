@@ -8,11 +8,6 @@
 module.exports = {
 
   index: function (req,res) {
-    console.log('index activity',req.headers);
-    var format = 'html';
-    if(req['headers']['accept'] == 'application/json'){
-      format = 'json';
-    }
 
     Activity.find({})
       .limit(10)
@@ -24,18 +19,18 @@ module.exports = {
         // TODO
       // Found multiple users!
       } else {
-        if(req.isSocket || format == 'json'){
-          return res.send(
-           activities
-          );
-        }else{
-          return res.view(
-            'home/index.ejs',
-            {
-              activities: activities
-            }
-          );
-        }
+        res.format({
+           'text/html': function(){
+             res.view( 'home/index.ejs',
+              {
+                activities: activities
+              });
+           },
+     
+           'application/json': function(){
+             res.send(activities);
+           }
+        });
       }
     });
 

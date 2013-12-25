@@ -11,13 +11,9 @@ var fs = require('fs');
 module.exports = {
 
   index: function (req, res) {
-    console.log('sending email');
+    //console.log('sending email');
     //console.log(sails.config.siteEmail);
-    EmailService.sendInviteEmail({email: 'alberto.souza.99@gmail.com', name: 'Alberto Souza'});
-    var format = 'html';
-    if(req.param('format')){
-      format = req.param('format');
-    }
+    //EmailService.sendInviteEmail({email: 'alberto.souza.99@gmail.com', name: 'Alberto Souza'});
 
     Users.find({})
     .limit(10)
@@ -30,13 +26,16 @@ module.exports = {
 
       // Found multiple users!
       } else {
-        if(format == 'json')
-          return res.send({
-            users: users
-          });
-
-        return res.view({
-          users: users
+        res.format({
+           'text/html': function(){
+             res.view({
+                users: users
+              });
+           },
+     
+           'application/json': function(){
+             res.send(users);
+           }
         });
       }
     });
@@ -127,6 +126,13 @@ module.exports = {
         }
       });
     }
+  },
+
+  update: function(req, res, next) {
+    sails.log('update');
+    sails.log(req.params);
+
+    next();
   },
 
   // getter for current logged in user

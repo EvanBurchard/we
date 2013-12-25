@@ -49,7 +49,8 @@ require.config({
     'doc-ready': '../bower_components/doc-ready/doc-ready',
     'jquery-bridget': '../bower_components/jquery-bridget/jquery.bridget',
     masonry: '../bower_components/masonry/masonry',
-    item: '../bower_components/outlayer/item'
+    item: '../bower_components/outlayer/item',
+    'ng-table': '../bower_components/ng-table/ng-table'
   },
   shim: {
     ngResource: {

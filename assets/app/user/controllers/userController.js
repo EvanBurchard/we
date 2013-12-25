@@ -1,39 +1,32 @@
 (function() {
-
+  "use strict";
+ 
   define(["angular", "modules"], function (angular) {
-
-    return angular.module("application.activity")
-    .controller("ActivityItemController", [
-      "$rootScope","$scope", 'ActivityResource', 'activity', '$modalInstance',
-      function($rootScope, $scope, ActivityResource, activity, $modalInstance) {
+  
+    return angular.module("application.user")
+    .controller("UserController", [
+      "$rootScope","$scope", "SessionService", "userResource", "usersData", "$route", "$routeParams",
+      function($rootScope, $scope, SessionService, userResource, usersData, $route, $routeParams) {
+        var init;
         var show;
+        
+        if(!$rootScope.users)
+          $rootScope.users = {};
 
-        if(!$rootScope.activities)
-          $rootScope.activities = {};
-
-        if($rootScope.activities[activity.id]){
-          $scope.activity = $rootScope.activities[activity.id];
-        } else {
-          $rootScope.activities[activity.id] = activity;
-          $scope.activity = activity;
-        }
-
-        $scope.$watch('$rootScope.activities[$scope.activity]', function() {
-          $scope.activity = $rootScope.activities[$scope.activity.id];
-          // do something here
-          console.info('$rootScope.activities[activity.id]',$rootScope.activities[$scope.activity.id]);
-        }, true);
-
-        $scope.up = function() {
-          return console.log('up');
+        init = function (){
+          console.log('users',usersData);
+          $scope.users = usersData;
+          //$rootScope.activities = usersData;
         };
 
-        $scope.down = function() {
-          return console.log('down');
+        show = function ($scope, $routeParams){
+          console.log('no show');
+          console.log('$routeParams', $routeParams);
         };
 
-        $scope.share = function() {
-          return console.log('share');
+        $scope.dismiss = function() {
+          console.log('no dismiss',$scope);
+          $scope.$dismiss();
         };
 
         $scope.edit = function(event) {
@@ -82,7 +75,11 @@
             // TODO
             console.error('error: ',err);
           });
+
         };
+
+        return init();
+
       }
 
     ]);

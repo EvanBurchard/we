@@ -1,9 +1,9 @@
 (function() {
 
-  define(['angular'], function (angular) {
+  define(['angular','modules'], function (angular) {
     "use strict";
 
-    return angular.module("application.controllers")
+    return angular.module("application.user")
     .controller("CreateAccountCtrl", [
       "$scope",
       "$http",

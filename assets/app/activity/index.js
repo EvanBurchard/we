@@ -2,7 +2,6 @@
 (function() {
 
   var moduleFiles = [
-    'modules',
     './resolvers/activity',
     './services/activityResource',
     './controllers/activity',

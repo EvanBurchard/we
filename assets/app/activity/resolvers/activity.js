@@ -1,10 +1,10 @@
  (function() {
 
-  define(['angular'], function (angular) {
+  define(['angular', "modules"], function (angular) {
 
     'use strict';
 
-    return angular.module('application.services')
+    return angular.module('application.activity')
       .factory('activityResolver',[
       '$http',
       '$q',
@@ -56,7 +56,7 @@
           }
 
           return deferred.promise;
-        }
+        };
     }]);
 
   });

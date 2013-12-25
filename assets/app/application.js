@@ -5,6 +5,7 @@
 */
 
 (function() {
+  "use strict";
 
   var dependencies = [
     'jquery',
@@ -14,10 +15,12 @@
     'modules',
     'ngResource',
     'ngCookies',
+    'ng-table',
     'uiRouter',
     'uiBootstrap',
     //'wuMasonry',
     'jquery.fileupload-angular',
+    'angular-route',
     './messenger/index',
     './user/index',
     './site/index',
@@ -28,30 +31,35 @@
 
   define( dependencies, function(
     jQuery,
-    app,
+    App,
     angular,
     angularRoute,
+    activity,
     modules,
     ngResource,
     ngCookies,
+    ngTable,
     uiRouter,
-    uiBootstrap
+    uiBootstrap,
     //,wuMasonry
-    ,jqueryFileuploadAngular
+    jqueryFileuploadAngular
   ) {
 
     var app = angular.module('application', [
       'ngResource',
       'ngRoute',
+      'ngTable',
+      'application.activity',
       'application.filters',
       'application.services',
       'application.directives',
       'application.constants',
       'application.controllers',
+      'application.user',
       'ui.router',
-      'ui.bootstrap'
+      'ui.bootstrap',
       //,'wu.masonry'
-      ,'blueimp.fileupload'
+      'blueimp.fileupload'
     ]).
     config([ '$locationProvider','$httpProvider','$stateProvider', '$urlRouterProvider',
       function( $locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
@@ -76,15 +84,8 @@
             }
           }
         })
-        .state('index.sidebar', {
-          name: 'sidebar',
-          parent: 'index',
-          views: {
-            "sidebar": {
-              templateUrl: "index@sidebar.html"
-            }
-          }
-        })
+
+        // ---- USERS
         .state('forgot_password', {
           url: "/user/forgot_password",
           templateUrl: '/app/user/views/forgotPasswordForm.html'
@@ -100,8 +101,47 @@
           url: "/signup",
           templateUrl: '/app/site/views/signup.html',
           controller: 'LoginCtrl',
-
         })
+
+        .state('users', {
+          url: "/users",
+          controller: 'UserController',
+          views: {
+            "": {
+              templateUrl: "/app/user/views/index.html",
+              controller: 'UserController'
+            }
+          },
+          resolve: {
+            usersData: function(userResolver){
+              console.log('resolvendo');
+              return userResolver();
+            }
+          }
+        })
+        .state('users.user', {
+          url: "/:id",
+          onEnter: function($stateParams, $state, $modal, $resource, activityShowResolver) {
+            $modal.open({
+              templateUrl: "/app/activity/views/activity.html",
+              controller: 'ActivityItemController',
+              resolve: {
+                activity: function(activityShowResolver){
+                  return activityShowResolver($stateParams);
+                }
+              }
+            }).result.then(function(result) {
+              console.info('no activity then',result);
+              return $state.transitionTo("ActivityController");
+            }, function () {
+              console.info('Modal dismissed at: ' + new Date());
+              return $state.transitionTo("ActivityController");
+            });
+          }
+        })
+
+
+        // --- ACTIVITY
         .state('ActivityController', {
           url: "/activity",
           templateUrl: "/app/activity/views/index.html",
@@ -151,6 +191,34 @@
               console.info('Modal edited dismissed at: ' + new Date());
               return $state.transitionTo("ActivityController");
             });
+          }
+        })
+
+        // -- ADMIN
+        .state('admin', {
+          url: "/admin",
+          views: {
+            "": {
+              templateUrl: "/app/admin/views/roles.html"
+            },
+            "sidebar": {
+              templateUrl: "/app/site/views/sidebar.html"
+            }
+          },
+
+        })
+        .state('admin.roles', {
+          url: "/roles",
+          views: {
+            "": {
+              templateUrl: "/app/admin/views/roles.html"
+            },
+            "sidebar": {
+              templateUrl: "/app/site/views/sidebar.html"
+            }
+          },
+          controller: function(){
+            console.log('no admin.roles');
           }
         })
         .state('404', {

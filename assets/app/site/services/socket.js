@@ -2,7 +2,7 @@
   define([
     'angular',
     'modules',
-    'user/services/user',
+    'user/services/userResources',
     'io',
     'sails.io'
   ], function (
@@ -14,7 +14,7 @@
 
     return angular.module('application.services')
     .factory("$socket", [
-      "$rootScope", "User", function($rootScope, User) {
+      "$rootScope", "userResource", function($rootScope, User) {
         var $socket;
         if( !$rootScope.connectedUsers ){
           $rootScope.connectedUsers = [];
