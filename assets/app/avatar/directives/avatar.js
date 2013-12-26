@@ -26,7 +26,7 @@
 
               switch(attrs['avatarSize']) {
                 case 'medium':
-                  size_class = ' width="150px" height="150px" class="img-rounded avatar-medium" ';
+                  size_class = ' width="200px" height="200px" class="img-rounded avatar-medium" ';
                   break;
                 default:
                   size_class = ' width="50px" height="50px" class="img-rounded avatar-small" ';
