@@ -29,8 +29,8 @@
               <a data-ng-click="openModal()" href="#ChangeAvatarModal"><%= __('Change Avatar') %></a>
             </li>
             <li class="divider"></li>
-            <li><a href="/account/"><%= __('View account') %></a></li>
-            <li><a href="/account/edit/"><%= __('Edit account') %></a></li>
+            <li><a href="/users/<%= req.user.id %>"><%= __('View account') %></a></li>
+            <li><a href="/users/<%= req.user.id %>/edit/"><%= __('Edit account') %></a></li>
             <li class="divider"></li>
             <li><a href="/users/logout"><%= __('Sing out') %></a></li>
           </ul>
