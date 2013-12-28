@@ -1,5 +1,5 @@
 # WE [![Build Status](https://travis-ci.org/we-cms/we.png?branch=master)](https://travis-ci.org/we-cms/we)
-#### The node.js social network pack with sails framework
+#### A node.js application for simplify your life
 
 Status - in development, not working
 
