@@ -26,13 +26,16 @@ function UserStub () {
 describe('UsersController', function(done) {
 
   // JSON REQUESTS //
-  describe('JSON- Requests', function(done) {
+  describe('JSON Requests', function(done) {
 
     it('GET /users should return 200 and users array', function (done) {
       request(sails.express.app)
-      .get('/users?format=json')
+      .get('/users')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
       .end(function (err, res) {
-        res.statusCode.should.equal(200);
+        assert.equal(err, null);
         // TODO implement response data check
         //res.body.users.should.be.an.instanceOf(Array);
         done();
@@ -46,14 +49,18 @@ describe('UsersController', function(done) {
       user.confirmPassword = user.password;
 
       request(sails.express.app)
-      .post('/signup?format=json')
+      .post('/signup')
+      .set('Accept', 'application/json')
+
+      //.set('X-CSRF-Token', testCsrfToken)
       .send( user )
+      .expect('Content-Type', /json/)
+      .expect(200)
       .end(function (err, res) {
+        
+        if(err) console.log(err);
         assert.equal(err, null);
-        console.log(res.text);
         jsonResponse = JSON.parse(res.text);
-        console.log(jsonResponse);
-        console.log(res.statusCode);
         res.statusCode.should.equal(200);
         done();
       });
