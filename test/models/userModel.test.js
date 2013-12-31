@@ -9,33 +9,35 @@ var sinon   = require('sinon');
 
 function UserStub () {
     return {
-      username: 'albertosouza',
-      name: "Alberto",
-      email: "contato@albertosouza.net",
-      password: "123"
+      username: 'GNU/Linux',
+      name: "linux",
+      email: "linux@albertosouza.net",
+      password: "321"
     };
 }
 
-describe('Users', function(done) {
+describe('UsersModel', function(done) {
 
-  describe('Model', function(done) {
-    describe('Create', function(done) {
+  describe('Create', function(done) {
 
-      it("Should be able to create a user", function(done) {
-        Users.create(UserStub(), function(err, user) {
-          if(err) console.log(err);
-          assert.notEqual(user, undefined);
-          done();
-        });
-      });
-
-      it("Should return error on create user with already registered email", function(done) {
-        Users.create(UserStub(), function(err, user) {
-          err.should.not.be.empty;
-          assert.equal(user, undefined);
-          done();
-        });
+    it("Should be able to create a user", function(done) {
+      Users.create(UserStub(), function(err, user) {
+        if(err) console.log(err);
+        assert.notEqual(user, undefined);
+        done();
       });
     });
-  }); // end database
+
+    it("Should return error on create user with already registered email", function(done) {
+      var newUser = UserStub();
+      Users.create(newUser, function(err, user) {
+        err.should.not.be.empty;
+        err.should.equal(
+          'Uniqueness check failed on attribute: email with value: ' + newUser.email
+        );
+        assert.equal(user, undefined);
+        done();
+      });
+    });
+  });
 });
