@@ -23,10 +23,10 @@ function UserStub () {
  * Before ALL the test bootstrap the server
  */
 
-describe('UsersController', function(done) {
+describe('UsersController', function() {
 
   // JSON REQUESTS //
-  describe('JSON Requests', function(done) {
+  describe('JSON Requests', function() {
 
     it('GET /users should return 200 and users array', function (done) {
       request(sails.express.app)
@@ -65,6 +65,18 @@ describe('UsersController', function(done) {
         done();
       });
     });
+
+    it('PUT /users/:id should return 200 and updated user object');
+
+    it('DELETE /users/:id should return 200 ');
+
+    it('GET /users/current should return 200 and current user object');
+
+    it('POST /users/login should Login a user, return 200 and current user object');
+
+    it('GET /users/logout should logout a user, return 200 and redirect to index');
+
+    it('POST /users/logout should logout a user and return 200');
 
   }); // end requests
 
