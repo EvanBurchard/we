@@ -7,7 +7,6 @@
 var Sails = require('sails');
 var fs = require("fs");
 
-
 /**
  * Before ALL the test bootstrap the server
  */
@@ -32,15 +31,22 @@ before(function(done) {
 
 });
 
-// load controllers test
-fs.readdirSync( __dirname + "/controllers").forEach(function(file) {
-  require("./controllers/" + file);
-});
 
 // load models test
 fs.readdirSync(__dirname + "/models").forEach(function(file) {
-  require("./models/" + file);
+  if(file.indexOf('.test.js') > -1) {
+    require("./models/" + file);
+  }
 });
+
+// load controllers test
+fs.readdirSync( __dirname + "/controllers").forEach(function(file) {
+  if(file.indexOf('.test.js') > -1) {
+    require("./controllers/" + file);  
+  }
+  
+});
+
 
 /**
  * After ALL the tests, lower sails

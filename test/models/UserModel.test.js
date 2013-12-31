@@ -8,12 +8,12 @@ var supertest = require('supertest');
 var uuid = require('node-uuid');
 
 function UserStub () {
-    return {
-      username: 'GNU/Linux',
-      name: "linux",
-      email: "linux@albertosouza.net",
-      password: "321"
-    };
+  return {
+    username: 'GNU/Linux',
+    name: "linux",
+    email: "linux@albertosouza.net",
+    password: "321"
+  };
 }
 
 describe('UsersModel', function() {

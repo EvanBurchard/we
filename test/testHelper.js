@@ -9,6 +9,9 @@ var request = require('supertest');
 // TODO move this database config to sails config/local.js
 global.gettestConfig= function(done) {
 
+
+  var localConf = require('../config/local');
+  
   // TODO: Create the database
   // Database.createDatabase.....
 
