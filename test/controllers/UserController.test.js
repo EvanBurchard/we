@@ -28,17 +28,51 @@ describe('UsersController', function() {
   describe('JSON Requests', function() {
     describe('GET', function() {
 
-      it('/users should return 200 and users array', function (done) {
+      it('/users without users in database return 200 and a empty array', function (done) {
+
         request(sails.express.app)
         .get('/users')
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200)
         .end(function (err, res) {
-          assert.equal(err, null);
-          // TODO implement response data check
-          //res.body.users.should.be.an.instanceOf(Array);
+          if(err) return done(err);
+
+          res.body.should.be.an.Array;
+          res.body.should.have.lengthOf( 0 );
+        
           done();
+        });
+      });
+
+      it('/users should return 200 and users array', function (done) {
+        
+        var user;
+        // get 3 diferent users for salve in database
+        var users = [
+          UserStub(),
+          UserStub(),
+          UserStub()
+        ];
+
+        Users.createEach(users, function(err, newUsers) {
+          if(err) return done(err);
+          
+          request(sails.express.app)
+          .get('/users')
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .end(function (err, res) {
+            if(err) return done(err);
+
+            res.body.should.be.an.Array;
+            res.body[0].should.be.an.Object;
+            res.body.should.have.lengthOf( users.length );
+            done();
+          });
+
+            
         });
       });
 
@@ -68,13 +102,10 @@ describe('UsersController', function() {
 
       it('/users/current should return 200 and logged in user object');
 
-
-      it('/users/logout should logout a user, return 200 and redirect to index');
-
     });
     describe('POST', function() {
 
-      it('/users should return 200 and new user object', function (done) {
+      it('/users should return 201 and new user object', function (done) {
         var user = UserStub();
         var jsonResponse;
 
@@ -87,79 +118,16 @@ describe('UsersController', function() {
         //.set('X-CSRF-Token', testCsrfToken)
         .send( user )
         .expect('Content-Type', /json/)
-        .expect(200)
+        .expect(201)
         .end(function (err, res) {
           
-          if(err) console.log(err);
+          if(err) return done(err);
           assert.equal(err, null);
           jsonResponse = JSON.parse(res.text);
           res.statusCode.should.equal(200);
           done();
         });
       });
-      it('/users/login should login a user with new password, return 200 and logged in user object',function (done) {
-        var user  = UserStub();
-        var authParams = {
-          email: user.email,
-          password: user.password
-        };
-
-        Users.create(user, function(err, newUser) {
-          if(err) return done(err);
-
-          request(sails.express.app)
-          .post('/users/login')
-          .set('Accept', 'application/json')
-
-          //.set('X-CSRF-Token', testCsrfToken)
-          .send( authParams )
-          .expect('Content-Type', /json/)
-          .expect(200)
-          .end(function (err, res) {       
-            if(err) return done(err);
-            // TODO add suport for server messages
-            // 
-            res.body.email.should.equal(user.email);
-            res.body.should.be.instanceof(Object);
-
-            done();
-          });
-
-        });
-
-      });
-
-      it('/users/login shold return 404 with wrong password, return 404',function (done) {
-        var user  = UserStub();
-        var authParams = {
-          email: user.email,
-          password: 'aRealyWrongPassword'
-        };
-        // create user to test
-        Users.create(user, function(err, newUser) {
-          if(err) return done(err);
-
-          request(sails.express.app)
-          .post('/users/login')
-          .set('Accept', 'application/json')
-
-          //.set('X-CSRF-Token', testCsrfToken)
-          .send( authParams )
-          .expect('Content-Type', /json/)
-          .expect(404)
-          .end(function (err, res) {         
-            if(err) return done(err);
-            // TODO add suport for server messages
-            should.not.exist(res.body.email);
-            console.log(res.body);
-            done();
-          });
-
-        });
-
-      });
-
-      it('/users/logout should logout a user and return 200');
 
     });
     describe('PUT', function() {
